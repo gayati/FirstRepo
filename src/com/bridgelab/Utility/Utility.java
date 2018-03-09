@@ -2,6 +2,7 @@ package com.bridgelab.Utility;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -193,7 +194,7 @@ public class Utility {
     		   for(int j=0;j<rows; j++) 
     		   {
     			  pw.print(array[i][j] + " ");
-    			  pw.flush();
+    			  //pw.flush();
     		   }
     		   System.out.println();
     	   }
@@ -306,39 +307,160 @@ public class Utility {
     	   root2 = ((-b) -(Math.sqrt(delta)))/(2*a);
     	   }
     	   System.out.println("Root values are:" + root1 +"and" + root2);
-    	   
+//    	   else if(delta=0)
+//    	   {
+//    		   System.out.println("Roots are equal");
+//    	   }
+//    	   else
+//    	   {
+//    		   
+//    	   }
     	   
        }
        
        
        
+       public static void permute(String inputstring,int first, int last)
+       {
+    	   if(first == last)
+    	   {
+    		   System.out.println(inputstring);
+    	   }
+    	   else
+    	   {
+    		   for(int i = first; i<=last; i++)
+    		   {
+    		   inputstring = Utility.swap(inputstring,first,i);
+    		   Utility.permute(inputstring, first +1, last);//control check
+    		   inputstring = Utility.swap(inputstring,first,i);	   
+    		   }
+    	   }
+    	   
+       }
+       
+       public static String swap(String inputstring,int first,int i)
+       {
+    	   char temp;
+    	   char arr[] = inputstring.toCharArray();
+    	   temp = arr[first];
+    	   arr[first] = arr[i];
+    	   arr[i] = temp;
+		   return String.valueOf(arr);
+    	   
+       }
        
        
        
+       public static boolean isAnagram(String inputstring1, String inputstring2)
+       {
+    	  // boolean status= false;
+    	   int length1 = inputstring1.length();
+    	   int length2 = inputstring2.length();
+    	   if(length1 != length2)
+    	   {
+    		  return false;
+    	   }
+    	   else
+    	   {
+    	   String s1 = inputstring1.replaceAll("//s","");
+    	   String s2 = inputstring2.replaceAll("//s","");
+    	   
+    	   char Array1[] = s1.toLowerCase().toCharArray();
+    	   char Array2[] = s2.toLowerCase().toCharArray();
+    	   
+    	   Arrays.sort(Array1);
+    	   Arrays.sort(Array2);
+    	   
+    	    boolean flag=Arrays.equals(Array1, Array2);
+    	   return flag;
+    	   
+    	   }
        
+//    	  
+    	   
+       }
        
+        public static void primenumbers()
+        { 
+        	int i;
+            int j;
+            int flag = 0;
+            ArrayList<String> al = new ArrayList<String>();
+            al.add(Integer.toString(2));
+           for(i=1;i<=1000; i++)
+           {
+        	 for(j=2;j<=i/2;j++)
+        	 {
+        		 if(i%j==0)
+        		 {
+        			 flag = 0;
+        			 break;
+        			 
+        		 }
+        		 flag=1;
+        		 
+        	 }
+        	 if(flag==1)
+        	 {
+               al.add(Integer.toString(i));
+        	 }
+        	 
+         }
        
+//        for(int s:al)
+//        {
+//        System.out.println(s);	
+//        }
+//        }
+           int n =al.size() ;
+           String[] liststring = new String[n];
+           liststring = al.toArray(liststring);
+         
+           
+           for(i=0;i<n ; i++)
+           {
+        	   for(j=i+1;j<n; j++)
+        	   {
+        		   if(isAnagram(liststring[i],liststring[j]))
+        			   System.out.println(liststring[i]+"-->"+liststring[j]);
+        	   }
+           }
+           
+           for(i=0;i<n ; i++)
+           {
+        	   if(isPalindrome(liststring[i]))
+        	   {
+        		   System.out.println(liststring[i]);
+        	   }
+           }
+           
+           
+        }
+        
        
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
+        public static boolean isPalindrome(String str)
+        {
+        	
+          
+        	String rev = "";
+        	
+        	int length = str.length();
+        	 //System.out.println("Hello");
+        
+            for ( int i = length - 1; i >= 0; i--)
+            {
+               rev = rev + str.charAt(i);
+              
+            }
+            boolean flag = str.equals(rev);
+            if(flag==true)
+            {
+            return flag;
+            }
+			return false;
+            
+        }
+        
        
        
        
