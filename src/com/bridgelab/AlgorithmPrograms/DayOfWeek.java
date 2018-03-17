@@ -30,7 +30,36 @@ public class DayOfWeek {
 			System.exit(0);
 		}
 		
-		Utility.dayOfweek(day,month, year);
+		int d=Utility.dayOfweek(day,month, year);
+		System.out.println("Date is:- " + day+"/"+month+"/"+year);
+		if(d==0)
+		{
+			System.out.println("Week day is : sunday");
+		}
+		if(d==1)
+		{
+			System.out.println("Week day is : monday");
+		}
+		if(d==2)
+		{
+			System.out.println("Week day is : tuesday");
+		}
+		if(d==3)
+		{
+			System.out.println("Week day is :wednesday");
+		}
+		if(d==4)
+		{
+			System.out.println("Week day is : thursday");
+		}
+		if(d==5)
+		{
+			System.out.println("Week day is : friday");
+		}
+		if(d==6)
+		{
+			System.out.println("Week day is : saturday");
+		}
 
 	}
 

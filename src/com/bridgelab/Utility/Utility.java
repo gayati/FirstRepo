@@ -1,10 +1,13 @@
 package com.bridgelab.Utility;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -12,8 +15,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+import com.bridgelab.Datastructure.MyLinkedList;
+import com.bridgelab.Datastructure.MyStack;
+
 public class Utility {
-	static Scanner scanner = new Scanner(System.in);	;
+	static Scanner scanner = new Scanner(System.in);	
 	public static  int integerinput()
 	{
 		return scanner.nextInt();
@@ -37,6 +43,12 @@ public class Utility {
 		return scanner.nextBoolean();
 		
 	}
+	public static char charinput()
+	{
+		return scanner.next().charAt(0);
+		
+	}
+	
 		public static void flipcoin(int no_of_times)
 		{
 			
@@ -70,8 +82,8 @@ public class Utility {
 		 if(n==4)
 	       {
 	    	   year1 = Integer.parseInt(year);
-	    	   Boolean isPrime = ((year1 % 4==0)|| (year1 % 100 ==0) || (year1 % 400 ==0));
-	    	   if(isPrime)
+	    	   Boolean isLeap = ((year1 % 4==0)|| (year1 % 100 ==0) || (year1 % 400 ==0));
+	    	   if(isLeap)
 	    	   {
 	    		   System.out.println("Its Leap Year");
 	    	   }
@@ -161,22 +173,12 @@ public class Utility {
 	public static void couponumbers(int numbers)
 	{
 		int randomCount = 0;
-		TreeSet al = new TreeSet<>();
-		//ArrayList al = new ArrayList<>();
+		TreeSet<Object> al = new TreeSet<>();
 		for(int i=1;i<=numbers; i++ )
 		{
 			long randomNumber = Utility.generateRandomNumber();
 			al.add(randomNumber);
 			randomCount++;
-//			if(al.contains(randomNumber))
-//			{
-//				randomCount++;
-//			}
-//			else
-//			{
-//				al.add(randomNumber);
-//				randomCount++;
-//			}
 		}
 		System.out.println(al);
 		System.out.println(randomCount);
@@ -789,7 +791,7 @@ public class Utility {
 			int numberofbits = Utility.integerinput();
 			
 			
-			int[] binary = new int[32];
+			int[] binary = new int[numberofbits];
 			int index = 0;
 			while(numberofbits>0)
 			{
@@ -874,55 +876,292 @@ public class Utility {
 		}
 		
 		
-		public static void dayOfweek(int day,int month,int year)
+		public static int dayOfweek(int day,int month,int year)
 		{
 	
 			int y = year - (14 - month) / 12;
 			int x = y + y/4 - y/100 + y /400;
 			int m = month + 12 * ((14 - month) / 12) - 2;
 			int d= (day + x + 31*m/ 12) %7;
-			System.out.println("Date is:- " + day+"/"+month+"/"+year);
-			if(d==0)
+			return d;
+			
+		}
+		
+		static  String[] board = new String[9];
+		static String turn;
+		
+		public static void tictactoe()
+		{
+			String winner = null;
+			turn = "X";
+		  Utility.populateBoard();
+		  
+		  
+		  System.out.println("Lets play tic toc toe game");
+		  System.out.println("-----------------------------------");
+		  Utility.printBoard();
+		  System.out.println("X's will play first,Enter the slot number to play");
+		
+		  
+		  while(winner==null)
+		  {
+			  int numberinput;
+			  try
+			  {
+				  numberinput =Utility.integerinput();
+			  if(!(numberinput > 0 && numberinput <= 9))
+			  {
+				  System.out.println("Invalid input; please enter correct slot number");
+				  continue;
+			  }
+			  }
+			  catch (InputMismatchException e)
+			  {
+				  System.out.println("Invalid input; please enter correct slot number");
+				  continue;
+			  }
+			  if (board[numberinput-1].equals(String.valueOf(numberinput))) {
+					board[numberinput-1] = turn;
+					if (turn.equals("X")) {
+						turn = "O";
+					} else {
+						turn = "X";
+					}
+					printBoard();
+					winner = checkwinner();
+				} else {
+					System.out.println("Slot already taken; re-enter slot number:");
+					continue;
+				}
+		  }
+			  if (winner.equalsIgnoreCase("draw")) 
+			  {
+					System.out.println("It's a draw! Thanks for playing.");
+			  }
+			  else 
+				{
+					System.out.println("Congratulations! " + winner + "'s have won! Thanks for playing.");
+				}
+		  		  
+		}
+		
+		
+
+		public static String checkwinner()
+		{
+		   
+		   for(int i=0;i<8;i++)
+		   { 
+			   String line = null;
+			   
+			switch (i) 
 			{
-				System.out.println("Week day is : sunday");
+			case 0:
+				   line = board[0] +board[1] +board[2];
+			       break;
+			case 1:
+				   line = board[3] +board[4] +board[5];
+			       break;
+			case 2:
+				   line = board[6] +board[7] +board[8];
+			       break;
+			case 3:
+				   line = board[0] +board[3] +board[6];
+			       break;
+			case 4:
+				   line = board[1] +board[4] +board[7];
+			       break;
+			case 5:
+				   line = board[2] +board[5] +board[8];
+			       break;
+			case 6:
+				   line = board[0] +board[4] +board[8];
+			       break;
+			case 7:
+				   line = board[2] +board[4] +board[6];
+			       break;
+			} 
+			
+			if (line.equals("XXX")) {
+				return "X";
+			} else if (line.equals("OOO")) {
+				return "O";
 			}
-			if(d==1)
+
+		   }
+		   for (int a = 0; a < 9; a++) {
+				if (Arrays.asList(board).contains(String.valueOf(a+1))) {
+					break;
+				}
+				else if (a == 8) return "draw";
+			}
+
+			System.out.println(turn + "'s turn; enter a slot number to place " + turn + " in:");
+			return null;
+		}   	   
+		   
+		   
+		public static void populateBoard()
+		{
+		      for( int i=0; i<9; i++)
+		   {
+			board[i] = String.valueOf(i+1);  
+		   }
+		}
+		
+		public static void printBoard()
+		{
+		   System.out.println("/---|---|---\\");
+		   System.out.println("| "+board[0]+" | "+board[1]+" | "+board[2]+" |");
+		   System.out.println("| "+board[3]+" | "+board[4]+" | "+board[5]+" |");
+		   System.out.println("| "+board[6]+" | "+board[7]+" | "+board[8]+" |");
+		   System.out.println("/---|---|---\\");    	   
+		}  
+    	   
+
+		 public static <T> void writeFile(String filepath,MyLinkedList<T> list)
+		 {
+			 try
+			 {
+			 FileWriter file = new FileWriter(filepath);
+			 BufferedWriter bw = new BufferedWriter(file);
+			 String data = list.toString();
+			 System.out.println(data);
+			
+		       bw.write(data);
+		       bw.flush();
+		      // bw.newLine();
+			 
+			 bw.close();
+			 System.out.println("Data Saved");
+			 }
+			 catch (Exception e) {
+				// TODO: handle exception
+			}
+			 
+		 }
+		public static boolean isMatchingPair(char character1, char character2)
+		    {
+		       if (character1 == '(' && character2 == ')')
+		         return true;
+		      
+		       else
+		         return false;
+		    }
+    	   
+    	 public static boolean isParanthesesBalance(String expression)
+    	 {
+    		 MyStack stack = new MyStack();
+    		 char ch;
+    		 for(int i=0;i<expression.length();i++)
+    		 {
+    			 ch= expression.charAt(i);
+    			 
+    			 if(ch=='(' )
+    			 {
+    				 stack.push(ch);
+    			 }
+    			 if ( ch == ')')
+    	          {
+    	              /* If we see an ending parenthesis without 
+    	                 a pair then return false*/
+    	             if (stack.isEmpty())
+    	               {
+    	                   return false;
+    	               } 
+    	      
+    	            
+    	             else if ( !isMatchingPair(stack.pop(), ch) )
+    	               {
+    	                   return false;
+    	               }    		 
+    	 }
+   } 
+    		 if (stack.isEmpty())
+       return true; 
+     else
+       {   
+           return false;
+       } 
+		 
+		 
+    	 }
+    	 
+    	 
+		public static void insertCharacter(String inputstring, ArrayDeque<Character> array) 
+		{
+			for(int i=0; i<inputstring.length(); i++)
 			{
-				System.out.println("Week day is : monday");
+				array.addLast(inputstring.charAt(i));
 			}
-			if(d==2)
+			
+			
+		}
+    	 
+		public static String popCharacter(ArrayDeque<Character> array,String reverse)
+		{
+			while(!array.isEmpty())
 			{
-				System.out.println("Week day is : tuesday");
+				reverse = reverse +  array.removeLast();
 			}
-			if(d==3)
-			{
-				System.out.println("Week day is :wednesday");
-			}
-			if(d==4)
-			{
-				System.out.println("Week day is : thursday");
-			}
-			if(d==5)
-			{
-				System.out.println("Week day is : friday");
-			}
-			if(d==6)
-			{
-				System.out.println("Week day is : saturday");
-			}
+			return reverse;
+			
 			
 		}
 		
 		
-		
-    	   
-    	   
-    	   
-    	   
-    	   
-    	   
-    	   
-    	   
-    	   
-      
-}
+		 public static boolean isLeapYear(int year) {
+		        if  ((year % 4 == 0) && (year % 100 != 0)) return true;
+		        if  (year % 400 == 0) return true;
+		        return false;
+		    }
+		 
+		 
+		 public static void printCalender(int month,int year)
+		 {
+			 String[] months =  {
+                     "",                              
+                     "January", "February", "March",
+                     "April", "May", "June",
+                     "July", "August", "September",
+                     "October", "November", "December"
+                  };
+
+            int[] days = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+            if (month == 2 && isLeapYear(year)) days[month] = 29;
+            
+           System.out.println("   " + months[month] + " " + year);
+           System.out.println("S  M  T  W  T  F  S  ");
+           int d = dayOfweek(1, month, year);
+            for(int i=0; i<d; i++)
+			{
+				System.out.print("   ");
+			}
+			for (int i = 1; i <= days[month]; i++) 
+			{
+			    System.out.printf("%2d ",i);
+			    if (((i + d) % 7 == 0) || (i == days[month])) 
+			    {
+			    	System.out.println();
+			    }
+			    	
+			}
+			}
+			} 
+
+
+
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+

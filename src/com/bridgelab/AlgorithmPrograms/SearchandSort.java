@@ -1,14 +1,20 @@
 package com.bridgelab.AlgorithmPrograms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 
 import com.bridgelab.Utility.Utility;
 
 public class SearchandSort {
 
-	public static void main(String[] args)
+	public static <E> void main(String[] args)
 	{
-	   
+		ArrayList<Object> al = new ArrayList<>();
+		char input = 0;
+		 do
+	       {
        System.out.println("1.IntegerBinary Search");
        System.out.println("2.StringBinary Search");
        System.out.println("3.Integer BubbleSort");
@@ -23,6 +29,7 @@ public class SearchandSort {
        int first;
        int last;
        int index;
+       
 		switch(choice)
 		{
 		  case 1:   Integer[] intitems= Utility.integerarrayInput();
@@ -44,6 +51,8 @@ public class SearchandSort {
 					System.out.println("Element is found at index: " + index);
 					System.out.println("Total time required for searching is:"+ elapsedtime +"milliseconds");
 					System.out.println();
+					al.add( elapsedtime);
+					
 				    break;
 		
 		    case 2:	System.out.println("StringBinary Search");
@@ -66,7 +75,9 @@ public class SearchandSort {
 					System.out.println("Element is found at index: " + index);
 					System.out.println("Total time required for searching is:"+ elapsedtime +"milliseconds");
 					System.out.println();
-			        break;
+					al.add(elapsedtime);
+
+			       break;
 		 
 		   case 3:  Integer[] intArray = Utility.integerarrayInput(); 
 					System.out.print("Sorted integer array by bubblesort:");
@@ -74,7 +85,9 @@ public class SearchandSort {
 					Utility.bubbleSort(intArray);
 					stopTime = System.currentTimeMillis();
 				    elapsedtime = stopTime - startTime;
-					System.out.println("Total time required for sorting is:"+ elapsedtime +" " + "milliseconds"); 
+					System.out.println("Total time required for sorting is:"+ elapsedtime +" " + "milliseconds");
+					al.add(elapsedtime);
+
 					break;
 		
 			case 4: String[] stringArray = Utility.stringarrayInput();
@@ -94,7 +107,8 @@ public class SearchandSort {
 		          stopTime = System.currentTimeMillis();
 				  elapsedtime = stopTime - startTime;
 				  System.out.println("Total time required for sorting is:"+ elapsedtime +" " + "milliseconds");
-                  break;
+				  al.add(elapsedtime);
+				  break;
                   
 		case 6:  stringArray = Utility.stringarrayInput();
 		         length = stringArray.length;
@@ -104,15 +118,25 @@ public class SearchandSort {
 		         stopTime = System.currentTimeMillis();
 			     elapsedtime = stopTime - startTime;
 				 System.out.println("Total time required for sorting is:"+ elapsedtime +" " + "milliseconds");
-                 break;
+				 al.add(elapsedtime);
+
+				 break;
                  
 		default: System.out.println("Invalid Choice");
-                 break;
+                break;
+                 
 		         
 		}
 		    
-	
-		
+		System.out.print("Do You Want To Continue (Y/N)?: ");
+        input=Utility.charinput();
+       }
+       while((input!='n')&&(input!='N'));
+       
+      
+       Collections.sort(al, Collections.reverseOrder());
+       System.out.println("Elapsed time performance for searching and sorting in decending order is as follows");
+       System.out.println(al);
 	}
 
 }

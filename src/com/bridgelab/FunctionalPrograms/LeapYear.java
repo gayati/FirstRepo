@@ -21,6 +21,7 @@ public class LeapYear {
 	       year = Utility.stringinput();
 	       Utility.leapyear(year);
 	      
+	      
        
 	}
 	}
