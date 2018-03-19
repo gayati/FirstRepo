@@ -15,7 +15,7 @@ public class PalindromeChecker {
       Utility.insertCharacter(inputstring,array);
 
       reverse = Utility.popCharacter(array,reverse);
-      System.out.println(reverse          );
+      System.out.println(reverse);
       
       if(inputstring.equals(reverse))
       {

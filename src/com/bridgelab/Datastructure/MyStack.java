@@ -57,8 +57,16 @@ public class MyStack {
 	}
 	
 	
-	
-	
+	public <T> void show()
+	{
+		Node<T> node = top;
+		while(node.next!=null)
+		{
+			System.out.println(node.data);
+			node = node.next;
+		}
+		System.out.println(node.data);
+	}
 	
 	
 	
