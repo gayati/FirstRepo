@@ -1,10 +1,10 @@
 /******************************************************************************
  
   
- *  Purpose: Determines whether or not n is prime.
+ *  Purpose: Determines the prime factors of the given
  *
  *  @author  BridgeLabz
- *  @version 1.0
+ * 
  *  @since   06-08-2017
  *
  /******************************************************************************/

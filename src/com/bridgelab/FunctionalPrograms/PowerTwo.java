@@ -14,7 +14,7 @@ import com.bridgelab.Utility.Utility;
 public class PowerTwo {
 
 	public static void main(String[] args) {
-		
+		System.out.println("Enter the number:");
 		int number = Utility.integerinput();
 		Utility.powertwo(number);
 	}

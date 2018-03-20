@@ -79,12 +79,13 @@ public class Utility {
 
 	     public static void leapyear(String year)
 	     {
-		 int n = year.length();
+		 int length = year.length();
 	     int year1 = 0;
-		 if(n==4)
+		 if(length==4)
 	       {
 	    	   year1 = Integer.parseInt(year);
-	    	   Boolean isLeap = ((year1 % 4==0)|| (year1 % 100 ==0) || (year1 % 400 ==0));
+	    	   Boolean isLeap = (((year1 % 4 == 0) && (year1 % 100 != 0)) ||
+	    	            (year1 % 400 == 0));
 	    	   if(isLeap)
 	    	   {
 	    		   System.out.println("Its Leap Year");
@@ -110,16 +111,9 @@ public class Utility {
 			{
 				num = (int) Math.pow(2, i);
 				System.out.println(num);
-				if(num%4==0)
-				{
-					System.out.println("Leap Year---->" + num);
-				}
-				else
-				{
-					System.out.println("Not Leap Year----->" + num);
-				}
-			
+				
 			}
+			
 				
 			}
 	    }
@@ -164,6 +158,7 @@ public class Utility {
           if(strlength>=3)
           {
           	System.out.println(string.replace("<<username>>", inputstring));
+       
           }
           else
           {
@@ -286,6 +281,7 @@ public class Utility {
     	  int[] arr = new int[size];
     	  int length = arr.length;
     	  System.out.println("Enter the array element");
+    	 
     	  for( i=0;i<size;i++)
     	  {
     		  arr[i] = Utility.integerinput();
@@ -298,12 +294,13 @@ public class Utility {
     			  {
     				  if(arr[i]+arr[j] + arr[k] ==0)
     				  {
+    					  System.out.println("Triplet is:");
     					  System.out.print(arr[i]);
     					  System.out.print(" ");
     					  System.out.print(arr[j]);
     					  System.out.print(" ");
     					  System.out.print(arr[k]);
-    					  System.out.print("/n");
+    					  System.out.println();
     					  found = true;
     					  
     				  }
@@ -369,8 +366,13 @@ public class Utility {
     	   if(temperature<=50 && velocity<=120 && velocity>=3)
     	   {
     		   windchill = 35.75 + (0.6215*temperature)+(((0.427*temperature)-35.75)*Math.pow(velocity, 0.16));
+        	   System.out.println("The windchill is as follows:" + windchill);
+
     	   }
-    	   System.out.println("The windchill is as follows:" + windchill);
+    	   else
+    	   {
+    		   System.out.println("Please enter valid input");
+    	   }
        }
        
        
@@ -485,7 +487,7 @@ public class Utility {
         
           System.out.println();
           System.out.println();
-          System.out.println("The primeanagram are as follows:");
+          System.out.println("The prime anagram are as follows:");
           for(int i=0;i<n ; i++)
           {
        	   for(int j=i+1;j<n; j++)
@@ -1163,19 +1165,19 @@ public class Utility {
 		 public static void printCalender(int month,int year)
 		 {
 			 String[] months =  {
-                        "",                        
+                        ""   ,                    
                      "January", "February", "March",
                      "April", "May", "June",
                      "July", "August", "September",
                      "October", "November", "December"
                   };
 
-            int[] days = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+            int[] days = {0,  31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
             if (month == 2 && isLeapYear(year)) days[month] = 29;
             
            System.out.println("   " + months[month] + " " + year);
-           System.out.println("S  M  T  W  T  F  S  ");
+           System.out.println("S  M  T  W  Th  F  S  ");
            int d = dayOfweek(1, month, year);
             for(int i=0; i<d; i++)
 			{
@@ -1246,6 +1248,63 @@ public class Utility {
 		    }	 
 		    } 
 		  
+		  
+		  public static void printstack(int month, int year)
+		    {
+			 MyStack stack1,stack2;
+		     int totalNoOfDays = 0;
+		     String[] months =  {
+		                      "",                              
+		                      "January", "February", "March",
+		                      "April", "May", "June",
+		                      "July", "August", "September",
+		                      "October", "November", "December"
+		                   };
+		         
+		     stack1 = new MyStack();
+		     stack1.push(31);
+		     stack1.push(28);
+		     stack1.push(31);
+		     stack1.push(30);
+		     stack1.push(31);
+		     stack1.push(30);
+		     stack1.push(31);
+		     stack1.push(31);
+		     stack1.push(30);
+		     stack1.push(31);
+		     stack1.push(30);
+		     stack1.push(31);
+		   
+	    
+           for(int j=0; j<month;j++)
+           {
+            totalNoOfDays =stack1.pop();
+           }
+  
+        
+           if (month == 2 && isLeapYear(year)) 
+           {
+           totalNoOfDays = 29;
+           }
+           
+            System.out.println("   " + months[month] + " " + year);
+            System.out.println("S  M  T  W  Th  F  S  ");
+            int d = dayOfweek(1, month, year);
+           for(int i=0; i<d; i++)
+		    {
+		     System.out.print("   ");
+		    }
+		    for (int i = 1; i <= totalNoOfDays; i++) 
+		    {
+		        System.out.printf("%2d ",i);
+		        if (((i + d) % 7 == 0) || (i == totalNoOfDays)) 
+		        {
+		         System.out.println();
+		        }
+		         
+		    }	 
+		    } 
+		  
 		  public static ArrayList<Integer> primenumbers1()
 		  {
 			    int i;
@@ -1274,125 +1333,206 @@ public class Utility {
 			return list;
 		  }
 		  
-		  public static int primecount()
-		  {
-			  System.out.println("Enter the first element of the range:");
-			  int number1 = Utility.integerinput();
-			  System.out.println("Enter the second element of the range:");
-			  int number2 = Utility.integerinput();
-			  
-			  int i;
-	            int j;
-	            int flag = 0;
-	            int count=0;
-	           for(i=number1;i<=number2; i++)
-	           {
-	        	 for(j=2;j<=i/2;j++)
-	        	 {
-	        		 if(i%j==0)
-	        		 {
-	        			 flag = 0;
-	        			 break;
-	        			 
-	        		 }
-	        		 flag=1;
-	        		 
-	        	 }
-	        	 if(flag==1)
-	        	 {
-	              count++;
-	        	 }
-	        	
-			 
-		  }
-	           System.out.println("The prime number between" + number1 + "and" + number2 + "are:" +count);
-	          
-			return count;
-		 
 		  
-
-		  }
-		  
+//		  public static int primecount()
+//		  {
+//			   
+//			    int i;
+//	            int j;
+//	            int flag = 0;
+//	            int count=0;
+//	            int number1=0;
+//	            int number2=100;
+//	            while(number2<=1000)
+//	            {
+//	           for(i=number1;i<=number2; i++)
+//	           {
+//	        	 for(j=2;j<=i/2;j++)
+//	        	 {
+//	        		 if(i%j==0)
+//	        		 {
+//	        			 flag = 0;
+//	        			 break;
+//	        			 
+//	        		 }
+//	        		 flag=1;
+//	        		 
+//	        	 }
+//	        	 if(flag==1)
+//	        	 {
+//	              count++;
+//	        	 }
+//	        	
+//			 
+//		  }
+//	              
+//	             
+//	            }
+//				return count;
+//			
+//
+//		  }
+//		  
 		 
-		public static int[][] create2DArray() 
-		{
-			 int array[][] = new int[10][];
-			  for(int i=0;i<10;i++)
-			  {
-				  int m = Utility.primecount();
-				  array[i] = new int[m];
-			  }
-			  return array;
-		}
+//		public static int[][] create2DArray() 
+//		{
+//			 int array[][] = new int[10][];
+//			  for(int i=0;i<10;i++)
+//			  {
+//				  int m = Utility.primecount();
+//				  System.out.println(m);
+//				  array[i] = new int[m];
+//			  }
+//			  return array;
+//		}
+//		
 		
-		public static String[][] create2DArray1() 
-		{
-			 String array[][] = new String[10][];
-			  for(int i=0;i<10;i++)
-			  {
-				  int m = Utility.primecount();
-				  array[i] = new String[m];
-			  }
-			  return array;
-		}
 		  
-		  
-		 public static void print2Darray(ArrayList<Integer> list,int[][] prime)
+		 public static void print2Darray(ArrayList<Integer> list)
          {   
+			 int[][] prime = new int[10][]; 
 			 Iterator< Integer> it = list.iterator();
+			 int block = 100;
+			 int i=0;
+			 int j =0;
 			 while(it.hasNext())
-			 {
-				 for(int i=0;i<10;i++)
-				 {
-					 for(int j=0;j<prime[i].length;j++)
-					 {
+			 {	 
 						 prime[i][j]= it.next();
 						 System.out.print(prime[i][j] + " ");
+						 if(prime[i][j]<block)
+						 {
+							 i++;
+							 j=0;
+							 block=block+100;
+						 }
+						 
 					 }
 					 System.out.println();
 				 }
 					 
-			 }
+			 
 			 
 
-         }
+         
 		 
-		 public static void printanagram2Darray(String[][] prime,ArrayList<String> al)
-		 {     
-//			  Iterator<String> it = al.iterator();
+		 public static int primeanagramcount(ArrayList<String> al)
+	        {
+			  System.out.println("Enter the first element of the range:");
+			  int number1 = Utility.integerinput();
+			  System.out.println("Enter the second element of the range:");
+			  int number2 = Utility.integerinput();
+			
+	          int size =al.size() ;
+	          String[] liststring = new String[size];
+	          liststring = al.toArray(liststring);
+	          int count =0;
+	          int n=Integer.parseInt(liststring[number1]);
+	          int m =Integer.parseInt(liststring[number2]);
+	          System.out.println(m +"n "+n);
+	           
+	          for(int i=number1;i<=number2 ; i++)
+	          {
+	       	   for(int j=i+1;j<=number2; j++)
+	       	   {
+	       		   if(isAnagram(liststring[i],liststring[j]))
+	       		   {
+	       			   count++;
+	       			   System.out.println(liststring[i] + "--" + liststring[j]);
+	       			   System.out.println();
+	       		   }
+	       			  
+	       	   }
+	          
+	        }
+	      
+			return count;
+	        }
+		 
+		 
+		 public static void anagramqueue(ArrayList<String> al)
+	        {
+	          int n =al.size() ;
+	          String[] liststring = new String[n];
+	          liststring = al.toArray(liststring);
+	          MyQueue queue = new MyQueue();
+	          System.out.println();
+	          System.out.println();
+	          System.out.println("The primeanagram are as follows:");
+	          
+	          for(int i=0;i<n ; i++)
+	          {
+	       	   for(int j=i+1;j<n; j++)
+	       	   {
+	       		   if(isAnagram(liststring[i],liststring[j]))
+	       		   {
+	       			   queue.enque(liststring[i]);
+	       			   queue.enque(liststring[j]);
+	       		   }
+	       	   }
+	       	   
+	          
+	        }
+	          queue.print();
+	          
+	        }
+//		 
+//		 public static String[][] create2DArray1() 
+//			{
+//				 String array[][] = new String[10][];
+//				  for(int i=0;i<10;i++)
+//				  {
+//					  int m = Utility.primecount();
+//					  array[i] = new String[m];
+//				  }
+//				  return array;
+//			}
+//			  
+//		
+//		 
+//		 public static void printanagram2Darray(String[][] prime,ArrayList<String> al)
+//		 {     
 //			  int n =al.size() ;
 //	          String[] liststring = new String[n];
-//	          liststring = (String[]) al.toArray(liststring);
-//	           int n =al.size() ;
-			  int n =al.size() ;
-	          String[] liststring = new String[n];
-	          liststring =  al.toArray(liststring);
-	          Iterator<String> it = al.iterator();
-				 while(it.hasNext())
-				 {
-					 for(int i=0;i<10;i++)
-					 {
-						 
-						 for(int j=i+1;j<prime[i].length;j++)
-						 { 
-							 if(isAnagram(liststring[i],liststring[j]))
-				       		   {
-							
-								 prime[i][j]= it.next();
-								 System.out.print(prime[i][j] + " ");
-				       		   }
-						 }
-						 System.out.println();
-					 }
-						 
-				 }
-				 
-	       				
-	    			 
-	       		   }
-	       	   
-      
-          
+//	          liststring =  al.toArray(liststring);
+//	          Iterator<String> it = al.iterator();
+//	          while(it.hasNext())
+//		      {
+//				
+//	          for(int i=0;i<n ; i++)
+//	          {
+//	       	   for(int j=i+1;j<n; j++)
+//	       	   {
+//	       		   if(isAnagram(liststring[i],liststring[j]))
+//	       		   {
+//					 for( i=0;i<10;i++)
+//					 { 
+//						 for( j=0;j<prime[i].length;j++)
+//						 { 
+//							
+//							
+//								 prime[i][j]=liststring[i];
+//								 //prime[i][j]=liststring[j];
+//								 System.out.print(prime[i][j] + " ");
+//				       		   
+//						 }
+//						 System.out.println();
+//					 }
+//						 
+//				 }
+//	       		}
+//	       		   
+//	       		   
+//	       		   
+//	       	   }
+//	          
+//	          }
+//				 
+//	       				
+//	    			 
+//	        }
+//	       	   
+//      
+//          
 		 
 		 
 //		 public static void print2Darray1(ArrayList<Integer> list)
@@ -1456,31 +1596,9 @@ public class Utility {
 	          
 	        }
 		 
-		 public static void anagramqueue(ArrayList<String> al)
-	        {
-	          int n =al.size() ;
-	          String[] liststring = new String[n];
-	          liststring = al.toArray(liststring);
-	          MyQueue queue = new MyQueue();
-	          System.out.println();
-	          System.out.println();
-	          System.out.println("The primeanagram are as follows:");
-	          for(int i=0;i<n ; i++)
-	          {
-	       	   for(int j=i+1;j<n; j++)
-	       	   {
-	       		   if(isAnagram(liststring[i],liststring[j]))
-	       		   {
-	       			   queue.enque(liststring[i]);
-	       			   queue.enque(liststring[j]);
-	       		   }
-	       	   }
-	       	   
-	          
-	        }
-	          queue.print();
-	          
-	        }
+		
+		
+		
          
 }		 
 		 

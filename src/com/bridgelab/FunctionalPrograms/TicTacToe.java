@@ -1,4 +1,4 @@
-package com.bridgelab.AlgorithmPrograms;
+package com.bridgelab.FunctionalPrograms;
 
 import com.bridgelab.Utility.Utility;
 

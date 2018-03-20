@@ -4,7 +4,7 @@
  *  Purpose: Determines whether the year is leap year or not
  *
  *  @author  BridgeLabz
- *  @version 1.0
+ *  
  *  @since   08-03-2018
  *
  /******************************************************************************/
