@@ -1,10 +1,10 @@
 /******************************************************************************
  
   
- *  Purpose: Determines whether or not n is prime.
+ *  Purpose: Replace particular string by accepting input string from user.
  *
- *  @author  BridgeLabz
- *  @version 1.0
+ *  @author  Gayatri Kawade
+ *  
  *  @since   06-08-2017
  *
  /******************************************************************************/
@@ -15,10 +15,10 @@ public class StringReplace {
 
 	public static void main(String[] args) 
 	{
-		String inputstring = null;
+		String inputString = null;
 		System.out.println("Enter the username to be replaced");
-		inputstring = Utility.stringinput();
-		Utility.stringreplace(inputstring);
+		inputString = Utility.readString();
+		Utility.replaceString(inputString);
 }
 
 }

@@ -1,9 +1,9 @@
 /******************************************************************************
  
   
- *  Purpose: Determines whether the year is leap year or not
+ *  Purpose: Determines whether the year is leap year or not.
  *
- *  @author  BridgeLabz
+ *  @author  Gayatri Kawade
  *  
  *  @since   08-03-2018
  *
@@ -16,10 +16,10 @@ public class LeapYear {
 
 	public static void main(String[] args) {
 		
-	       String year = null;  
+	       int year = 0;
 	       System.out.println("Enter the year");
-	       year = Utility.stringinput();
-	       Utility.leapyear(year);
+	       year = Utility.readInteger();
+	       Utility.isLeapyear(year);
 	      
 	      
        

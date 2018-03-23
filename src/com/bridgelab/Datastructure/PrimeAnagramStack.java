@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 
 import java.util.ArrayList;
@@ -8,8 +18,8 @@ public class PrimeAnagramStack {
 
 	public static void main(String[] args)
 	{
-	   ArrayList<String> al = Utility.primenumbers();
-	   Utility.anagramstack(al);
+	   ArrayList<Integer> list = Utility.findPrimes();
+	   Utility.anagramstack(list);
 			 
 	   
        

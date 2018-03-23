@@ -1,13 +1,25 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 
 
+
+import java.io.FileNotFoundException;
 
 import com.bridgelab.Utility.Utility;
 
 public class UnorderedList
 {
 
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
         MyLinkedList<String> list = new MyLinkedList<String>();
         
@@ -20,10 +32,9 @@ public class UnorderedList
         list.show();
         int size = list.size();
         System.out.println("Enter the word to search:");
-        String word = Utility.stringinput();
+        String word = Utility.readString();
         
         int index = list.indexOf(word);
-        
               
 		boolean flag = list.search(list.head, word);
         

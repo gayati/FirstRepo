@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 
 import com.bridgelab.Utility.Utility;
@@ -8,9 +18,9 @@ public class CalenderQueue {
 	{
 	
 		System.out.println("Enter the month");
-		int month = Utility.integerinput();
+		int month = Utility.readInteger();
 		System.out.println("Enter the year");
-		int year=Utility.integerinput();
+		int year=Utility.readInteger();
 		Utility.print(month, year);
 		
 

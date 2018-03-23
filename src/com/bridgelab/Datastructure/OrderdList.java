@@ -1,11 +1,22 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import com.bridgelab.Utility.Utility;
 public class OrderdList {
 
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		MyLinkedList<Integer> list = new MyLinkedList<>();
 
@@ -16,6 +27,7 @@ public class OrderdList {
 		FileReader file = new FileReader(filePath);
 		BufferedReader reader = new BufferedReader(file);
 		String line = reader.readLine();
+		reader.close();
 		String[] array = line.split(" ");
 		intArray= new Integer[array.length];
 		for(int i=0; i<intArray.length;i++)
@@ -43,11 +55,11 @@ public class OrderdList {
         
         
         System.out.println("Enter the number to search:");
-        int number = Utility.integerinput();
+        int number = Utility.readInteger();
       
         
         int index= list.indexOf(number);
-        System.out.println("index is" +index);
+       // System.out.println("index is" +index);
                    
 		boolean flag = list.search(list.head, number);
         
@@ -59,7 +71,7 @@ public class OrderdList {
         else
         {
          System.out.println("Not found");
-         list.insertAt(index, number);
+         list.insert(number);
         }
         list.show();
         Utility.writeFile(filePath, list);

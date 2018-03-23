@@ -1,7 +1,7 @@
 /******************************************************************************
  
   
- *  Purpose: Determines the prime factors of the given
+ *  Purpose: Compute the prime factors of the user input number.
  *
  *  @author  BridgeLabz
  * 
@@ -17,8 +17,8 @@ public class PrimeFactor {
 	{
 		
 		System.out.println("Enter the number of which the prime factors are to be find:");
-		int number = Utility.integerinput();
-		Utility.primefactor(number);
+		int inputnumber = Utility.readInteger();
+		Utility.computePrimefactor(inputnumber);
 		
 		
 	}

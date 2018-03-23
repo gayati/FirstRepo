@@ -1,5 +1,17 @@
-package com.bridgelab.AlgorithmPrograms;
 
+
+/******************************************************************************
+
+
+ *  Purpose: This program take date as input and print day of week on which that 
+ *           date falls on.
+ *  
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
+package com.bridgelab.AlgorithmPrograms;
 import com.bridgelab.Utility.Utility;
 
 public class DayOfWeek {
@@ -8,21 +20,21 @@ public class DayOfWeek {
 	{
 		
 		System.out.println("Enter the day:");
-		int day = Utility.integerinput();
+		int day = Utility.readInteger();
 		if(day<1 || day>31)
 		{
 			System.out.println("Day is invalid");
 			System.exit(0);
 		}
 		System.out.println("Enter the month:");
-		int month = Utility.integerinput();
+		int month = Utility.readInteger();
 		if(month<1 || month>12)
 		{
 			System.out.println("Month is invalid");
 			System.exit(0);
 		}
 		System.out.println("Enter the year");
-		int year = Utility.integerinput();
+		int year = Utility.readInteger();
 		String year1 = Integer.toString(year);
 		if(year1.length() !=4)
 		{

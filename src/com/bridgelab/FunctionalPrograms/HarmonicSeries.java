@@ -1,9 +1,9 @@
 /******************************************************************************
  
   
- *  Purpose: Determines whether or not n is prime.
+ *  Purpose: Print the n^th harmonic number for user input harmonic value n.
  *
- *  @author  BridgeLabz
+ *  @author  Gayatri Kawade
  *  @version 1.0
  *  @since   06-08-2017
  *
@@ -20,8 +20,8 @@ public class HarmonicSeries {
 		
 		int number;
 		System.out.println("Enter the number:");
-		number = Utility.integerinput();
-		Utility.harmonicseries(number);
+		number = Utility.readInteger();
+		Utility.printHarmonicSeries(number);
 		
 	}
 

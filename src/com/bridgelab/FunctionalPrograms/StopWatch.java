@@ -17,11 +17,11 @@ public class StopWatch {
 	public static void main(String[] args)
 	{
               System.out.println(">> Press 1 to start the StopWatch:");
-              int number = Utility.integerinput();
-              Utility.start();
+              int number = Utility.readInteger();
+              Utility.startTime();
               
               System.out.println(">> Press 2 to stop the StopWatch:");
-              int number1 = Utility.integerinput();
+              int number1 = Utility.readInteger();
               Utility.stop();
               
               Utility.getElapsedtime();

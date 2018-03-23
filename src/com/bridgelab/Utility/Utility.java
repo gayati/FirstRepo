@@ -2,6 +2,7 @@ package com.bridgelab.Utility;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,43 +22,70 @@ import com.bridgelab.Datastructure.MyQueue;
 import com.bridgelab.Datastructure.MyStack;
 
 public class Utility {
-	static Scanner scanner = new Scanner(System.in);	
-	public static  int integerinput()
+	static Scanner SCANNER = new Scanner(System.in);	
+	static PrintWriter WRITER = new PrintWriter(System.out);
+	static double EPSILON = 1E-15;
+	public static  int readInteger()
 	{
-		return scanner.nextInt();
+		return SCANNER.nextInt();
 	}
-	public static String stringinput()
+	public static String readString()
 	{
-		return scanner.next();
+		return SCANNER.next();
 	}
-	public static double doubleinput()
+	public static double readDouble()
 	{
-		return scanner.nextDouble();
+		return SCANNER.nextDouble();
 		
 	}
-	public static long longinput()
+	public static long readLong()
 	{
-		return scanner.nextLong();
+		return SCANNER.nextLong();
 		
 	}
-	public static boolean booleaninput()
+	public static boolean readBoolean()
 	{
-		return scanner.nextBoolean();
+		return SCANNER.nextBoolean();
 		
 	}
-	public static char charinput()
+	public static char readChar()
 	{
-		return scanner.next().charAt(0);
+		return SCANNER.next().charAt(0);
 		
 	}
 	
-		public static void flipcoin(int no_of_times)
+	
+	  /** 
+	    *
+	    * @param replace the string by user input string
+	    */
+		public static void replaceString(String inputString) 
 		{
+			  String string = "Hello <<username>>, How are you ?";
+		      int strLength = inputString.length();
+		      if(strLength>=3)
+		      {
+		      	System.out.println(string.replace("<<username>>", inputString));
+		   
+		      }
+		      else
+		      {
+		      	System.out.println("Please enter username having atleast 3 characters");
+		      }
 			
+		}
+      
+	  /** 
+		*
+		* @param replace the string by user input string
+		*/
+
+		public static void findPercentage(int noOfTimes)
+		{
 			int head=0;
 			int tail=0;
 			
-			for(int i=0; i<=no_of_times; i++)
+			for(int i=0; i<=noOfTimes; i++)
 			{
 				if(Math.random()<0.5)
 				{
@@ -69,23 +97,28 @@ public class Utility {
 				}
 			}
 
-			double headpercent = head*100/no_of_times;
+			double headpercent = head*100/noOfTimes;
 			double tailpercent = 100-headpercent;
 			
 			System.out.println("The percentage of head is----------" + headpercent);
 			System.out.println("The percentage of tail is----------" + tailpercent);	
 		}
 		
+		/** 
+		*
+		* @param determine whether user entered year is leap year or not.
+		*/
 
-	     public static void leapyear(String year)
+	     public static void isLeapyear(int year)
 	     {
-		 int length = year.length();
-	     int year1 = 0;
+	     String year1 = String.valueOf(year);
+		 int length = year1.length();
+	    
 		 if(length==4)
 	       {
-	    	   year1 = Integer.parseInt(year);
-	    	   Boolean isLeap = (((year1 % 4 == 0) && (year1 % 100 != 0)) ||
-	    	            (year1 % 400 == 0));
+	    	  
+	    	   Boolean isLeap = (((year % 4 == 0) && (year % 100 != 0)) ||
+	    	            (year % 400 == 0));
 	    	   if(isLeap)
 	    	   {
 	    		   System.out.println("Its Leap Year");
@@ -100,35 +133,51 @@ public class Utility {
 	    	   System.out.println("Please enter proper input");
 	       }
 	    }
-	    
-	    public static void powertwo(int number)
+	     
+ 	    /** 
+		*
+		* @param  print the table for power of two.
+		*/
+	    public static void powerOfTwo(int number)
 	    {
 	    	int i;
 	    	int num = 0;
-			if(number<=31)
+			if(number>=0 && number<=31)
 			{
 			for( i=1;i<=number;i++)
 			{
 				num = (int) Math.pow(2, i);
-				System.out.println(num);
-				
+				System.out.println(num);			
 			}
 			
-				
+			}
+			else
+			{
+				System.out.println("Please enter number between 0 to 31");
 			}
 	    }
 	 
-       public static void harmonicseries(int number)
-       {
-    	double sum = 0.0;
-   		for(int i=1;i<=number; i++)
-   		{
-   			sum = sum +(double) 1/i;	
-   		}
-   		System.out.println("The nth harmonic value is:" + sum);     
-       }
+	   
+	    /** 
+		*
+		* @param print the n^th harmonic number for user input harmonic value n.
+		*/
+	    public static void printHarmonicSeries(int number)
+	    {
+	    	double sum = 0.0;
+	   		for(int i=1;i<=number; i++)
+	   		{
+	   			sum = sum +(double) 1/i;	
+	   		}
+	   		System.out.println("The nth harmonic value is:" + sum);     
+	    }
        
-       public static void primefactor(int number)
+
+	    /** 
+		*
+		* @param compute the prime factors of the user input number.
+		*/  
+       public static void computePrimefactor(int number)
        {
     	while(number%2==0)
    		{
@@ -150,36 +199,31 @@ public class Utility {
            }
        }
        
-     
-	public static void stringreplace(String inputstring) 
-	{
-		  String string = "Hello <<username>>, How are you ?";
-   	      int strlength = inputstring.length();
-          if(strlength>=3)
-          {
-          	System.out.println(string.replace("<<username>>", inputstring));
        
-          }
-          else
-          {
-          	System.out.println("Please enter username having atleast 3 characters");
-          }
+       /** 
+		*
+		* @param compute the prime factors of the user input number.
+		*/   
+	    public static void couponumbers(int numbers)
+	    {
+	    Integer[] array = new Integer[numbers];
 		
-	}
-       
-	public static void couponumbers(int numbers)
-	{
-		int randomCount = 0;
-		TreeSet<Object> al = new TreeSet<>();
-		for(int i=1;i<=numbers; i++ )
+		
+		
+		for(int i=0;i<numbers; i++ )
 		{
-			long randomNumber = Utility.generateRandomNumber();
-			al.add(randomNumber);
-			randomCount++;
+			array[i]=Utility.generateRandomNumber();
+		 for(int j=i+1;j<numbers; j++)
+			{
+			if(array[i]==(array[j]))
+			{
+			i--;
+			}
+			}
+		 System.out.print(array[i] + " ");
 		}
-		System.out.println(al);
-		System.out.println(randomCount);
-	}
+		
+	    }
        
        
        public static int generateRandomNumber()
@@ -189,91 +233,192 @@ public class Utility {
     	   return random.nextInt(10000000);
        }
        
-       public static void integerarray()
+       /** 
+		*
+		* @param this method is for taking integer input for two dimentional array
+		*/
+       
+       public static void inputIntegerArray(Integer array[][], int rows, int columns) 
        {
-    	    System.out.println("Enter the NUmber of rows for array:");
-    		int rows = Utility.integerinput();
-    		System.out.println("Enter the NUmber of columns for array:");
-    		int columns = Utility.integerinput();
-    	    int array[][] = new int[10][10];
-    	    System.out.print("Enter " +(rows*columns)+ " Array Elements : ");
-    	    for(int i=0;i<rows; i++)
-    	    {
-    		   for(int j=0;j<rows; j++) 
-    		   {
-    			   array[i][j] = Utility.integerinput();
-    		   }
-    	   }
-    	 System.out.println("The array is");
-    	 PrintWriter pw = new PrintWriter(System.out);
-    	   for(int i=0;i<rows; i++)
-    	   {
-    		   for(int j=0;j<rows; j++) 
-    		   {
-    			  pw.print(array[i][j] + " ");
-    			  pw.flush();
-    		   }
-    		   System.out.println();
-    	   }
-    	   
-       }
-       public static void doubleArray()
+   		for (int i = 0; i < rows; i++) {
+   			for (int j = 0; j < columns; j++) {
+   				array[i][j] = Utility.readInteger();
+   			}
+   		}
+   		Utility.printTwoDArray(array, rows, columns);
+   	}
+       /** 
+		*
+		* @param this method is for taking double input for two dimentional array
+		*/
+      
+       public static void inputDoubleArray(Double array[][], int rows, int columns) 
        {
-    	    System.out.println("Enter the NUmber of rows for array:");
-    		int rows = Utility.integerinput();
-    		System.out.println("Enter the NUmber of columns for array:");
-    		int columns = Utility.integerinput();
-    	    double array[][] = new double[10][10];
-    	    System.out.print("Enter " +(rows*columns)+ " Array Elements : ");
-    	    for(int i=0;i<rows; i++)
-    	    {
-    		   for(int j=0;j<rows; j++) 
-    		   {
-    			   array[i][j] = Utility.doubleinput();
-    		   }
-    	   }
-    	 System.out.println("The array is");
-    	 PrintWriter pw = new PrintWriter(System.out);
-    	   for(int i=0;i<rows; i++)
-    	   {
-    		   for(int j=0;j<rows; j++) 
-    		   {
-    			  pw.print(array[i][j] + " ");
-    			  pw.flush();
-    		   }
-    		   System.out.println();
-    	   }
-    	   
-       }
-       public static void booleanArray()
-       {
-    	    System.out.println("Enter the NUmber of rows for array:");
-    		int rows = Utility.integerinput();
-    		System.out.println("Enter the NUmber of columns for array:");
-    		int columns = Utility.integerinput();
-    	    boolean array[][] = new boolean[rows][columns];
-    	    System.out.print("Enter " +(rows*columns)+ " Array Elements : ");
-    	    for(int i=0;i<rows; i++)
-    	    {
-    		   for(int j=0;j<rows; j++) 
-    		   {
-    			   array[i][j] = Utility.booleaninput();
-    		   }
-    	   }
-    	 System.out.println("The array is");
-    	 PrintWriter pw = new PrintWriter(System.out);
-    	   for(int i=0;i<rows; i++)
-    	   {
-    		   for(int j=0;j<rows; j++) 
-    		   {
-    			  pw.print(array[i][j] + " ");
-    			  pw.flush();
-    		   }
-    		   System.out.println();
-    	   }
-    	   
+   		for (int i = 0; i < rows; i++) {
+   			for (int j = 0; j < columns; j++) {
+   				array[i][j] = Utility.readDouble();
+   			}
+   		}
+   		Utility.printTwoDArray(array, rows, columns);
        }
        
+       /** 
+		*
+		* @param this method is for taking boolean input for two dimentional array
+		*/  
+       public static void inputBooleanArray(Boolean array[][], int rows, int columns) 
+       {
+   		for (int i = 0; i < rows; i++) {
+   			for (int j = 0; j < columns; j++) {
+   				array[i][j] = Utility.readBoolean();
+   			}
+   		}
+   		Utility.printTwoDArray(array, rows, columns);
+   	  }
+       
+            /** 
+     		*
+     		* @param this method is for printing two dimentional array
+     		*/
+   	   public static <E> void printTwoDArray(E[][] array, int rows, int columns) {
+
+ 		WRITER.println("Array elements are:");
+ 		for (int i = 0; i < rows; i++) {
+ 			for (int j = 0; j < columns; j++) {
+ 				WRITER.print(array[i][j] + "  ");
+ 				WRITER.flush();
+ 			}
+ 			WRITER.println(" ");
+ 		}
+ 	}
+        
+       
+//       public static void integerarray()
+//       {
+//    	    System.out.println("Enter the NUmber of rows for array:");
+//    		int rows = Utility.readInteger();
+//    		System.out.println("Enter the NUmber of columns for array:");
+//    		int columns = Utility.readInteger();
+//    	    int array[][] = new int[10][10];
+//    	    System.out.print("Enter " +(rows*columns)+ " Array Elements : ");
+//    	    for(int i=0;i<rows; i++)
+//    	    {
+//    		   for(int j=0;j<rows; j++) 
+//    		   {
+//    			   array[i][j] = Utility.readInteger();
+//    		   }
+//    	   }
+//    	 System.out.println("The array is");
+//    	 PrintWriter pw = new PrintWriter(System.out);
+//    	   for(int i=0;i<rows; i++)
+//    	   {
+//    		   for(int j=0;j<rows; j++) 
+//    		   {
+//    			  pw.print(array[i][j] + " ");
+//    			  pw.flush();
+//    		   }
+//    		   System.out.println();
+//    	   }
+//    	   
+//       }
+       
+       /** 
+		*
+		* @param 
+		*/
+//       public static double[][] doubleArray()
+//       {
+//    	    System.out.println("Enter the NUmber of rows for array:");
+//    		int rows = Utility.readInteger();
+//    		System.out.println("Enter the NUmber of columns for array:");
+//    		int columns = Utility.readInteger();
+//    	    double array[][] = new double[10][10];
+//    	    System.out.print("Enter " +(rows*columns)+ " Array Elements : ");
+//    	    for(int i=0;i<rows; i++)
+//    	    {
+//    		   for(int j=0;j<rows; j++) 
+//    		   {
+//    			   array[i][j] = Utility.readDouble();
+//    		   }
+    		   
+//    	   }
+//    	 System.out.println("The array is");
+//    	 PrintWriter pw = new PrintWriter(System.out);
+//    	   for(int i=0;i<rows; i++)
+//    	   {
+//    		   for(int j=0;j<rows; j++) 
+//    		   {
+//    			  pw.print(array[i][j] + " ");
+//    			  pw.flush();
+//    		   }
+//    		   System.out.println();
+//    	   }
+//    	    
+//		return array;
+//    	  
+//       }
+       
+       /** 
+		*
+		* @param 
+		*/
+//       public static void booleanArray()
+//       {
+//    	    System.out.println("Enter the NUmber of rows for array:");
+//    		int rows = Utility.readInteger();
+//    		System.out.println("Enter the NUmber of columns for array:");
+//    		int columns = Utility.readInteger();
+//    	    boolean array[][] = new boolean[rows][columns];
+//    	    System.out.print("Enter " +(rows*columns)+ " Array Elements : ");
+//    	    for(int i=0;i<rows; i++)
+//    	    {
+//    		   for(int j=0;j<rows; j++) 
+//    		   {
+//    			   array[i][j] = Utility.readBoolean();
+//    		   }
+//    	   }
+//    	 System.out.println("The array is");
+//    	 PrintWriter pw = new PrintWriter(System.out);
+//    	   for(int i=0;i<rows; i++)
+//    	   {
+//    		   for(int j=0;j<rows; j++) 
+//    		   {
+//    			  pw.print(array[i][j] + " ");
+//    			  pw.flush();
+//    		   }
+//    		   System.out.println();
+//    	   }
+//    	   
+//       }
+       /** 
+		*
+		* @param
+		*/
+      /* public static <T> void printTwoDArray(T[][] array,int rows,int column)
+       {
+    	   PrintWriter pw = new PrintWriter(System.out);
+    	   for(T[] element: array)
+    	   {
+    		   for(T value: element) 
+    		   {
+    			  pw.print(value + " ");
+    			  pw.flush();
+    		   }
+    		   System.out.println();
+    	   }
+    	   
+    	   
+       }*/
+       
+       
+      
+
+       
+   
+       /** 
+		*
+		* @param determine the array triplet that sum to eaxctly zero.
+		*/  
       public static void arraytriplet(int size)
       {
     	  int i,j,k;
@@ -284,7 +429,7 @@ public class Utility {
     	 
     	  for( i=0;i<size;i++)
     	  {
-    		  arr[i] = Utility.integerinput();
+    		  arr[i] = Utility.readInteger();
     	  }
     	  for(i=0;i<(length-2);i++)
     	  {
@@ -314,29 +459,36 @@ public class Utility {
     	 }
     	  
       }
-       
-       
+      
+
+        /** 
+		*
+		* @param 
+		*/  
        public static void gambler(int stack,int goals,int no_of_times ) {
-       
    		int wins = 0;
    		int loss =0;
    		double winpercent = 0.0;
    		double losspercent = 0.0;
    		
-   	    if(stack>=0 && stack<=goals)
-   	    {
-   	    	for(int i=0; i<no_of_times; i++)
+   	   	for(int i=0; i<no_of_times; i++)
    	    	{
-   	    	
-   	    	if(Math.random()>0 && Math.random()<0.5)
+   	   	    while(stack>0 && stack<=goals)
+   	   	    {	
+   	    	if(Math.random()<0.5)
+   	    	{
+   	    		wins++;
+   	    		
+   	    	}	
+   	    	else 
    	    	{
    	    		loss++;
    	    	}
-   	    	
-   	    	else if(Math.random()>0.5 && Math.random()<1)
+   	    	if(stack==goals)
    	    	{
    	    		wins++;
-                                             	    	}
+   	    	}
+   	    	}
    	    	}
    	    	System.out.println("The number of wins" + wins);
    	    	
@@ -344,15 +496,27 @@ public class Utility {
    	    	losspercent = 100-winpercent;
    	    	System.out.println("Wins Percentage:" + winpercent);
    	    	System.out.println("Loss Percentage:" + losspercent);
-   	    }  
+   	     
        }
        
-       public static void distance(Double x,Double y)
+       
+       /** 
+		*
+		* @param calculate distance of point(x,y) from origin(0,0).
+		*/ 
+       
+       public static void calculateDistance(Double x,Double y)
        {
     	   double result =  Math.sqrt(Math.pow(x,2) + Math.pow(y, 2));
     	   System.out.println("The result is:" + result);
     	   
        }
+       
+       
+       /** 
+		*
+		* @param determine all possible permutation of user input string
+		*/ 
        
        public static void stringpermutation(String string)
        {
@@ -360,6 +524,191 @@ public class Utility {
     	   
        }
        
+       public static long startTime = 0;
+       public static long stopTime = 0;
+       
+       /** 
+		*
+		* @param the method measure start time of StopWatch
+		*/ 
+      
+       public static void startTime()
+       {
+    	   startTime = System.currentTimeMillis();
+       }
+       
+       /** 
+		*
+		* @param the method to measure stop time of StopWatch
+		*/ 
+      
+       public static void stop()
+       {
+    	   stopTime = System.currentTimeMillis();
+       }
+       
+       /** 
+		*
+		* @param the method to calculate elapsed time
+		*/ 
+ 
+        public static void getElapsedtime()
+        {
+        	long elapsedTime = (stopTime - startTime)/1000;
+        	System.out.println("The elapsed time is:" + elapsedTime +"sec");
+        }
+      
+        /** 
+ 		*
+ 		* @param the method to implement tic-toc-toe game
+ 		*/ 
+    	
+		static  String[] board = new String[9];
+		static String turn;
+  
+        public static void tictactoe()
+		{
+			String winner = null;
+			turn = "X";
+		  Utility.populateBoard();
+		  
+		  
+		  System.out.println("Lets play tic toc toe game");
+		  System.out.println("-----------------------------------");
+		  Utility.printBoard();
+		  System.out.println("X's will play first,Enter the slot number to play");
+		
+		  
+		  while(winner==null)
+		  {
+			  int numberinput;
+			  try
+			  {
+				  numberinput =Utility.readInteger();
+			  if(!(numberinput > 0 && numberinput <= 9))
+			  {
+				  System.out.println("Invalid input; please enter correct slot number");
+				  continue;
+			  }
+			  }
+			  catch (InputMismatchException e)
+			  {
+				  System.out.println("Invalid input; please enter correct slot number");
+				  continue;
+			  }
+			  if (board[numberinput-1].equals(String.valueOf(numberinput))) {
+					board[numberinput-1] = turn;
+					if (turn.equals("X")) {
+						turn = "O";
+					} else {
+						turn = "X";
+					}
+					printBoard();
+					winner = checkWinner();
+				} else {
+					System.out.println("Slot already taken; re-enter slot number:");
+					continue;
+				}
+		  }
+			  if (winner.equalsIgnoreCase("draw")) 
+			  {
+					System.out.println("It's a draw! Thanks for playing.");
+			  }
+			  else 
+				{
+					System.out.println("Congratulations! " + winner + "'s have won! Thanks for playing.");
+				}
+		  		  
+		}
+        
+        /** 
+		*
+		* @param this method checks the winning condition for Tic-Toc-Toe game.
+		*/ 
+		public static String checkWinner()
+		{
+		   
+		   for(int i=0;i<8;i++)
+		   { 
+			   String line = null;
+			   
+			switch (i) 
+			{
+			case 0:
+				   line = board[0] +board[1] +board[2];
+			       break;
+			case 1:
+				   line = board[3] +board[4] +board[5];
+			       break;
+			case 2:
+				   line = board[6] +board[7] +board[8];
+			       break;
+			case 3:
+				   line = board[0] +board[3] +board[6];
+			       break;
+			case 4:
+				   line = board[1] +board[4] +board[7];
+			       break;
+			case 5:
+				   line = board[2] +board[5] +board[8];
+			       break;
+			case 6:
+				   line = board[0] +board[4] +board[8];
+			       break;
+			case 7:
+				   line = board[2] +board[4] +board[6];
+			       break;
+			} 
+			
+			if (line.equals("XXX")) {
+				return "X";
+			} else if (line.equals("OOO")) {
+				return "O";
+			}
+
+		   }
+		   for (int a = 0; a < 9; a++) {
+				if (Arrays.asList(board).contains(String.valueOf(a+1))) {
+					break;
+				}
+				else if (a == 8) return "draw";
+			}
+
+			System.out.println(turn + "'s turn; enter a slot number to place " + turn + " in:");
+			return null;
+		}   	   
+		   
+		/** 
+		*
+		* @param this method populates the board for Tic-Toc-Toe game.
+		*/  
+		public static void populateBoard()
+		{
+		   for( int i=0; i<9; i++)
+		   {
+			board[i] = String.valueOf(i+1);  
+		   }
+		}
+		
+		/** 
+		*
+		* @param this method prints the board for Tic-Toc-Toe game.
+		*/ 
+		
+		public static void printBoard()
+		{
+		   System.out.println("/---|---|---\\");
+		   System.out.println("| "+board[0]+" | "+board[1]+" | "+board[2]+" |");
+		   System.out.println("| "+board[3]+" | "+board[4]+" | "+board[5]+" |");
+		   System.out.println("| "+board[6]+" | "+board[7]+" | "+board[8]+" |");
+		   System.out.println("/---|---|---\\");    	   
+		}  
+    	   
+		
+		/** 
+ 		*
+ 		* @param this method gives wind-chill factor.
+ 		*/ 
        public static void windchill(double temperature,double velocity)
        {
     	   double windchill = 0.0;
@@ -375,8 +724,12 @@ public class Utility {
     	   }
        }
        
+       /** 
+		*
+		* @param this method calculates the roots of equation for user input value a,b,c.
+		*/ 
        
-       public static void quadratic(double a, double b, double c)
+       public static void findRootsOfEquation(double a, double b, double c)
        {
     	   double root1=0.0;
     	   double root2=0.0; 
@@ -390,9 +743,12 @@ public class Utility {
     	   
        }
        
+       /** 
+		*
+		* @param determine the possible of permutation
+		*/ 
        
-       
-       public static void permute(String inputstring,int first, int last)
+       public static void permutationsOfString(String inputstring,int first, int last)
        {
     	   if(first == last)
     	   {
@@ -403,12 +759,17 @@ public class Utility {
     		   for(int i = first; i<=last; i++)
     		   {
     		   inputstring = Utility.swap(inputstring,first,i);
-    		   Utility.permute(inputstring, first +1, last);//control check
+    		   Utility.permutationsOfString(inputstring, first +1, last);//control check
     		   inputstring = Utility.swap(inputstring,first,i);	   
     		   }
     	   }
     	   
        }
+       
+       /** 
+		*
+		* @param this method swap each character of string and returns string
+		*/ 
        
        public static String swap(String inputstring,int first,int i)
        {
@@ -422,6 +783,13 @@ public class Utility {
        }
        
        
+       
+      //Functional
+       
+       /** 
+		*
+		* @param determines whether the user input strings are anagram or not.
+		*/ 
        
        public static boolean isAnagram(String inputstring1, String inputstring2)
        {
@@ -448,70 +816,81 @@ public class Utility {
     	   }	   
        }
        
-        public static ArrayList<String> primenumbers()
+       
+       /** 
+		*
+		* @param finds all prime numbers in the range of 0-1000.
+		*/ 
+      
+       
+        public static ArrayList<String> findPrimeNumbers()
         { 
         	int i;
             int j;
-            int flag = 0;
-            ArrayList<String> al = new ArrayList<String>();
-            al.add(Integer.toString(2));
-            al.add(Integer.toString(3));
-           for(i=1;i<=1000; i++)
+         
+            ArrayList<String> list = new ArrayList<String>();
+                    for(i=1;i<=1000; i++)
            {
-        	 for(j=2;j<=i/2;j++)
+        	 for(j=2;j<=i;j++)
         	 {
         		 if(i%j==0)
         		 {
-        			 flag = 0;
         			 break;
         			 
         		 }
-        		 flag=1;
-        		 
         	 }
-        	 if(flag==1)
+        	 if(i==j)
         	 {
-               al.add(Integer.toString(i));
+               list.add(Integer.toString(i));
         	 }
         	 
          }
-       	return al;
+       	return list;
         }
         
-        
-        public static void isanagrams(ArrayList<String> al)
+        /** 
+      		*
+      		* @param finds all prime numbers that are anagram in the range of 0-1000.
+      		*/ 
+       
+        public static void findPrimeAnagram(ArrayList<Integer> list)
         {
-          int n =al.size() ;
-          String[] liststring = new String[n];
-          liststring = al.toArray(liststring);
+          int size =list.size() ;
+          Integer[] liststring = new Integer[size];
+          liststring = list.toArray(liststring);
         
           System.out.println();
           System.out.println();
           System.out.println("The prime anagram are as follows:");
-          for(int i=0;i<n ; i++)
+          for(int i=0;i<size ; i++)
           {
-       	   for(int j=i+1;j<n; j++)
+       	   for(int j=i+1;j<size; j++)
        	   {
-       		   if(isAnagram(liststring[i],liststring[j]))
-       			   System.out.println(liststring[i]+"-->"+liststring[j]);
+       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[j])))
+       			   System.out.println(String.valueOf(liststring[i])+"-->"+String.valueOf(liststring[j]));
        	   }
           
         }
         }
         
         
-        public static void palindrome(ArrayList<String> al)
+        /** 
+		*
+		* @param finds all prime numbers that are palindrome in the range of 0-1000.
+		*/ 
+      
+        public static void findPrimePalindrome(ArrayList<Integer> al)
         {
-        	 int n =al.size() ;
-             String[] liststring = new String[n];
+        	 int size =al.size() ;
+             Integer[] liststring = new Integer[size];
              liststring = al.toArray(liststring);
            
            System.out.println("The prime numbers which are palindrome are as follows:");
-           for(int i=0;i<n ; i++)
+           for(int i=0;i<size ; i++)
            {
-        	   if(isPalindrome(liststring[i]))
+        	   if(isPalindrome(String.valueOf(liststring[i])))
         	   {
-        		   System.out.println(liststring[i]);
+        		   System.out.println(String.valueOf(liststring[i]));
         	   }
            }
 	
@@ -553,18 +932,22 @@ public class Utility {
 //        }
 //        
        
-        public static boolean isPalindrome(String str)
+        /** 
+		*
+		* @param this method determine whether string is palindrome or not.
+		*/ 
+        public static boolean isPalindrome(String string)
         {
-        	String rev = "";
+        	String reverse = "";
         	
-        	int length = str.length();
+        	int length = string.length();
         
             for ( int i = length - 1; i >= 0; i--)
             {
-               rev = rev + str.charAt(i);
+               reverse = reverse + string.charAt(i);
               
             }
-            boolean flag = str.equals(rev);
+            boolean flag = string.equals(reverse);
             if(flag==true)
             {
             return flag;
@@ -573,55 +956,52 @@ public class Utility {
             
         }
         
-       public static long startTime = 0;
-       public static long stopTime = 0;
-       
-       public static void start()
-       {
-    	   startTime = System.currentTimeMillis();
-       }
-       
-       
-       public static void stop()
-       {
-    	   stopTime = System.currentTimeMillis();
-       }
-       
-        public static void getElapsedtime()
-        {
-        	long elapsedTime = (stopTime - startTime)/1000;
-        	System.out.println("The elapsed time is:" + elapsedTime +"sec");
-        }
+        /** 
+		*
+		* @param this method take integer input for one dimentional array.
+		*/ 
         
+     
         public static Integer[] integerarrayInput()
         {   
         	
         	System.out.println("Enter the length of array :");
-        	int length = Utility.integerinput();
+        	int length = Utility.readInteger();
         	Integer[] array = new Integer[length];
         	System.out.println("Enter the elemnts in the array:");
         	
         	for(int i=0;i<=length-1;i++)
         	{
-        		array[i] = Utility.integerinput();
+        		array[i] = Utility.readInteger();
         	}
         	System.out.println();
 			return array;
         }
         
-        public static String[] stringarrayInput()
+        /** 
+		*
+		* @param this method take string input for one dimentional array.
+		*/ 
+        
+        
+        public static String[] inputStringArray()
         {   
         	System.out.println("Enter the length of array :");
-        	int length = Utility.integerinput();
+        	int length = Utility.readInteger();
         	String[] array = new String[length];
         	System.out.println("Enter the elements in the array:");
         	
         	for(int i=0;i<=length-1;i++)
         	{
-        		array[i] = Utility.stringinput();
+        		array[i] = Utility.readString();
         	}
 			return array;
         }
+        
+        /** 
+		*
+		* @param 
+		*/ 
         
 		public static <T extends Comparable<T>>  int binarySearch(T[] items, T key, int first, int last) {
 			
@@ -645,6 +1025,14 @@ public class Utility {
 			return -1;	
 		}
 		
+		
+		
+        /** 
+		*
+		* @param this method sort the element by using bubble sort algorithm
+		*/ 
+        
+		
 		public static <T extends Comparable<T>> void bubbleSort(T[] array)
 		{
 			int i,j;
@@ -663,14 +1051,15 @@ public class Utility {
 				}
 			}
 			
-			 for(T k : array){
-		            System.out.print(k + "  ");
-		       
-		        
-		    }
+			 Utility.printArray(array);
 			 System.out.println();
 			
 		}
+		
+		 /** 
+		*
+		* @param this method sort the element by using insertion sort algorithm
+		*/ 
 		
 		public static <T extends Comparable<T>> void insertionSort (T[] array, int length) 
 		  {
@@ -679,27 +1068,62 @@ public class Utility {
 		    for (i= 1; i< length; i++)
 		    {
 		      temp = array[i];
-		      for (j = i; j > 0 && array[j- 1].compareTo(temp) > 0; j--)
+		      j = i-1;
+		      while(j>=0 && array[j].compareTo(temp)>0)
 		      {
-		        array[j] = array[j - 1];
+		    	  array[j+1] = array[j];
+		    	  j=j-1;
 		      }
-		      array[j] = temp;
+		      array[j+1] = temp;
 		    }
-		    
-		    for(T k : array)
-		    {
-	            System.out.print(k + " ");        
-	        } 
+		    Utility.printArray(array);
 		    System.out.println();
+		   
 		  }
 		
+		  
+        /** 
+		*
+		* @param this is generic method for printing one dimentional array
+		*/ 
+        
 		public static <T> void printArray(T[] array)
 		{
 			for(T t: array)
 			{
-				System.out.print(t);
+				System.out.print(t + " ");
 			}	
 		}
+		
+		/** 
+		*
+		* @param this method returns secrete number in users mind
+		*/ 
+		public static int findSecreteNumber(int low, int high)
+		{
+			if((high-low) == 0)
+			
+				return high;
+			
+			int mid = (high + low)/2;
+			System.out.println("Is your number between" + " "+low + " "+"to" +" "+ mid +"?(true/false)");
+		    boolean	yes = Utility.readBoolean();
+			if(yes)
+			{
+				return findSecreteNumber(low, mid);
+
+			}
+			
+	        else
+			{
+				return findSecreteNumber(mid+1 , high);
+			}	
+		}
+		
+		/** 
+		*
+		* @param 
+		*/ 
 		public static String[] readFile(String filePath)
 		{
 			String words[] = {};
@@ -733,6 +1157,11 @@ public class Utility {
 			return words;
 		}
 		
+		
+		/** 
+		*
+		* @param this method is to find the fewest number of notes to be returned by Vending Machine
+		*/ 
 		static int notecount=0 ;
 		public static void vendingmachine(int amount)
 		{
@@ -798,42 +1227,74 @@ public class Utility {
 		}
 		
 		
+		/** 
+		*
+		* @param 
+		*/ 
+		public static int dayOfweek(int day,int month,int year)
+		{
+	
+			int y = year - (14 - month) / 12;
+			int x = y + y/4 - y/100 + y /400;
+			int m = month + 12 * ((14 - month) / 12) - 2;
+			int d= (day + x + 31*m/ 12) %7;
+			return d;
+			
+		}
 		
-		
-		
-		
-		public static void temperatureConversionCelsiusToFahrenheit() 
+		/** 
+		*
+		* @param this method convert temperature from celcius to fahrenheit
+		*/ 
+	
+		public static void temperatureConversionCelciusToFahrenheit() 
 		{
 			System.out.print("Enter the temperature in Celsius:");
-		    double celsiusT = Utility.doubleinput();
-			double fahrenheitT = (celsiusT * 9/5) + 32;
-			System.out.print("The temperaure value in Fahrenheit will be:" + fahrenheitT);
+		    double celciusTemp = Utility.readDouble();
+			double fahrenheitTemp = (celciusTemp * 9/5) + 32;
+			System.out.print("The temperaure value in Fahrenheit will be:" + fahrenheitTemp + "F");
 		}
 		
-		public static void temperatureConversionFahrenheitToCelciue()
+
+		/** 
+		*
+		* @param this method convert temperature from fahrenheit to celcius
+		*/ 
+		public static void temperatureConversionFahrenheitToCelcius()
 		{
 			System.out.print("Enter the temperature in Fahrenheit:");
-		    double fahrenheitT = Utility.doubleinput();
-			double celsiusT = (fahrenheitT - 32) * 5/9;
-			System.out.print("The temperaure value in Celsius will be:" + celsiusT);
+		    double fahrenheitT = Utility.readDouble();
+			double celciusTemp = (fahrenheitT - 32) * 5/9;
+			System.out.print("The temperaure value in Celsius will be:" +celciusTemp + "C");
 		}
 		
 		
-		
+
+		/** 
+		*
+		* @param this method calculate monthly payment by taking principal,rate of interest,
+		*         and year from user.
+		*/ 
 		public static void monthlypayment(double principal,double rateofinterset,double year )
 		{
 			 double n = 12*year;
 			 double r = rateofinterset/(12*100);
 			 double payment = (principal*r)/(1-(Math.pow((1+r), -n)));
-			 System.out.println("The compound interest will be:" + payment);
+			 System.out.println("The monthly payment will be:" + payment);
 			 
 		}
+		
+
+		/** 
+		*
+		* @param this method converts decimal number into binary.
+		*/ 
 		
 		public static void toBinary(int decimal)
 		{ 
 			
 			System.out.println("Enter the number of bits:");
-			int numberofbits = Utility.integerinput();
+			int numberofbits = Utility.readInteger();
 			
 			
 			int[] binary = new int[numberofbits];
@@ -851,13 +1312,17 @@ public class Utility {
 			}
 		}
 		
-		
+
+		/** 
+		*
+		* @param 
+		*/ 
 		
 		public static void squrt(double number)
 		{
 		    double number1 = number;
-			double epsilon = 1E-15;
-			while(Math.abs(number1-number/number1) > epsilon*number1)
+			
+			while(Math.abs(number1-number/number1) > EPSILON*number1)
 			{
 				number1 = (number/number1+ number1)/2.0;
 
@@ -866,11 +1331,17 @@ public class Utility {
 
 		}
 		
+
+		/** 
+		*
+		* @param This method swap the two nibbles and convert the obtained octet afterswapping 
+ *                into decimal number.
+		*/ 
         public static void swapnibbles(int decimal)
         {
         	System.out.println("Enter the number of bits:");
-        	int numberofbeats = Utility.integerinput();
-        	int binary[]  = new int[ numberofbeats];
+        	int numberofbeats = Utility.readInteger();
+        	int binary[]  = new int[numberofbeats];
         	int index = 0;
         	while(numberofbeats>0)
         	{
@@ -880,194 +1351,126 @@ public class Utility {
         	}
         	System.out.println();
 
-        	String s ="";
+        	String string ="";
         	for(int i=index-1;i>=0;i--)
         	{
-               s += binary[i];
+               string += binary[i];
         	}
-        	System.out.println(s);
-        	int length = s.length();
-        	String string1 = s.substring(0, length/2);
-        	String string2 = s.substring(length/2, length);
+        	System.out.println(string);
+        	int length = string.length();
+        	String string1 = string.substring(0, length/2);
+        	String string2 = string.substring(length/2, length);
         	String string3 = string2 + string1;
         	System.out.println(string3);
         	int decimalnumber = Integer.parseInt(string3,2);
         	System.out.println(decimalnumber);
         }
 		
-		public static int search(int low, int high)
-		{
-			if((high-low) == 0)
-			
-				return high;
-			
-			int mid = (high + low)/2;
-			System.out.println("Is your number between" + " "+low + " "+"to" +" "+ mid +"?(true/false)");
-		    boolean	yes = Utility.booleaninput();
-			if(yes)
-			{
-				return search(low, mid);
-
-			}
-			
-	        else
-			{
-				return search(mid+1 , high);
-			
-			}
-			
-			
-			
-		}
-		
-		
-		public static int dayOfweek(int day,int month,int year)
-		{
 	
-			int y = year - (14 - month) / 12;
-			int x = y + y/4 - y/100 + y /400;
-			int m = month + 12 * ((14 - month) / 12) - 2;
-			int d= (day + x + 31*m/ 12) %7;
-			return d;
-			
-		}
-		
-		static  String[] board = new String[9];
-		static String turn;
-		
-		public static void tictactoe()
-		{
-			String winner = null;
-			turn = "X";
-		  Utility.populateBoard();
-		  
-		  
-		  System.out.println("Lets play tic toc toe game");
-		  System.out.println("-----------------------------------");
-		  Utility.printBoard();
-		  System.out.println("X's will play first,Enter the slot number to play");
-		
-		  
-		  while(winner==null)
-		  {
-			  int numberinput;
-			  try
-			  {
-				  numberinput =Utility.integerinput();
-			  if(!(numberinput > 0 && numberinput <= 9))
-			  {
-				  System.out.println("Invalid input; please enter correct slot number");
-				  continue;
-			  }
-			  }
-			  catch (InputMismatchException e)
-			  {
-				  System.out.println("Invalid input; please enter correct slot number");
-				  continue;
-			  }
-			  if (board[numberinput-1].equals(String.valueOf(numberinput))) {
-					board[numberinput-1] = turn;
-					if (turn.equals("X")) {
-						turn = "O";
-					} else {
-						turn = "X";
-					}
-					printBoard();
-					winner = checkwinner();
-				} else {
-					System.out.println("Slot already taken; re-enter slot number:");
-					continue;
-				}
-		  }
-			  if (winner.equalsIgnoreCase("draw")) 
-			  {
-					System.out.println("It's a draw! Thanks for playing.");
-			  }
-			  else 
-				{
-					System.out.println("Congratulations! " + winner + "'s have won! Thanks for playing.");
-				}
-		  		  
-		}
-		
-		
-
-		public static String checkwinner()
-		{
-		   
-		   for(int i=0;i<8;i++)
-		   { 
-			   String line = null;
-			   
-			switch (i) 
+        
+        public static void merge(String stringarray[],int first,int mid,int last)
+        {   
+        	
+        	int i=0,j = 0,k=last;
+        	int length1= mid-first+1;
+        	int length2 = last-mid;
+        	int comp;
+        	String leftarray[] = new String[length1];//left array
+        	//System.out.println(leftarray.length);
+        	
+        	for( i=0;i<length1;i++)
+        	{
+        		leftarray[i]= stringarray[first+i];
+        	}
+        	String rightarray[] = new String[length2];//right array
+        	for( j=0;j<length2;j++)
+        	{
+        		rightarray[j]= stringarray[mid+1+j];
+        	}
+        	
+        	while(i<length1 && j<length2)
+        	{ 
+        		comp=leftarray[i].compareToIgnoreCase(rightarray[j]);
+        		if(comp>0)
+        		{
+        			stringarray[k] = leftarray[i];
+        					i++;
+        		}
+        		else
+        		{
+        			stringarray[k] = rightarray[j];
+					j++;
+        		}
+        		
+        		k++;
+        	}
+        	 
+        	while(i<length1)//this check if element are remaining in the left array
+        	{
+        		comp=leftarray[i].compareToIgnoreCase(leftarray[i+1]);
+        		if(comp>0)
+        		{
+    			stringarray[k] = leftarray[i];
+    					i++;
+    					k++;
+        		}
+        		
+    		
+        	}
+        	
+        	while(j<length2)
+        	{
+        		comp=rightarray[j].compareToIgnoreCase(rightarray[j+1]);
+        		if(comp>0)
+        		{
+   
+    			stringarray[k] = rightarray[j];
+    					j++;
+    					k++;
+        		}
+        	}	
+        }
+        
+       public static void mergeSort(String arr[], int first, int last)
+        {
+    	    int mid = (first+last)/2;
+            if (first < last)
+            {       
+                mergeSort(arr, first, mid);
+                mergeSort(arr, mid+1, last);
+         
+                Utility.merge(arr,first,mid,last);
+            }
+			for(String s: arr)
 			{
-			case 0:
-				   line = board[0] +board[1] +board[2];
-			       break;
-			case 1:
-				   line = board[3] +board[4] +board[5];
-			       break;
-			case 2:
-				   line = board[6] +board[7] +board[8];
-			       break;
-			case 3:
-				   line = board[0] +board[3] +board[6];
-			       break;
-			case 4:
-				   line = board[1] +board[4] +board[7];
-			       break;
-			case 5:
-				   line = board[2] +board[5] +board[8];
-			       break;
-			case 6:
-				   line = board[0] +board[4] +board[8];
-			       break;
-			case 7:
-				   line = board[2] +board[4] +board[6];
-			       break;
-			} 
-			
-			if (line.equals("XXX")) {
-				return "X";
-			} else if (line.equals("OOO")) {
-				return "O";
+				System.out.println(s);
 			}
+        }
+       
+       
+      
+		//Algorithm
 
-		   }
-		   for (int a = 0; a < 9; a++) {
-				if (Arrays.asList(board).contains(String.valueOf(a+1))) {
-					break;
-				}
-				else if (a == 8) return "draw";
-			}
+		/** 
+		*
+		* @param 
+		 * @throws FileNotFoundException 
+		*/ 
+	
 
-			System.out.println(turn + "'s turn; enter a slot number to place " + turn + " in:");
-			return null;
-		}   	   
-		   
-		   
-		public static void populateBoard()
-		{
-		      for( int i=0; i<9; i++)
-		   {
-			board[i] = String.valueOf(i+1);  
-		   }
-		}
-		
-		public static void printBoard()
-		{
-		   System.out.println("/---|---|---\\");
-		   System.out.println("| "+board[0]+" | "+board[1]+" | "+board[2]+" |");
-		   System.out.println("| "+board[3]+" | "+board[4]+" | "+board[5]+" |");
-		   System.out.println("| "+board[6]+" | "+board[7]+" | "+board[8]+" |");
-		   System.out.println("/---|---|---\\");    	   
-		}  
-    	   
-
-		 public static <T> void writeFile(String filepath,MyLinkedList<T> list)
+		 public static <T> void writeFile(String filepath,MyLinkedList<T> list) 
 		 {
 			 try
-			 {
+			 {  
+//			 System.out.println(list);
+//			    File file = new File(filepath);
+//				 PrintWriter pw = new PrintWriter(file);
+//				 for(T i: list)
+//				 {
+//				 pw.print(i);
+//				 }
+//				 pw.flush();
+//				 
 			 FileWriter file = new FileWriter(filepath);
 			 BufferedWriter bw = new BufferedWriter(file);
 			 String data = list.toString();
@@ -1075,8 +1478,7 @@ public class Utility {
 			
 		       bw.write(data);
 		       bw.flush();
-		      // bw.newLine();
-			 
+		     
 			 bw.close();
 			 System.out.println("Data Saved");
 			 }
@@ -1085,6 +1487,14 @@ public class Utility {
 			}
 			 
 		 }
+		 
+
+			/** 
+			*
+			* @param 
+			*/ 
+		 
+		 
 		public static boolean isMatchingPair(char character1, char character2)
 		    {
 		       if (character1 == '(' && character2 == ')')
@@ -1094,6 +1504,11 @@ public class Utility {
 		         return false;
 		    }
     	   
+
+		/** 
+		*
+		* @param 
+		*/ 
     	 public static boolean isParanthesesBalance(String expression)
     	 {
     		 MyStack stack = new MyStack();
@@ -1124,7 +1539,7 @@ public class Utility {
    } 
     		 if (stack.isEmpty())
        return true; 
-     else
+       else
        {   
            return false;
        } 
@@ -1132,7 +1547,11 @@ public class Utility {
 		 
     	 }
     	 
-    	 
+
+ 		/** 
+ 		*
+ 		* @param 
+ 		*/ 
 		public static void insertCharacter(String inputstring, ArrayDeque<Character> array) 
 		{
 			for(int i=0; i<inputstring.length(); i++)
@@ -1142,6 +1561,12 @@ public class Utility {
 			
 			
 		}
+		
+
+		/** 
+		*
+		* @param 
+		*/ 
     	 
 		public static String popCharacter(ArrayDeque<Character> array,String reverse)
 		{
@@ -1154,14 +1579,22 @@ public class Utility {
 			
 		}
 		
-		
+
+		/** 
+		*
+		* @param 
+		*/ 
 		 public static boolean isLeapYear(int year) {
 		        if  ((year % 4 == 0) && (year % 100 != 0)) return true;
 		        if  (year % 400 == 0) return true;
 		        return false;
 		    }
 		 
-		 
+
+			/** 
+			*
+			* @param 
+			*/ 
 		 public static void printCalender(int month,int year)
 		 {
 			 String[] months =  {
@@ -1173,7 +1606,7 @@ public class Utility {
                   };
 
             int[] days = {0,  31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+                MyQueue quue = new MyQueue();
             if (month == 2 && isLeapYear(year)) days[month] = 29;
             
            System.out.println("   " + months[month] + " " + year);
@@ -1186,13 +1619,22 @@ public class Utility {
 			for (int i = 1; i <=days[month]; i++) 
 			{
 			    System.out.printf("%2d ",i);
+			   // quue.enque(i);
+			    
 			    if (((i + d) % 7 == 0) || (i == days[month])) 
 			    {
 			    	System.out.println();
 			    }
 			    	
 			}
+			//quue.print();
 			}
+		 
+
+			/** 
+			*
+			* @param 
+			*/ 
 		 
 		  public static void print(int month, int year)
 		    {
@@ -1248,6 +1690,11 @@ public class Utility {
 		    }	 
 		    } 
 		  
+
+			/** 
+			*
+			* @param 
+			*/ 
 		  
 		  public static void printstack(int month, int year)
 		    {
@@ -1305,27 +1752,33 @@ public class Utility {
 		    }	 
 		    } 
 		  
-		  public static ArrayList<Integer> primenumbers1()
+
+		  
+		  
+			/** 
+			*
+			* @param this method returns the list of prime numbers.
+			*/ 
+		  
+		  public static ArrayList<Integer> findPrimes()
 		  {
 			    int i;
 	            int j;
-	            int flag = 0;
+	            
 	            ArrayList<Integer> list = new ArrayList<Integer>();
 	            
 	           for(i=1;i<1000; i++)
 	           {
-	        	 for(j=2;j<=i/2;j++)
+	        	 for(j=2;j<i;j++)
 	        	 {
 	        		 if(i%j==0)
 	        		 {
-	        			 flag = 0;
+	        			 
 	        			 break;
 	        			 
-	        		 }
-	        		 flag=1;
-	        		 
+	        		 }	 
 	        	 }
-	        	 if(flag==1)
+	        	 if(i==j)
 	        	 {
 	               list.add(i);
 	        	 }
@@ -1334,126 +1787,95 @@ public class Utility {
 		  }
 		  
 		  
-//		  public static int primecount()
-//		  {
-//			   
-//			    int i;
-//	            int j;
-//	            int flag = 0;
-//	            int count=0;
-//	            int number1=0;
-//	            int number2=100;
-//	            while(number2<=1000)
-//	            {
-//	           for(i=number1;i<=number2; i++)
-//	           {
-//	        	 for(j=2;j<=i/2;j++)
-//	        	 {
-//	        		 if(i%j==0)
-//	        		 {
-//	        			 flag = 0;
-//	        			 break;
-//	        			 
-//	        		 }
-//	        		 flag=1;
-//	        		 
-//	        	 }
-//	        	 if(flag==1)
-//	        	 {
-//	              count++;
-//	        	 }
-//	        	
-//			 
-//		  }
-//	              
-//	             
-//	            }
-//				return count;
-//			
-//
-//		  }
-//		  
-		 
-//		public static int[][] create2DArray() 
-//		{
-//			 int array[][] = new int[10][];
-//			  for(int i=0;i<10;i++)
-//			  {
-//				  int m = Utility.primecount();
-//				  System.out.println(m);
-//				  array[i] = new int[m];
-//			  }
-//			  return array;
-//		}
-//		
+
+
+			/** 
+			*
+			* @param 
+			*/ 
 		
 		  
 		 public static void print2Darray(ArrayList<Integer> list)
          {   
-			 int[][] prime = new int[10][]; 
+			 int[][] prime = new int[10][50]; 
 			 Iterator< Integer> it = list.iterator();
 			 int block = 100;
 			 int i=0;
 			 int j =0;
-			 while(it.hasNext())
-			 {	 
-						 prime[i][j]= it.next();
-						 System.out.print(prime[i][j] + " ");
-						 if(prime[i][j]<block)
+			      while(it.hasNext())
+			       {	 
+						 if(prime[i][j++]<block)
+						 {
+							 prime[i][j]= it.next();
+
+							 System.out.print(prime[i][j] + " ");
+							 
+						 }	
+						 else
 						 {
 							 i++;
 							 j=0;
 							 block=block+100;
+							 System.out.println();
 						 }
-						 
+						
 					 }
-					 System.out.println();
+			
 				 }
 					 
 			 
-			 
-
-         
-		 
-		 public static int primeanagramcount(ArrayList<String> al)
-	        {
-			  System.out.println("Enter the first element of the range:");
-			  int number1 = Utility.integerinput();
-			  System.out.println("Enter the second element of the range:");
-			  int number2 = Utility.integerinput();
 			
-	          int size =al.size() ;
-	          String[] liststring = new String[size];
-	          liststring = al.toArray(liststring);
-	          int count =0;
-	          int n=Integer.parseInt(liststring[number1]);
-	          int m =Integer.parseInt(liststring[number2]);
-	          System.out.println(m +"n "+n);
-	           
-	          for(int i=number1;i<=number2 ; i++)
-	          {
-	       	   for(int j=i+1;j<=number2; j++)
-	       	   {
-	       		   if(isAnagram(liststring[i],liststring[j]))
-	       		   {
-	       			   count++;
-	       			   System.out.println(liststring[i] + "--" + liststring[j]);
-	       			   System.out.println();
-	       		   }
-	       			  
-	       	   }
-	          
-	        }
-	      
-			return count;
-	        }
+
 		 
-		 
-		 public static void anagramqueue(ArrayList<String> al)
+			/** 
+			*
+			* @param 
+			*/ 
+		
+		  
+		 public static void printAnagram2Darray(ArrayList<Integer> list)
+      {   
+			 int n =list.size() ;
+	          Integer[] liststring = new Integer[n];
+	          liststring = list.toArray(liststring);
+			 int[][] prime = new int[10][50]; 
+			 Iterator< Integer> it = list.iterator();
+			 int block = 100;
+			 int i=0;
+			 int j =1;
+			      while(it.hasNext())
+			       {	 
+			    	  for( i=0;i<n ; i++)
+			          {
+			       	   for(j=i+1;j<n; j++)
+			       	   {
+			       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[j])))
+			       		   {
+
+			       		   }
+			       	   }
+			       	   
+			          
+			        }
+						
+					 }
+			
+				 }
+					 
+			 
+			
+
+			/** 
+			*
+			* @param 
+			*/  
+	
+		  
+		 public static void anagramqueue(ArrayList<Integer> list)
 	        {
-	          int n =al.size() ;
-	          String[] liststring = new String[n];
-	          liststring = al.toArray(liststring);
+	          int n =list.size() ;
+	          Integer[] liststring = new Integer[n];
+	          liststring = list.toArray(liststring);
 	          MyQueue queue = new MyQueue();
 	          System.out.println();
 	          System.out.println();
@@ -1463,10 +1885,10 @@ public class Utility {
 	          {
 	       	   for(int j=i+1;j<n; j++)
 	       	   {
-	       		   if(isAnagram(liststring[i],liststring[j]))
+	       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[j])))
 	       		   {
-	       			   queue.enque(liststring[i]);
-	       			   queue.enque(liststring[j]);
+	       			   queue.enque(String.valueOf(liststring[i]));
+	       			    queue.enque(String.valueOf(liststring[j]));
 	       		   }
 	       	   }
 	       	   
@@ -1475,118 +1897,32 @@ public class Utility {
 	          queue.print();
 	          
 	        }
-//		 
-//		 public static String[][] create2DArray1() 
-//			{
-//				 String array[][] = new String[10][];
-//				  for(int i=0;i<10;i++)
-//				  {
-//					  int m = Utility.primecount();
-//					  array[i] = new String[m];
-//				  }
-//				  return array;
-//			}
-//			  
-//		
-//		 
-//		 public static void printanagram2Darray(String[][] prime,ArrayList<String> al)
-//		 {     
-//			  int n =al.size() ;
-//	          String[] liststring = new String[n];
-//	          liststring =  al.toArray(liststring);
-//	          Iterator<String> it = al.iterator();
-//	          while(it.hasNext())
-//		      {
-//				
-//	          for(int i=0;i<n ; i++)
-//	          {
-//	       	   for(int j=i+1;j<n; j++)
-//	       	   {
-//	       		   if(isAnagram(liststring[i],liststring[j]))
-//	       		   {
-//					 for( i=0;i<10;i++)
-//					 { 
-//						 for( j=0;j<prime[i].length;j++)
-//						 { 
-//							
-//							
-//								 prime[i][j]=liststring[i];
-//								 //prime[i][j]=liststring[j];
-//								 System.out.print(prime[i][j] + " ");
-//				       		   
-//						 }
-//						 System.out.println();
-//					 }
-//						 
-//				 }
-//	       		}
-//	       		   
-//	       		   
-//	       		   
-//	       	   }
-//	          
-//	          }
-//				 
-//	       				
-//	    			 
-//	        }
-//	       	   
-//      
-//          
+	 
+	 
+
+			/** 
+			*
+			* @param 
+			*/  
+	
 		 
-		 
-//		 public static void print2Darray1(ArrayList<Integer> list)
-//	       {
-//				 Iterator< Integer> it = list.iterator();
-//			       MyStack stack = new MyStack();
-//
-//				 while(it.hasNext())
-//				 {
-//					 for(int i=0;i<10;i++)
-//					 {
-//						 for(int j=0;j<list.size();j++)
-//						 {
-//							
-//							 System.out.print(prime[i][j] + " ");
-//						 }
-//						 System.out.println();
-//					 }
-//						 
-//				 }
-//		 
-//		 public static void printprimeanagram(String[] liststring)
-//		 {
-//			int length = liststring.length;
-//			for(int i= 0; i<length;i++)
-//			{
-//				for(int j=i+1;j<length;j++)
-//				{
-//				  if(isAnagram(liststring[i], liststring[j]))
-//				  {
-//					  liststring[i][j]= 
-//				  }
-//				}
-//			}
-//		 }
-//		 
-		 
-		 public static void anagramstack(ArrayList<String> al)
+		 public static void anagramstack(ArrayList<Integer> list)
 	        {
-	          int n =al.size() ;
-	          String[] liststring = new String[n];
-	          liststring = al.toArray(liststring);
+	          int size =list.size() ;
+	          Integer[] liststring = new Integer[size];
+	          liststring = list.toArray(liststring);
 	          MyStack stack = new MyStack();
 	          System.out.println();
 	          System.out.println();
 	          System.out.println("The primeanagram are as follows:");
-	          for(int i=0;i<n ; i++)
+	          for(int i=0;i<size ; i++)
 	          {
-	       	   for(int j=i+1;j<n; j++)
+	       	   for(int j=i+1;j<size; j++)
 	       	   {
-	       		   if(isAnagram(liststring[i],liststring[j]))
+	       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[i])))
 	       		   {
-	       			   stack.push(liststring[i]);
-	       			   stack.push(liststring[j]);
+	       			   stack.push(String.valueOf(liststring[i]));
+	       			   stack.push(String.valueOf(liststring[i]));
 	       		   }
 	       	   }
 	       	   
@@ -1596,9 +1932,46 @@ public class Utility {
 	          
 	        }
 		 
+		 
+		 
+
+		 static int balanceAmount = 50000;
+		 static int depositAmount=0;
+		 static int withdrawAmount=0;
+		 
+		 
+		 
+		 public static void withdrawAmount()
+		 {
+			 System.out.println("Enter the amount you want to withdraw");
+             withdrawAmount = Utility.readInteger();
+             if(balanceAmount>=withdrawAmount)
+             {
+             balanceAmount=balanceAmount-withdrawAmount;
+             System.out.println("Amount is successfully withdraw.....!!!");
+             }
+             else
+             {
+            	 System.out.println("Insufficient Balance");
+//           	  MyQueue waitingqueue = new MyQueue();
+//           	  waitingqueue.enque(i);
+//           	  waitingqueue.print();
+             }
+		 }
+		 
+		 
+		 public static void depositAmount()
+		 {
+			  System.out.println("Enter the amount you want to deposit");
+	          depositAmount = Utility.readInteger();
+	          balanceAmount=balanceAmount+depositAmount;
+	          System.out.println("Amount is successfully deposited.....!!!");
+		 }
 		
-		
-		
+		public static void checkBalance()
+		{
+			System.out.println("Your balance amount is:" + balanceAmount );
+		}
          
 }		 
 		 

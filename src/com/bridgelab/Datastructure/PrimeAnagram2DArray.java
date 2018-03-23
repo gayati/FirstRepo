@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 
 import java.util.ArrayList;
@@ -8,12 +18,9 @@ public class PrimeAnagram2DArray {
 
 	public static void main(String[] args) 
 	{
-		//String[][] prime = Utility.create2DArray1();
-		ArrayList<String> al = Utility.primenumbers();
-	     int m = Utility.primeanagramcount(al);
-	     
-		System.out.println(m);
-	   // Utility.printanagram2Darray(prime,al1);
+	System.out.println();
+     ArrayList<Integer> list = Utility.findPrimes();	
+     Utility.printAnagram2Darray(list);
 	}
 
 }

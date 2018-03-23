@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: Take input from user and print two dimensinal array.
+ *
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.AlgorithmPrograms;
 
 import java.util.ArrayList;
@@ -11,7 +21,7 @@ public class SearchandSort {
 
 	public static <E> void main(String[] args)
 	{
-		ArrayList<Object> al = new ArrayList<>();
+		ArrayList<Object> list = new ArrayList<>();
 		char input = 0;
 		 do
 	       {
@@ -21,7 +31,7 @@ public class SearchandSort {
        System.out.println("4.String BubbleSort ");
        System.out.println("5.Integer InsertionSort");
        System.out.println("6.String InsertionSort");
-       int choice = Utility.integerinput();
+       int choice = Utility.readInteger();
        long startTime;
        long stopTime;
        long  elapsedtime;
@@ -41,7 +51,7 @@ public class SearchandSort {
 	                }
 	                System.out.println();
 	                System.out.println("Enter the key which is to be find from the above array:");
-		            key = Utility.integerinput();
+		            key = Utility.readInteger();
 					first = 0;
 					last = intitems.length -1;
 			        startTime = System.currentTimeMillis();
@@ -51,12 +61,12 @@ public class SearchandSort {
 					System.out.println("Element is found at index: " + index);
 					System.out.println("Total time required for searching is:"+ elapsedtime +"milliseconds");
 					System.out.println();
-					al.add( elapsedtime);
+					list.add( elapsedtime);
 					
 				    break;
 		
 		    case 2:	System.out.println("StringBinary Search");
-					String[] stringitems = Utility.stringarrayInput();
+					String[] stringitems = Utility.inputStringArray();
 					Arrays.sort(stringitems);
                     System.out.print("Sorted String Array: ");
 					for(String s: stringitems)
@@ -66,7 +76,7 @@ public class SearchandSort {
 					System.out.println();
 				    startTime = System.currentTimeMillis();
 				    System.out.println("Enter the string which is to be find from the above array:");
-					String key1 = Utility.stringinput();
+					String key1 = Utility.readString();
 				    first = 0;
 					last = stringitems.length -1;
 					index = Utility.binarySearch(stringitems,key1,first,last);
@@ -75,7 +85,7 @@ public class SearchandSort {
 					System.out.println("Element is found at index: " + index);
 					System.out.println("Total time required for searching is:"+ elapsedtime +"milliseconds");
 					System.out.println();
-					al.add(elapsedtime);
+					list.add(elapsedtime);
 
 			       break;
 		 
@@ -86,11 +96,11 @@ public class SearchandSort {
 					stopTime = System.currentTimeMillis();
 				    elapsedtime = stopTime - startTime;
 					System.out.println("Total time required for sorting is:"+ elapsedtime +" " + "milliseconds");
-					al.add(elapsedtime);
+					list.add(elapsedtime);
 
 					break;
 		
-			case 4: String[] stringArray = Utility.stringarrayInput();
+			case 4: String[] stringArray = Utility.inputStringArray();
 			        System.out.print("Sorted string array by bubblesort:");
 				    startTime = System.currentTimeMillis();
 	                Utility.bubbleSort(stringArray);
@@ -107,10 +117,10 @@ public class SearchandSort {
 		          stopTime = System.currentTimeMillis();
 				  elapsedtime = stopTime - startTime;
 				  System.out.println("Total time required for sorting is:"+ elapsedtime +" " + "milliseconds");
-				  al.add(elapsedtime);
+				  list.add(elapsedtime);
 				  break;
                   
-		case 6:  stringArray = Utility.stringarrayInput();
+		case 6:  stringArray = Utility.inputStringArray();
 		         length = stringArray.length;
 		         System.out.print("Sorted string array by Insertionsort:");
 				 startTime = System.currentTimeMillis();
@@ -118,7 +128,7 @@ public class SearchandSort {
 		         stopTime = System.currentTimeMillis();
 			     elapsedtime = stopTime - startTime;
 				 System.out.println("Total time required for sorting is:"+ elapsedtime +" " + "milliseconds");
-				 al.add(elapsedtime);
+				 list.add(elapsedtime);
 
 				 break;
                  
@@ -129,14 +139,14 @@ public class SearchandSort {
 		}
 		    
 		System.out.print("Do You Want To Continue (Y/N)?: ");
-        input=Utility.charinput();
+        input=Utility.readChar();
        }
        while((input!='n')&&(input!='N'));
        
       
-       Collections.sort(al, Collections.reverseOrder());
+       Collections.sort(list, Collections.reverseOrder());
        System.out.println("Elapsed time performance for searching and sorting in decending order is as follows");
-       System.out.println(al);
+       System.out.println(list);
 	}
 
 }

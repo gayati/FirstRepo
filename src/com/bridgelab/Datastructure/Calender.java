@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 
 import com.bridgelab.Utility.Utility;
@@ -12,9 +22,9 @@ public class Calender
        int year=0;
       
        System.out.println("Enter the month:");
-       month = Utility.integerinput();
+       month = Utility.readInteger();
        System.out.println("Enter the year:");
-       year = Utility.integerinput();
+       year = Utility.readInteger();
        
        
        Utility.printCalender(month, year);

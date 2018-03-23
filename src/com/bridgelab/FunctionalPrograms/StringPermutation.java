@@ -1,9 +1,9 @@
 /******************************************************************************
  
   
- *  Purpose: Determines whether or not n is prime.
+ *  Purpose: Determine all possible permutation of user input string and print them.
  *
- *  @author  BridgeLabz
+ *  @author  Gayatri Kawade
  *  @version 1.0
  *  @since   06-08-2017
  *
@@ -16,11 +16,11 @@ public class StringPermutation {
 
 	public static void main(String[] args) {
 		System.out.println("Enter the String");
-		String inputstring = Utility.stringinput();
+		String inputstring = Utility.readString();
 	
 		int first = 0;
 		int last = inputstring.length();
-		Utility.permute(inputstring,first,last-1);
+		Utility.permutationsOfString(inputstring,first,last-1);
 	}
 
 }

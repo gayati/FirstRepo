@@ -1,9 +1,9 @@
 /******************************************************************************
  
   
- *  Purpose: Determines whether or not n is prime.
+ *  Purpose: Calculate percentage of head and tail by taking user input for number of times to flip the coin.
  *
- *  @author  BridgeLabz
+ *  @author  Gayatri Kawade
  *  @version 1.0
  *  @since   06-08-2017
  *
@@ -16,10 +16,10 @@ public class FlipCoin {
 	public static void main(String[] args) 
 	{
 		
-		int no_of_times;
+		int noOfTimes;
 		System.out.println("Enter the number of times to flip the coin");
-		no_of_times = Utility.integerinput();
-		Utility.flipcoin(no_of_times);
+		noOfTimes = Utility.readInteger();
+		Utility.findPercentage(noOfTimes);
 	}
 
 }

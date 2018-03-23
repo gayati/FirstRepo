@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 
 import java.util.ArrayList;
@@ -10,8 +20,10 @@ public class Prime2DArray {
 	{
 		
 	  
-	    ArrayList<Integer> list = Utility.primenumbers1();
+	    ArrayList<Integer> list = Utility.findPrimes();
+	    System.out.println("--------------------------------Prime Numbers------------------------------");
 	    Utility.print2Darray(list);
+	    
 		
 		
  

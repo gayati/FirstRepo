@@ -19,7 +19,7 @@ public class CouponNumbers
     
     int numbers = 0;
     System.out.println("Enter the number of coupons you want to generate");
-    numbers = Utility.integerinput();
+    numbers = Utility.readInteger();
     Utility.couponumbers(numbers);
     
 }

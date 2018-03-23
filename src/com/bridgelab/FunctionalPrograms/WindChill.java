@@ -18,9 +18,9 @@ public class WindChill {
 	    double temperature;
 		double velocity;
 		System.out.println("Enter the temperature value");
-		temperature = Utility.doubleinput();
+		temperature = Utility.readDouble();
 		System.out.println("Enter the velocity value");
-		velocity = Utility.doubleinput();
+		velocity = Utility.readDouble();
         Utility.windchill(temperature, velocity);
 	}
 
