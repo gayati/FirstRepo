@@ -20,12 +20,14 @@ public class InventoryManagement
      JSONObject jsobj = (JSONObject) parser.parse(reader);
      JSONArray jsarray = (JSONArray) jsobj.get("Wheat");
      Iterator<Object> iteartor = jsarray.iterator();
+     
      System.out.println("Details of wheat is as follows:");
      System.out.println();
 		while(iteartor.hasNext())
 		{
 		for(int i=0;i<jsarray.size();i++)
-		{   System.out.println(iteartor.next());
+		{   
+			System.out.println(iteartor.next());
 			JSONObject wheat = (JSONObject) jsarray.get(i);
 			long wheatprice =  (long) wheat.get("price");
 			long wheatweigth = (long) wheat.get("weight");
@@ -34,15 +36,16 @@ public class InventoryManagement
 			System.out.println();
 		}
 		}
+		
 	 System.out.println();
      System.out.println("Deatails of pulses:");
      JSONArray jsarray1 =(JSONArray) jsobj.get("Pulses");
      Iterator<Object> iteartor1 = jsarray1.iterator();
      while(iteartor1.hasNext())
 		{
-			System.out.println(iteartor1.next());
 			for(int i=0;i<jsarray1.size();i++)
-			{   System.out.println(iteartor1.next());
+			{  
+				System.out.println(iteartor1.next());
 				JSONObject pulses = (JSONObject) jsarray1.get(i);
 				long pulseprice =  (long) pulses.get("price");
 				long pulseweigth = (long) pulses.get("weight");

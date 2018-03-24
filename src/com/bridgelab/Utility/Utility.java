@@ -202,17 +202,14 @@ public class Utility {
        
        /** 
 		*
-		* @param compute the prime factors of the user input number.
+		* @param 
 		*/   
 	    public static void couponumbers(int numbers)
 	    {
-	    Integer[] array = new Integer[numbers];
-		
-		
-		
+	    Integer[] array = new Integer[numbers];	
 		for(int i=0;i<numbers; i++ )
 		{
-			array[i]=Utility.generateRandomNumber();
+		 array[i]=Utility.generateRandomNumber();
 		 for(int j=i+1;j<numbers; j++)
 			{
 			if(array[i]==(array[j]))
@@ -225,7 +222,10 @@ public class Utility {
 		
 	    }
        
-       
+	    /** 
+		*
+		* @param this method randomly generate random numbers
+		*/ 
        public static int generateRandomNumber()
        {
     	   Random random = new Random();
@@ -473,9 +473,9 @@ public class Utility {
    		
    	   	for(int i=0; i<no_of_times; i++)
    	    	{
-   	   	    while(stack>0 && stack<=goals)
+   	   	    if(stack>0 && stack<=goals)
    	   	    {	
-   	    	if(Math.random()<0.5)
+   	    	if(Math.random()>0.5)
    	    	{
    	    		wins++;
    	    		
@@ -488,10 +488,11 @@ public class Utility {
    	    	{
    	    		wins++;
    	    	}
-   	    	}
-   	    	}
-   	    	System.out.println("The number of wins" + wins);
    	    	
+   	    	}
+   	    	}
+   	    	System.out.println("The number of wins: " + wins);
+   	    	System.out.println("The numebr of losses: " + loss);
    	    	winpercent = wins*100/no_of_times;
    	    	losspercent = 100-winpercent;
    	    	System.out.println("Wins Percentage:" + winpercent);
@@ -879,11 +880,11 @@ public class Utility {
 		* @param finds all prime numbers that are palindrome in the range of 0-1000.
 		*/ 
       
-        public static void findPrimePalindrome(ArrayList<Integer> al)
+        public static void findPrimePalindrome(ArrayList<Integer> list)
         {
-        	 int size =al.size() ;
+        	 int size =list.size() ;
              Integer[] liststring = new Integer[size];
-             liststring = al.toArray(liststring);
+             liststring = list.toArray(liststring);
            
            System.out.println("The prime numbers which are palindrome are as follows:");
            for(int i=0;i<size ; i++)
@@ -1472,14 +1473,14 @@ public class Utility {
 //				 pw.flush();
 //				 
 			 FileWriter file = new FileWriter(filepath);
-			 BufferedWriter bw = new BufferedWriter(file);
+			 BufferedWriter writer = new BufferedWriter(file);
 			 String data = list.toString();
 			 System.out.println(data);
 			
-		       bw.write(data);
-		       bw.flush();
+		       writer.write(data);
+		       writer.flush();
 		     
-			 bw.close();
+			 writer.close();
 			 System.out.println("Data Saved");
 			 }
 			 catch (Exception e) {
