@@ -27,27 +27,25 @@ public class HashingFunction
     	String numString= array[i];
     	
    	   inarray[i]= Integer.parseInt(numString);
+   	   System.out.println(inarray[i]);
     	 
     }
+    
+    
+   
 //    	 System.out.println();
 //    	list.insert(inarray[i]);
     	 //map.put(key,inarray[i]);
    
     
       
-//    for(Integer in : inarray)
-//    {
-//    	System.out.println(in);
-//    	
-//    }
-   // HashMap<Integer,Integer> map1 = new  HashMap<>();
+
         HashMap<Integer,MyLinkedList<Integer>> map = new  HashMap<>();
       
         for(Integer in : inarray)
           {
           	key= in%11;
-          	System.out.println(key);
-          	//map1.put(key, inarray[i]);
+          	
           	MyLinkedList<Integer> list = map.get(key);
         	if (list == null) 
 			{
@@ -70,26 +68,7 @@ public class HashingFunction
 	}
 
 }
-//i
-//		ArrayList<Integer> list = new ArrayList<Integer>();
-//		Scanner sc = new Scanner(System.in);
-//		File f1 = new File("/home/bridgeit/Documents/Programs/DataStructure-Programs/src/Files/hashnum.txt");
-//		FileReader fr1 = new FileReader(f1);
-//		int len = (int) f1.length();
-//		char[] c1 = new char[len];
-//		fr1.read(c1);//all elemnet in char array 
-//		System.out.println("the value of c1 are ");
-//		System.out.println(c1);
-//		String st = new String(c1);//make it string to parse in integer
-//		String[] sta = st.split(" ");
-//		for (String stng : sta) 
-//		{
-//			list.add(Integer.parseInt(stng.trim()));
-//
-//		}
-//		System.out.println("----------");
-//		System.out.println("the value of linked list");
-//		System.out.println(list);// display linked list
+
 //		
 //		HashMap<Integer, LinkedList<Integer>> hm = new HashMap<Integer, LinkedList<Integer>>();
 //		for (Integer intg : list) 

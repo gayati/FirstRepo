@@ -124,29 +124,14 @@ public class MyLinkedList<T>
 			System.out.println(node.data);
 		}
 
-		public String toString()
-		{
-			int i = 0;
-			String[] array = new String[size()];
-			Node<T> temp = head;
-			while(temp!=null)
-			{
-				array[i] = (String) temp.data;
-				i++;
-				temp = temp.next;
+		 public String toString() {
+				String string = "";
+				//Node<T> temp = head;
+				for(Node<T> temp = head; temp != null; temp = temp.next) {
+					string = string + temp.data + " ";
+				}
+				
+				return string;
 			}
-			
-			StringBuilder builder = new StringBuilder();
-			for(String s : array) {
-			    builder.append(s+" ");
-			}
-			String string = builder.toString();
-			
-			return string;
-			
-		}
-		 
-		
-	   
 
 }

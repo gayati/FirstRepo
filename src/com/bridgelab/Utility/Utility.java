@@ -17,6 +17,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import com.bridgelab.Datastructure.MyLinkedList;
 import com.bridgelab.Datastructure.MyQueue;
 import com.bridgelab.Datastructure.MyStack;
@@ -1319,7 +1324,7 @@ public class Utility {
 		* @param 
 		*/ 
 		
-		public static void squrt(double number)
+		public static void findSquareroot(double number)
 		{
 		    double number1 = number;
 			
@@ -1369,86 +1374,144 @@ public class Utility {
 		
 	
         
-        public static void merge(String stringarray[],int first,int mid,int last)
-        {   
-        	
-        	int i=0,j = 0,k=last;
-        	int length1= mid-first+1;
-        	int length2 = last-mid;
-        	int comp;
-        	String leftarray[] = new String[length1];//left array
-        	//System.out.println(leftarray.length);
-        	
-        	for( i=0;i<length1;i++)
-        	{
-        		leftarray[i]= stringarray[first+i];
-        	}
-        	String rightarray[] = new String[length2];//right array
-        	for( j=0;j<length2;j++)
-        	{
-        		rightarray[j]= stringarray[mid+1+j];
-        	}
-        	
-        	while(i<length1 && j<length2)
-        	{ 
-        		comp=leftarray[i].compareToIgnoreCase(rightarray[j]);
-        		if(comp>0)
-        		{
-        			stringarray[k] = leftarray[i];
-        					i++;
-        		}
-        		else
-        		{
-        			stringarray[k] = rightarray[j];
-					j++;
-        		}
-        		
-        		k++;
-        	}
-        	 
-        	while(i<length1)//this check if element are remaining in the left array
-        	{
-        		comp=leftarray[i].compareToIgnoreCase(leftarray[i+1]);
-        		if(comp>0)
-        		{
-    			stringarray[k] = leftarray[i];
-    					i++;
-    					k++;
-        		}
-        		
-    		
-        	}
-        	
-        	while(j<length2)
-        	{
-        		comp=rightarray[j].compareToIgnoreCase(rightarray[j+1]);
-        		if(comp>0)
-        		{
-   
-    			stringarray[k] = rightarray[j];
-    					j++;
-    					k++;
-        		}
-        	}	
-        }
-        
-       public static void mergeSort(String arr[], int first, int last)
-        {
-    	    int mid = (first+last)/2;
-            if (first < last)
-            {       
-                mergeSort(arr, first, mid);
-                mergeSort(arr, mid+1, last);
-         
-                Utility.merge(arr,first,mid,last);
-            }
-			for(String s: arr)
-			{
-				System.out.println(s);
-			}
-        }
-       
-       
+//        public static void merge(String stringarray[],int first,int mid,int last)
+//        {   
+//        	
+//        	int i=0,j = 0,k=last;
+//        	int length1= mid-first+1;
+//        	int length2 = last-mid;
+//        	int comp;
+//        	String leftarray[] = new String[length1];//left array
+//        	//System.out.println(leftarray.length);
+//        	
+//        	for( i=0;i<length1;i++)
+//        	{
+//        		leftarray[i]= stringarray[first+i];
+//        	}
+//        	String rightarray[] = new String[length2];//right array
+//        	for( j=0;j<length2;j++)
+//        	{
+//        		rightarray[j]= stringarray[mid+1+j];
+//        	}
+//        	
+//        	while(i<length1 && j<length2)
+//        	{ 
+//        		comp=leftarray[i].compareToIgnoreCase(rightarray[j]);
+//        		if(comp>0)
+//        		{
+//        			stringarray[k] = leftarray[i];
+//        					i++;
+//        		}
+//        		else
+//        		{
+//        			stringarray[k] = rightarray[j];
+//					j++;
+//        		}
+//        		
+//        		k++;
+//        	}
+//        	 
+//        	while(i<length1)//this check if element are remaining in the left array
+//        	{
+//        		comp=leftarray[i].compareToIgnoreCase(leftarray[i+1]);
+//        		if(comp>0)
+//        		{
+//    			stringarray[k] = leftarray[i];
+//    					i++;
+//    					k++;
+//        		}
+//        		
+//    		
+//        	}
+//        	
+//        	while(j<length2)
+//        	{
+//        		comp=rightarray[j].compareToIgnoreCase(rightarray[j+1]);
+//        		if(comp>0)
+//        		{
+//   
+//    			stringarray[k] = rightarray[j];
+//    					j++;
+//    					k++;
+//        		}
+//        	}	
+//        }
+//        
+//       public static void mergeSort(String arr[], int first, int last)
+//        {
+//    	    int mid = (first+last)/2;
+//            if (first < last)
+//            {       
+//                mergeSort(arr, first, mid);
+//                mergeSort(arr, mid+1, last);
+//         
+//                Utility.merge(arr,first,mid,last);
+//            }
+//			for(String s: arr)
+//			{
+//				System.out.println(s);
+//			}
+//        }
+//       
+        public static String[] mergeArray(String[] left, String[] right) {
+	        String[] merged = new String[left.length+right.length];
+	        int lIndex = 0;
+	        int rIndex = 0;
+	        int mIndex = 0;
+	        int comp = 0;
+	        while (lIndex < left.length || rIndex < right.length) {
+	            if (lIndex == left.length) {
+	                merged[mIndex++] = right[rIndex++];
+	            } else if (rIndex == right.length) {
+	                merged[mIndex++] = left[lIndex++];
+	            } else {  
+	                comp = left[lIndex].compareTo(right[rIndex]);
+	                if (comp > 0) {
+	                    merged[mIndex++] = right[rIndex++];
+	                } else if (comp < 0) {
+	                    merged[mIndex++] = left[lIndex++];
+	                } else { 
+	                    merged[mIndex++] = left[lIndex++];
+	                }
+	            }   
+	        }
+	        return merged;
+	    }
+
+	 
+	 
+	  public static String[] mergeSort(String[] list) {
+	        String [] sorted = new String[list.length];
+	        if (list.length == 1) {
+	            sorted = list;
+	        } else {
+	            int mid = list.length/2;
+	            String[] left = null; 
+	            String[] right = null;
+	            if ((list.length % 2) == 0) {
+	                left = new String[list.length/2];
+	                right = new String[list.length/2];
+	            } else { 
+	                left = new String[list.length/2];
+	                right = new String[(list.length/2)+1];
+	            }
+	            int x=0;
+	            int y=0;
+	            for ( ; x < mid; x++) {
+	                left[x] = list[x];
+	            }
+	            for ( ; x < list.length; x++) {
+	                right[y++] = list[x];
+	            }
+	            left = mergeSort(left);
+	            right = mergeSort(right);
+	            sorted = mergeArray(left,right);
+	        }
+
+	        return sorted;
+	    }
+	 
+		
       
 		//Algorithm
 
@@ -1973,9 +2036,117 @@ public class Utility {
 		{
 			System.out.println("Your balance amount is:" + balanceAmount );
 		}
+		
+		//datastructure
+		
+		@SuppressWarnings("unchecked")
+		public static void Stockaccount() throws IOException
+		{
+//			System.out.println("Enter the number of users:");
+//			Long numberOfUsers = Utility.readLong();
+			JSONObject jsobj=new JSONObject();
+			//JSONArray array = new JSONArray();
+			     
+			
+	        System.out.println("Enter the name of account holder: ");
+	        String nameOfcustomer = Utility.readString();
+	        jsobj.put("name", nameOfcustomer);
+	        System.out.println("Enter the amount to be deposited: ");
+	        Long depositamount = Utility.readLong();
+	        jsobj.put("amount", depositamount);
+	        System.out.println("Enter the number of shares: ");
+	        Long numberOfShares = Utility.readLong();
+	        jsobj.put("number", numberOfShares);
+	       // array.add(jsobj);
+			
+//			JSONObject accounts = new JSONObject();
+//			accounts.put("Accounts", jsobj);
+//			System.out.println(accounts.toJSONString());
+			System.out.println();
+			@SuppressWarnings("resource")
+			FileWriter writer = new FileWriter("Accounts.json",true);
+			writer.write(jsobj.toJSONString());
+			writer.flush();
+	        
+		}
+		
+		@SuppressWarnings("unchecked")
+		public synchronized static void buy() throws IOException, ParseException
+		{
+			System.out.println("Enter the symbol of share you want to buy: ");
+			String symbol = Utility.readString();
+			System.out.println("Enter the number of shares you want to buy: ");
+			Long sharenumbers = Utility.readLong();
+			
+			FileReader file = new FileReader("ShareLibrary.json");
+			BufferedReader reader = new BufferedReader(file);
+			JSONParser parser = new JSONParser();
+			JSONObject jsobj1 = (JSONObject) parser.parse(reader);
+			JSONArray jsarray = (JSONArray) jsobj1.get("Shares");
+			//Iterator<Object> iter = jsarray.iterator();
+			String sharename = null;
+			JSONObject obj =null;
+			long shareprice = 0;
+			long sharenumber=0;
+//			while(iter.hasNext())
+//			{
+			 for(int i=0; i<jsarray.size();i++)
+				{  
+					//System.out.println();
+					obj = (JSONObject) jsarray.get(i);
+					sharename = (String) obj.get("sharename");
+					//System.out.println(sharename);
+					if(symbol.equals(sharename))
+					{
+					System.out.println(sharename);
+					shareprice = (long) obj.get("price");
+					sharenumber = (long)obj.get("sharenumber");
+					System.out.println("The price for share is: "+ shareprice);
+					System.out.println("The total price for share is: " + sharenumbers*shareprice);
+					
+					sharenumber = sharenumber-sharenumbers;
+					obj.put("sharenumber", sharenumber);
+					
+					  /*obj.remove(sharename);
+					  obj.remove(sharenumber);
+					  obj.remove(shareprice);
+					  */
+					    //sharename = (String) obj.get("sharename");
+						//shareprice = (long) obj.get("price");
+					/*	JSONObject newjsobj = new JSONObject();
+						newjsobj.put("sharename", sharename);
+						newjsobj.put("price", shareprice);
+					*/	
+					}
+					
+				}
+			//}
+			 jsarray.add(obj);
+			    jsobj1.put("Shares", jsarray);
+			    Utility.update(jsobj1);
+		
+
+			
+		}
+		
+		
+		
+		public static void update(JSONObject jsobj1) throws IOException
+		{
+			
+			System.out.println(jsobj1.toJSONString());
+			
+			FileWriter writer = new FileWriter("ShareLibrary.json");
+			BufferedWriter bw=new BufferedWriter(writer);
+			bw.write(jsobj1.toJSONString());
+			bw.flush();
+			bw.close();
+		}
          
 }		 
 		 
+
+
 		 
 		 
 		 

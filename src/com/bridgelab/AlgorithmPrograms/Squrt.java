@@ -23,7 +23,7 @@ public class Squrt {
 		}
 		else
 		{
-		Utility.squrt(number);
+		Utility.findSquareroot(number);
 		}
 
 	}

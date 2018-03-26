@@ -79,7 +79,7 @@ public class InventoryManagement1 {
 		varities.put("wheat",wheatarr);
 		varities.put("pulse", pulsearr);
 		
-		FileWriter writer = new FileWriter("/home/bridgeit/Documents/MyJsonFiles/Inventory.json");
+		FileWriter writer = new FileWriter("inventory.json");
 		BufferedWriter bw = new BufferedWriter(writer);
 		System.out.println(varities);
 		//writer.write(wheatobj.toJSONString());
@@ -90,7 +90,7 @@ public class InventoryManagement1 {
 		//System.out.println(pulsetobj);
 		
 		 JSONParser parser = new JSONParser();
-	     FileReader reader = new FileReader("/home/bridgeit/Documents/MyJsonFiles/Inventory.json");
+	     FileReader reader = new FileReader("inventory.json");
 	     JSONObject jsobj = (JSONObject) parser.parse(reader);
 	     JSONArray jsarray = (JSONArray) jsobj.get("wheat");
 	     Iterator<Object> iteartor = jsarray.iterator();

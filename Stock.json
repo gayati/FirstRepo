@@ -1,0 +1,14 @@
+{
+	"Stock": [
+		{
+			"sharename": "tcs",
+			"price": 1000,
+			"sharenumber": 10
+		},
+		{
+			"sharename": "bajaj",
+			"price": 2000,
+			"sharenumber": 5
+		}
+	]
+}

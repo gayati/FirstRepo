@@ -1,0 +1,29 @@
+{
+	"Shares": [
+		{
+			"sharename": "@",
+			"price": 50000,
+			"sharenumber": 10
+		},
+		{
+			"sharename": "$",
+			"price": 10000,
+			"sharenumber": 20
+		},
+		{
+			"sharename": "&",
+			"price": 20000,
+			"sharenumber": 30
+		},
+		{
+			"sharename": "#",
+			"price": 2000,
+			"sharenumber": 47
+		},
+		{
+			"sharename": "#",
+			"price": 2000,
+			"sharenumber": 47
+		}
+	]
+}

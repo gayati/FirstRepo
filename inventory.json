@@ -1,0 +1,21 @@
+{
+	"pulse": [
+		{
+			"price": 30,
+			"weight": 3,
+			"type": "21"
+		}
+	],
+	"wheat": [
+		{
+			"price": 36,
+			"weight": 21,
+			"type": "fghyt"
+		},
+		{
+			"price": 3,
+			"weight": 2,
+			"type": "hhty"
+		}
+	]
+}
