@@ -1,17 +1,20 @@
 package com.bridgelab.Datastructure;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
+
+import com.bridgelab.Utility.Utility;
 
 public class HashingFunction 
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		int key=0;
 		int i=0;
-	try
-	{
+	
 	System.out.println();
 	
 	String filepath = "/home/bridgeit/Documents/newfile.txt";
@@ -31,15 +34,6 @@ public class HashingFunction
     	 
     }
     
-    
-   
-//    	 System.out.println();
-//    	list.insert(inarray[i]);
-    	 //map.put(key,inarray[i]);
-   
-    
-      
-
         HashMap<Integer,MyLinkedList<Integer>> map = new  HashMap<>();
       
         for(Integer in : inarray)
@@ -60,49 +54,30 @@ public class HashingFunction
         System.out.println(map);
      
 		
-	}
-	catch(Exception e)
+	
+	
+	
+	System.out.println("Enter a number to be search");
+	int n1 =Utility.readInteger();
+	int N = n1 % 11;
+	map.get(N);
+	MyLinkedList<Integer> ll1 = map.get(N);
+	if (ll1 == null) 
 	{
-		
+		ll1 = new MyLinkedList<Integer>();
+		map.put(N, ll1);
 	}
-	}
+	System.out.println(ll1);
+//	if (ll1.contains(n1))
+//	{
+//		System.out.println("The number is present in the list the remove it");
+//		ll1.indexOf(ll1);
+//		ll1.remove();
+//	    
+//	}
+//	else
+//		ll1.insert(n1);
+//	System.out.println(map);
 
 }
-
-//		
-//		HashMap<Integer, LinkedList<Integer>> hm = new HashMap<Integer, LinkedList<Integer>>();
-//		for (Integer intg : list) 
-//		{
-//			int n = intg % 11;
-//			LinkedList<Integer> ll = hm.get(n);
-//			if (ll == null) 
-//			{
-//				ll = new LinkedList<Integer>();
-//				hm.put(n, ll);//add respective key
-//			}
-//			ll.add(intg);//add
-//		}
-//		System.out.println(hm);
-//		System.out.println("Enter a number to be search");
-//		int n1 = sc.nextInt();
-//		int N = n1 % 11;
-//		hm.get(N);
-//		LinkedList<Integer> ll1 = hm.get(N);
-//		if (ll1 == null) 
-//		{
-//			ll1 = new LinkedList<Integer>();
-//			hm.put(N, ll1);
-//		}
-//		System.out.println(ll1);
-//		if (ll1.contains(n1))
-//		{
-//			System.out.println("The number is present in the list the remove it");
-//			ll1.indexOf(ll1);
-//			ll1.remove();
-//		    
-//		}
-//		else
-//			ll1.add(n1);
-//		System.out.println(hm);
-//	}
-//
+}

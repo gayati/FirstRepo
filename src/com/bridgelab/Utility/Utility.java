@@ -1670,15 +1670,16 @@ public class Utility {
                   };
 
             int[] days = {0,  31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-                MyQueue quue = new MyQueue();
+               // MyQueue quue = new MyQueue();
             if (month == 2 && isLeapYear(year)) days[month] = 29;
-            
+           
            System.out.println("   " + months[month] + " " + year);
-           System.out.println("S  M  T  W  Th  F  S  ");
+           System.out.println("S M T W Th F S");
            int d = dayOfweek(1, month, year);
             for(int i=0; i<d; i++)
 			{
 				System.out.print("   ");
+				//quue.enque("   ");
 			}
 			for (int i = 1; i <=days[month]; i++) 
 			{
@@ -1688,6 +1689,7 @@ public class Utility {
 			    if (((i + d) % 7 == 0) || (i == days[month])) 
 			    {
 			    	System.out.println();
+			    	
 			    }
 			    	
 			}
@@ -1710,51 +1712,70 @@ public class Utility {
 		                      "July", "August", "September",
 		                      "October", "November", "December"
 		                   };
-		         
-		    MyQueue date = new MyQueue();
-		    date.enque(31); 
-		    date.enque(28); 
-		    date.enque(31); 
-		    date.enque(30); 
-		    date.enque(31); 
-		    date.enque(30); 
-		    date.enque(31); 
-		    date.enque(31); 
-		    date.enque(30); 
-		    date.enque(31); 
-		    date.enque(30); 
-		    date.enque(31); 
-	    
-             for(int j=0; j<month;j++)
-             {
-              totalNoOfDays =date.deque();
-             }
-    
-          
+		     int[] days = {0,  31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};     
+		     String dayOfWeek[] = {"S",  "M" , "T",  "W" , "Th" , "F",  "S"  };
+//		    MyQueue date = new MyQueue();
+//		    date.enque(31); 
+//		    date.enque(28); 
+//		    date.enque(31); 
+//		    date.enque(30); 
+//		    date.enque(31); 
+//		    date.enque(30); 
+//		    date.enque(31); 
+//		    date.enque(31); 
+//		    date.enque(30); 
+//		    date.enque(31); 
+//		    date.enque(30); 
+//		    date.enque(31); 
+//	    
+//             for(int j=0; j<month;j++)
+//             {
+//              totalNoOfDays =date.deque();
+//             }
+//    
+//          
              if (month == 2 && isLeapYear(year)) 
              {
-             totalNoOfDays = 29;
+            	 days[month] = 29;
+                 
              }
+             
+     
+            
+             MyQueue queue = new MyQueue();
              
               System.out.println("   " + months[month] + " " + year);
               System.out.println("S  M  T  W  Th  F  S  ");
               int d = dayOfweek(1, month, year);
              for(int i=0; i<d; i++)
 		    {
-		     System.out.print("   ");
+		     //System.out.print("   ");
+		     queue.enque("  ");
 		    }
-		    for (int i = 1; i <= totalNoOfDays; i++) 
+             
+		    for (int i = 1; i <=days[month]; i++) 
 		    {
-		        System.out.printf("%2d ",i);
-		        if (((i + d) % 7 == 0) || (i == totalNoOfDays)) 
+		       // System.out.printf("%2d ",i);
+		        queue.enque(i);
+		       
+		        if (((i + d) % 7 == 0) || (i == days[month])) 
 		        {
+		         queue.print();
 		         System.out.println();
+		         queue = new MyQueue();
+		         
 		        }
 		         
-		    }	 
+		    }
+//		    for(int i=0;i<5;i++)
+//			  {
+//				 queue.print(); 
+//			  }
+
+		    
 		    } 
 		  
-
+		
 			/** 
 			*
 			* @param 
@@ -1873,7 +1894,6 @@ public class Utility {
 							 prime[i][j]= it.next();
 
 							 System.out.print(prime[i][j] + " ");
-							 
 						 }	
 						 else
 						 {
@@ -1884,7 +1904,8 @@ public class Utility {
 						 }
 						
 					 }
-			
+			     
+					 
 				 }
 					 
 			 
@@ -1900,8 +1921,8 @@ public class Utility {
 		 public static void printAnagram2Darray(ArrayList<Integer> list)
       {   
 			 int n =list.size() ;
-	          Integer[] liststring = new Integer[n];
-	          liststring = list.toArray(liststring);
+	         Integer[] liststring = new Integer[n];
+	         liststring = list.toArray(liststring);
 			 int[][] prime = new int[10][50]; 
 			 Iterator< Integer> it = list.iterator();
 			 int block = 100;
@@ -1983,10 +2004,10 @@ public class Utility {
 	          {
 	       	   for(int j=i+1;j<size; j++)
 	       	   {
-	       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[i])))
+	       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[j])))
 	       		   {
 	       			   stack.push(String.valueOf(liststring[i]));
-	       			   stack.push(String.valueOf(liststring[i]));
+	       			   stack.push(String.valueOf(liststring[j]));
 	       		   }
 	       	   }
 	       	   
@@ -2039,14 +2060,11 @@ public class Utility {
 		
 		//datastructure
 		
+		static JSONArray jsarray = new JSONArray();
 		@SuppressWarnings("unchecked")
-		public static void Stockaccount() throws IOException
-		{
-//			System.out.println("Enter the number of users:");
-//			Long numberOfUsers = Utility.readLong();
+		public static void Stockaccount() throws IOException, ParseException
+		{     
 			JSONObject jsobj=new JSONObject();
-			//JSONArray array = new JSONArray();
-			     
 			
 	        System.out.println("Enter the name of account holder: ");
 	        String nameOfcustomer = Utility.readString();
@@ -2057,45 +2075,71 @@ public class Utility {
 	        System.out.println("Enter the number of shares: ");
 	        Long numberOfShares = Utility.readLong();
 	        jsobj.put("number", numberOfShares);
-	       // array.add(jsobj);
-			
-//			JSONObject accounts = new JSONObject();
-//			accounts.put("Accounts", jsobj);
-//			System.out.println(accounts.toJSONString());
 			System.out.println();
-			@SuppressWarnings("resource")
-			FileWriter writer = new FileWriter("Accounts.json",true);
+			
+		
+			FileReader file = new FileReader("Account.json");
+			BufferedReader reader = new BufferedReader(file);
+			if(reader.readLine() == null)
+			{
+			jsarray.add(jsobj);
+			FileWriter writer = new FileWriter("Account.json",true);
+			
+      	    jsobj.put("Account", jsarray);
 			writer.write(jsobj.toJSONString());
 			writer.flush();
+			}
+			else
+			{
+
+				FileReader file1 = new FileReader("Account.json");
+				BufferedReader reader1 = new BufferedReader(file1);
+				JSONParser parser = new JSONParser();
+				JSONObject jsobj1 = (JSONObject) parser.parse(reader1);
+				JSONArray jsarray1 = (JSONArray) jsobj1.get("Account");
+				jsarray1.add(jsobj);
+		        JSONObject mainjsobj = new JSONObject();
+				 mainjsobj.put("Account", jsarray1);
+				 FileWriter writer = new FileWriter("Account.json");
+				 writer.write(mainjsobj.toJSONString());
+				 writer.flush();
+				
+			}
+			
+		
+			
 	        
 		}
 		
+		static String accountHolderName; 
+		static Long sharenumbers;
+		static long sharenumber=0;
 		@SuppressWarnings("unchecked")
-		public synchronized static void buy() throws IOException, ParseException
+		
+		public  static void buy() throws IOException, ParseException
 		{
+			System.out.println("Enter the name of account holder who want to buy the share:");
+			accountHolderName= Utility.readString();
 			System.out.println("Enter the symbol of share you want to buy: ");
 			String symbol = Utility.readString();
 			System.out.println("Enter the number of shares you want to buy: ");
-			Long sharenumbers = Utility.readLong();
+			 sharenumbers= Utility.readLong();
 			
 			FileReader file = new FileReader("ShareLibrary.json");
 			BufferedReader reader = new BufferedReader(file);
 			JSONParser parser = new JSONParser();
 			JSONObject jsobj1 = (JSONObject) parser.parse(reader);
 			JSONArray jsarray = (JSONArray) jsobj1.get("Shares");
-			//Iterator<Object> iter = jsarray.iterator();
 			String sharename = null;
 			JSONObject obj =null;
 			long shareprice = 0;
-			long sharenumber=0;
-//			while(iter.hasNext())
-//			{
+			
+		
 			 for(int i=0; i<jsarray.size();i++)
 				{  
-					//System.out.println();
-					obj = (JSONObject) jsarray.get(i);
+		            obj = (JSONObject) jsarray.get(i);
 					sharename = (String) obj.get("sharename");
-					//System.out.println(sharename);
+					
 					if(symbol.equals(sharename))
 					{
 					System.out.println(sharename);
@@ -2116,18 +2160,19 @@ public class Utility {
 					/*	JSONObject newjsobj = new JSONObject();
 						newjsobj.put("sharename", sharename);
 						newjsobj.put("price", shareprice);
+						
 					*/	
+					jsarray.set(i, obj);
+					break;
 					}
 					
 				}
-			//}
-			 jsarray.add(obj);
+			
+			   // jsarray.add(obj);
 			    jsobj1.put("Shares", jsarray);
 			    Utility.update(jsobj1);
-		
-
-			
-		}
+			   Utility.updateAccount(accountHolderName);
+			}
 		
 		
 		
@@ -2135,12 +2180,68 @@ public class Utility {
 		{
 			
 			System.out.println(jsobj1.toJSONString());
-			
 			FileWriter writer = new FileWriter("ShareLibrary.json");
 			BufferedWriter bw=new BufferedWriter(writer);
 			bw.write(jsobj1.toJSONString());
 			bw.flush();
 			bw.close();
+		}
+		
+		
+		
+		public static void updateAccount(String accountHolderName) throws IOException, ParseException
+		{
+			JSONObject obj =null;
+			FileReader file = new FileReader("Account.json");
+			BufferedReader reader = new BufferedReader(file);
+			JSONParser parser = new JSONParser();
+			JSONObject jsobj = (JSONObject) parser.parse(reader);
+			JSONArray jsarray1 = (JSONArray) jsobj.get("Account");
+			 for(int i=0; i<jsarray1.size();i++)
+				{  
+		          JSONObject  tempObj = (JSONObject) jsarray1.get(i);
+		          //  System.out.println(obj);
+		            String name = (String)tempObj.get("name");
+		           System.out.println(name);
+		           
+		            if(accountHolderName==name);
+					{
+						//obj = tempObj;
+						tempObj.put("number",sharenumbers );
+//						
+						//System.out.println(obj);
+						//jsarray1.set(i, obj);
+						break;
+					}
+					
+				}
+				//jsarray1.add(obj);
+		        JSONObject mainjsobj = new JSONObject();
+				mainjsobj.put("Account", jsarray1);
+			System.out.println(mainjsobj.toJSONString());
+			FileWriter writer = new FileWriter("Account.json");
+			BufferedWriter bw=new BufferedWriter(writer);
+			bw.write(mainjsobj.toJSONString());
+			bw.flush();
+			bw.close();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		public static void sell()
+		{
+			
 		}
          
 }		 

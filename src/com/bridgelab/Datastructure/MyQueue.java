@@ -51,11 +51,11 @@ public class MyQueue {
 			Node node = front;
 			while(node.next != null)
 			{
-				System.out.println(node.data);
+				System.out.print(node.data+" ");
 				node = node.next;
 				length++;
 			}
-			System.out.println(node.data);
+			System.out.print(node.data);
 
 		}
 	   

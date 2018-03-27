@@ -1,21 +1,21 @@
 {
 	"pulse": [
 		{
-			"price": 30,
-			"weight": 3,
-			"type": "21"
+			"price": 50,
+			"weight": 2,
+			"type": "jhi"
 		}
 	],
 	"wheat": [
 		{
-			"price": 36,
-			"weight": 21,
-			"type": "fghyt"
+			"price": 30,
+			"weight": 10,
+			"type": "uyt"
 		},
 		{
-			"price": 3,
-			"weight": 2,
-			"type": "hhty"
+			"price": 30,
+			"weight": 5,
+			"type": "yuty"
 		}
 	]
 }

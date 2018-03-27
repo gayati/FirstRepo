@@ -26,15 +26,15 @@ public class StockAccount {
 		        break;
 			
         case 2:Utility.buy();
+               break;
+			
+        case 3:Utility.sell();
+    	       break;
+		
+       case 4:
 			
 			break;
- //       case 3:
-//			
-//			break;
-//       case 4:
-//			
-//			break;
-//			
+			
 		default:
 			break;
 		}
@@ -42,8 +42,7 @@ public class StockAccount {
 	    input=Utility.readChar();
 		 }
 		while((input!='n')&&(input!='N'));
-//	    Utility.Stockaccount();
-//		Utility.buy();
+
 	}
 
 }

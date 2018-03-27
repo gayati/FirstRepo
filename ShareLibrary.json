@@ -1,9 +1,8 @@
-{
-	"Shares": [
+{"Shares": [
 		{
 			"sharename": "@",
 			"price": 50000,
-			"sharenumber": 3
+			"sharenumber": -31
 		},
 		{
 			"sharename": "$",
@@ -13,12 +12,11 @@
 		{
 			"sharename": "&",
 			"price": 20000,
-			"sharenumber": 23
+			"sharenumber": 14
 		},
 		{
 			"sharename": "#",
 			"price": 2000,
 			"sharenumber": 24
 		}
-	]
-}
+	]}

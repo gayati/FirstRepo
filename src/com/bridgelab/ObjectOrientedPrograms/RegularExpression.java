@@ -27,7 +27,7 @@ public class RegularExpression {
 	     String mobilepattern = "(0/91)?[7-9][0-9]{9}";
 	     String datepattern = "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$" ;
 	     		
-	    
+	     //boolean isValidMobile = Pattern.matches(mobilepattern, "9860616030");                 
 	     Pattern pattern = Pattern.compile(mobilepattern);
 	     Matcher matcher = pattern.matcher(mobilenumber);
 	     Pattern pattern1 = Pattern.compile(namepattern);
@@ -46,6 +46,11 @@ public class RegularExpression {
 		  System.out.println(mobilenumber1);
 		
 	     }
+	     else
+	     {
+
+	    	 System.out.println("Please eneter proper mobilenumber");
+	     }
 	     if(matcher1.matches())
 	     {
 	    	  name1 = matcher1.replaceAll(fullname);
@@ -55,15 +60,7 @@ public class RegularExpression {
 	     {
 	    	 System.out.println("Please eneter proper name");
 	     }
-	     if(matcher1.matches())
-	     {
-	    	 fullname1 =matcher1.replaceAll(inputname);
-	    	 System.out.println(fullname1);
-	     }
-	     else
-	     {
-	    	 System.out.println("Please eneter proper mobilenumber");
-	     }
+	    
 	     if(matcher2.matches())
 	     {
 	    	  date1 = matcher2.replaceAll(date);

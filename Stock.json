@@ -1,13 +1,18 @@
 {
 	"Stock": [
 		{
-			"sharename": "tcs",
+			"sharename": "dfgf",
 			"price": 1000,
+			"sharenumber": 20
+		},
+		{
+			"sharename": "hgjh",
+			"price": 5000,
 			"sharenumber": 10
 		},
 		{
-			"sharename": "bajaj",
-			"price": 2000,
+			"sharename": "jhkhj",
+			"price": 500,
 			"sharenumber": 5
 		}
 	]
