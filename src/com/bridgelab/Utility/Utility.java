@@ -11,8 +11,11 @@ import java.io.PrintWriter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -1696,85 +1699,87 @@ public class Utility {
 			//quue.print();
 			}
 		 
-
+		 
 			/** 
 			*
 			* @param 
-			*/ 
+			* 
+			*/  
+	
+		 public static void printCalenderQueue(int month,int year) throws InterruptedException
+		 {
+				Queue q = new LinkedList();
+				LinkedList<String> week;
+				LinkedList<LinkedList>weekQueue=new LinkedList<LinkedList>(); 
+				String[] dayOfWeek = { "S", "M", "T","W", "Th", "F", "S" };
+				int[] noOfDays = { 0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+				int date = 1;
+				if (month == 2 || isLeapYear(year))
+					noOfDays[2] = 29;
+				  int day = dayOfweek(1, month, year);
+				week = new LinkedList<String>();
+				for (int i = 0; i < dayOfWeek.length; i++) 
+				{
+					  week.add((dayOfWeek[i]));
+				}
+				weekQueue.add(week);
+				for (int i = 1; i <7; i++)
+				{
+					week = new LinkedList();
+					if (i == 1)
+					{
+						for (int k = 0; k < 7; k++)
+						{
+							if (k < day)
+							{
+								week.add(" ");
+							} 
+							else 
+							{
+								week.add(String.valueOf(date));
+								date++;
+							}
+						}
+					}
+					else 
+					{
+						for (int k = 0; k < 7; k++) 
+						{
+							if(date<=noOfDays[month])
+							week.add(String.valueOf(date));
+							date++;
+						}
+					}
+				weekQueue.add(week);
+				}
+				Utility.displayCalender(weekQueue,month,year);
+			}
 		 
-		  public static void print(int month, int year)
-		    {
-		     int totalNoOfDays = 0;
-		     String[] months =  {
-		                      "",                              
-		                      "January", "February", "March",
-		                      "April", "May", "June",
-		                      "July", "August", "September",
-		                      "October", "November", "December"
-		                   };
-		     int[] days = {0,  31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};     
-		     String dayOfWeek[] = {"S",  "M" , "T",  "W" , "Th" , "F",  "S"  };
-//		    MyQueue date = new MyQueue();
-//		    date.enque(31); 
-//		    date.enque(28); 
-//		    date.enque(31); 
-//		    date.enque(30); 
-//		    date.enque(31); 
-//		    date.enque(30); 
-//		    date.enque(31); 
-//		    date.enque(31); 
-//		    date.enque(30); 
-//		    date.enque(31); 
-//		    date.enque(30); 
-//		    date.enque(31); 
-//	    
-//             for(int j=0; j<month;j++)
-//             {
-//              totalNoOfDays =date.deque();
-//             }
-//    
-//          
-             if (month == 2 && isLeapYear(year)) 
-             {
-            	 days[month] = 29;
-                 
-             }
-             
-     
-            
-             MyQueue queue = new MyQueue();
-             
-              System.out.println("   " + months[month] + " " + year);
-              System.out.println("S  M  T  W  Th  F  S  ");
-              int d = dayOfweek(1, month, year);
-             for(int i=0; i<d; i++)
-		    {
-		     //System.out.print("   ");
-		     queue.enque("  ");
-		    }
-             
-		    for (int i = 1; i <=days[month]; i++) 
-		    {
-		       // System.out.printf("%2d ",i);
-		        queue.enque(i);
-		       
-		        if (((i + d) % 7 == 0) || (i == days[month])) 
-		        {
-		         queue.print();
-		         System.out.println();
-		         queue = new MyQueue();
-		         
-		        }
-		         
-		    }
-//		    for(int i=0;i<5;i++)
-//			  {
-//				 queue.print(); 
-//			  }
+		 
+			public static  void displayCalender(LinkedList<LinkedList> weekQueue,int month,int year) throws InterruptedException {
+				try
+				{
+				Object date = " ";
+				String[] monthName = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September",
+						"October", "November", "December" };
+				System.out.println("              Calender of " + monthName[month] + "  " + year);
+				System.out.println();
+				for (int i = 0; i < 6; i++) {
+					LinkedList week = weekQueue.remove();
+					for (int j = 0; j < 7; j++) {
+					    date =  week.remove();
+					    if(date==null)
+					    	break;
+					    System.out.print(date+"\t");
+					}
+					System.out.println();
+				}
+			}catch(Exception e)
+			{}
 
-		    
-		    } 
-		  
+		 }
+	 
+
 		
 			/** 
 			*
@@ -1880,34 +1885,35 @@ public class Utility {
 			*/ 
 		
 		  
-		 public static void print2Darray(ArrayList<Integer> list)
-         {   
-			 int[][] prime = new int[10][50]; 
-			 Iterator< Integer> it = list.iterator();
-			 int block = 100;
-			 int i=0;
-			 int j =0;
-			      while(it.hasNext())
-			       {	 
-						 if(prime[i][j++]<block)
-						 {
-							 prime[i][j]= it.next();
-
-							 System.out.print(prime[i][j] + " ");
-						 }	
-						 else
-						 {
-							 i++;
-							 j=0;
-							 block=block+100;
-							 System.out.println();
-						 }
-						
-					 }
-			     
-					 
-				 }
-					 
+//		 public static void print2Darray(ArrayList<Integer> list)
+//         {   
+//			 int[][] prime = new int[10][50]; 
+//			 Iterator< Integer> it = list.iterator();
+//			 int block = 99;
+//			 int i=0;
+//			 int j =0;
+//			      for(int k = 0; k<list.size();k++)
+//			       {	 
+//						 if(prime[i][ j++]<block)
+//						 {
+//							 prime[i][j]= it.next();
+//
+//							 System.out.print(prime[i][j] + " ");
+//							 
+//						 }	
+//						 else
+//						 {
+//							 i++;
+//							 j=0;
+//							 block=block+100;
+//							 System.out.println();
+//						 }
+//						
+//					 }
+//			     
+//					 
+//				 }
+//					 
 			 
 			
 
@@ -1917,38 +1923,159 @@ public class Utility {
 			* @param 
 			*/ 
 		
-		  
-		 public static void printAnagram2Darray(ArrayList<Integer> list)
-      {   
-			 int n =list.size() ;
-	         Integer[] liststring = new Integer[n];
-	         liststring = list.toArray(liststring);
-			 int[][] prime = new int[10][50]; 
-			 Iterator< Integer> it = list.iterator();
-			 int block = 100;
-			 int i=0;
-			 int j =1;
-			      while(it.hasNext())
-			       {	 
-			    	  for( i=0;i<n ; i++)
-			          {
-			       	   for(j=i+1;j<n; j++)
-			       	   {
-			       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[j])))
-			       		   {
-
-			       		   }
-			       	   }
-			       	   
-			          
-			        }
-						
-					 }
-			
-				 }
+//		  
+//		 public static void printAnagram2Darray(ArrayList<Integer> list)
+//      {   
+//			 int n =list.size() ;
+//	         Integer[] liststring = new Integer[n];
+//	         liststring = list.toArray(liststring);
+//			 int[][] prime = new int[10][50]; 
+//			 Iterator< Integer> it = list.iterator();
+//			 int block = 100;
+//			 int i=0;
+//			 int j =1;
+//			      while(it.hasNext())
+//			       {	 
+//			    	  for( i=0;i<n ; i++)
+//			          {
+//			       	   for(j=i+1;j<n; j++)
+//			       	   {
+//			       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[j])))
+//			       		   {
+//
+//			       		   }
+//			       	   }
+//			       	   
+//			          
+//			        }
+//						
+//					 }
+//			
+//				 }
 					 
+		    /** 
+			*
+			* @param 
+			*/ 
+		 
+		 public static void printAnagram2Darray()
+		 {
 			 
+				ArrayList <Integer>arrayList = new ArrayList<Integer>();
+				int primeNumber[][]=new int[10][100];
+				int i,j;
+				String Prime="";
+				for(i=0;i<10;i++)
+				{
+					for(j=0;j<=100;j++) 
+					{
+						int num=i*100+j;
+						if(isprime(num))
+						{
+							primeNumber[i][j]=num;
+							Prime=Prime+num+" ";
+						}
+					}
+				}
+
+				int[][] anagram=new int[10][100];
+				String[] strArray=Prime.split(" ");//add all prime to strArray and check are they anagram
+
+				
+				for(i=0;i<strArray.length;i++) 
+				{
+		 			for(j=i+1;j<strArray.length;j++) 
+		 			{
+		 				if(isAnagram(strArray[i],strArray[j])) //if they anagram
+						{
+		 					arrayList.add(Integer.parseInt(strArray[i]));
+		 					arrayList.add(Integer.parseInt(strArray[j]));
+						}
+		 			}
+				}
+				//arrayList.sort(null);
+				 Collections.sort(arrayList);  //sort arraylist in ascending order
 			
+				j=0; i=0;	
+				int k=0;
+				while(j<=arrayList.size() && i<10)
+				{
+				k=0;
+				
+				int rem=arrayList.get(j)/100;
+				while(j<arrayList.size() && arrayList.get(j)/100==rem)//add allanagram to anagram array
+				 {
+					anagram[i][k]=arrayList.get(j);
+					k++;
+					j++;
+			
+		        }
+				i++;
+			    }
+		     		
+				for(i=0;i<9;i++) 
+				{
+					for(j=0;j<anagram.length;j++) 
+					{
+				
+						if(anagram[i][j]!=0)
+						System.out.print(anagram[i][j]+" ");//anagram
+					}
+					System.out.println();
+				}
+				
+				}	
+		 
+		 
+		    /** 
+			*
+			* @param this method prints 0 to 1000 prime number in two dimentional array.
+			*/ 
+		 
+		 public static void printTwoDArray()
+		 {
+			 int primeNumber[][]=new int[10][100];
+				int i,j;
+				String Prime="";
+				for(i=0;i<10;i++)
+				{
+					for(j=0;j<=100;j++)
+					{
+						int num=i*100+j;  //check weather it is prime or not
+						if(isprime(num))
+						{
+							primeNumber[i][j]=num;
+							Prime=Prime+num+" ";
+						}
+					}
+				}
+
+				for(i=0;i<10;i++) 
+				{
+					for(j=0;j<100;j++) 
+					{
+				     if(primeNumber[i][j]!=0)
+						System.out.print(primeNumber[i][j]+" ");//to print prime array
+					}
+					System.out.println();
+				}
+				 
+		 }
+			
+		 
+		 public static boolean isprime(int num) 
+			{
+				 
+		        for(int i=2; i<=num/2; i++)
+		        {
+		            if(num % i == 0)
+		            {
+		                return false;
+		            }
+		        }
+		        return true;
+			}
+
 
 			/** 
 			*
@@ -1982,7 +2109,9 @@ public class Utility {
 	          queue.print();
 	          
 	        }
-	 
+		 
+
+	
 	 
 
 			/** 
@@ -2061,6 +2190,7 @@ public class Utility {
 		//datastructure
 		
 		static JSONArray jsarray = new JSONArray();
+		static JSONObject jsObj = new JSONObject();
 		@SuppressWarnings("unchecked")
 		public static void Stockaccount() throws IOException, ParseException
 		{     
@@ -2102,6 +2232,7 @@ public class Utility {
 				 mainjsobj.put("Account", jsarray1);
 				 FileWriter writer = new FileWriter("Account.json");
 				 writer.write(mainjsobj.toJSONString());
+				 System.out.println("Succesfully created the Account.........!!!!!!!!");
 				 writer.flush();
 				
 			}
@@ -2112,16 +2243,18 @@ public class Utility {
 		}
 		
 		static String accountHolderName; 
-		static Long sharenumbers;
+		static long sharenumbers;
 		static long sharenumber=0;
+		static long totalPrice;
+		static String symbol;
 		@SuppressWarnings("unchecked")
 		
 		public  static void buy() throws IOException, ParseException
 		{
-			System.out.println("Enter the name of account holder who want to buy the share:");
+			System.out.println("Enter the name of Share holder who want to buy the share:");
 			accountHolderName= Utility.readString();
 			System.out.println("Enter the symbol of share you want to buy: ");
-			String symbol = Utility.readString();
+			 symbol = Utility.readString();
 			System.out.println("Enter the number of shares you want to buy: ");
 			 sharenumbers= Utility.readLong();
 			
@@ -2145,53 +2278,57 @@ public class Utility {
 					System.out.println(sharename);
 					shareprice = (long) obj.get("price");
 					sharenumber = (long)obj.get("sharenumber");
+					if (sharenumber==0)
+					{
+						System.out.println("Sorry,..........Shares are not avaialable");
+						break;
+					}
+					else
+					{
 					System.out.println("The price for share is: "+ shareprice);
-					System.out.println("The total price for share is: " + sharenumbers*shareprice);
+					totalPrice = (sharenumbers*shareprice);
+					System.out.println("The total price for share is: " + totalPrice);
 					
 					sharenumber = sharenumber-sharenumbers;
 					obj.put("sharenumber", sharenumber);
 					
-					  /*obj.remove(sharename);
-					  obj.remove(sharenumber);
-					  obj.remove(shareprice);
-					  */
-					    //sharename = (String) obj.get("sharename");
-						//shareprice = (long) obj.get("price");
-					/*	JSONObject newjsobj = new JSONObject();
-						newjsobj.put("sharename", sharename);
-						newjsobj.put("price", shareprice);
-						
-					*/	
 					jsarray.set(i, obj);
+					 jsobj1.put("Shares", jsarray);
+					   Utility.updateShare(jsobj1);
+					   Utility.updateAccount(accountHolderName);
 					break;
 					}
 					
+					}
+//					
+//					 jsobj1.put("Shares", jsarray);
+//					   Utility.updateShare(jsobj1);
+//					   Utility.updateAccount(accountHolderName);
 				}
 			
-			   // jsarray.add(obj);
-			    jsobj1.put("Shares", jsarray);
-			    Utility.update(jsobj1);
-			   Utility.updateAccount(accountHolderName);
+			   
 			}
 		
 		
 		
-		public static void update(JSONObject jsobj1) throws IOException
+		public static void updateShare(JSONObject jsobj1) throws IOException
 		{
 			
-			System.out.println(jsobj1.toJSONString());
+			//System.out.println(jsobj1.toJSONString());
 			FileWriter writer = new FileWriter("ShareLibrary.json");
 			BufferedWriter bw=new BufferedWriter(writer);
 			bw.write(jsobj1.toJSONString());
+			System.out.println("Share Updated Successfully.......");
 			bw.flush();
 			bw.close();
 		}
 		
 		
 		
+		@SuppressWarnings("unchecked")
 		public static void updateAccount(String accountHolderName) throws IOException, ParseException
 		{
-			JSONObject obj =null;
+			JSONObject  tempObj =null;
 			FileReader file = new FileReader("Account.json");
 			BufferedReader reader = new BufferedReader(file);
 			JSONParser parser = new JSONParser();
@@ -2199,50 +2336,235 @@ public class Utility {
 			JSONArray jsarray1 = (JSONArray) jsobj.get("Account");
 			 for(int i=0; i<jsarray1.size();i++)
 				{  
-		          JSONObject  tempObj = (JSONObject) jsarray1.get(i);
-		          //  System.out.println(obj);
-		            String name = (String)tempObj.get("name");
-		           System.out.println(name);
-		           
-		            if(accountHolderName==name);
-					{
-						//obj = tempObj;
-						tempObj.put("number",sharenumbers );
-//						
-						//System.out.println(obj);
-						//jsarray1.set(i, obj);
+				// System.out.println(accountHolderName);
+		            tempObj = (JSONObject) jsarray1.get(i);
+		           // System.out.println(tempObj);
+		            String name1 = (String)tempObj.get("name");
+		            long newshareNumber = (long) tempObj.get("number");
+		            long newSharePrice = (long) tempObj.get("amount");
+		            newshareNumber = newshareNumber + sharenumbers;
+		            newSharePrice = newSharePrice  - totalPrice;
+//		          boolean isTrue = accountHolderName.equals(name1);
+//		          System.out.println(isTrue);
+		          
+		            if(accountHolderName.equals(name1))
+					{ 
+//						System.out.println(accountHolderName);
+//						System.out.println(name1);
+//				         System.out.println(tempObj);
+						tempObj.put("number",newshareNumber );
+						tempObj.put("amount", newSharePrice);
+						jsarray1.set(i, tempObj);
 						break;
+						
 					}
 					
 				}
-				//jsarray1.add(obj);
+				
 		        JSONObject mainjsobj = new JSONObject();
 				mainjsobj.put("Account", jsarray1);
-			System.out.println(mainjsobj.toJSONString());
+			//System.out.println(mainjsobj.toJSONString());
 			FileWriter writer = new FileWriter("Account.json");
 			BufferedWriter bw=new BufferedWriter(writer);
 			bw.write(mainjsobj.toJSONString());
+			
+			long millis=System.currentTimeMillis();  
+			java.util.Date date=new java.util.Date(millis);
+			MyQueue queue = new MyQueue();
+			queue.enque(date);
+			queue.print();
+			//Long date1 = queue.deque();
+			//System.out.println(date1);  
+			
+			MyStack stack = new MyStack();
+			stack.push(symbol);
+			System.out.println();
+			stack.show();
+		   // String symbol1 = stack.peek();
+		    //System.out.println(symbol1);
+			
+			
+			
+			System.out.println("Share "+" " +symbol+" "+" update Succesfully... at"+ date+".......");
 			bw.flush();
 			bw.close();
 		}
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		public static void sell()
+		@SuppressWarnings("unchecked")
+		public static void sell() throws IOException, ParseException
 		{
 			
+	      Utility.createCustomerAccount();
+	      
+	      Utility.updateAccount1(shareholdername);
+	      
+	      //Utility.updateCustomerAccount(customername);
+	      
+			
 		}
+		
+		@SuppressWarnings({ "unchecked", "resource" })
+		static String customername;
+		static long numberOfShares; 
+		static String shareholdername; 
+		public static void createCustomerAccount() throws IOException, ParseException
+		{
+           JSONObject jsobj=new JSONObject();
+			
+
+			System.out.println("Enter the name of Share holder: ");
+		    shareholdername = Utility.readString();
+			jsobj.put("ShareHolderName", shareholdername);
+			
+			System.out.println("Enter the name of Customer who want to buy Share from Share Holder");
+		    customername = Utility.readString();
+			jsobj.put("CustomerName", customername);
+
+			System.out.println("Enter the number of shares want to buy:" );
+			  numberOfShares = Utility.readLong();
+			jsobj.put("ShareNumber", numberOfShares);
+			
+			
+			FileReader file = new FileReader("Customer.json");
+			BufferedReader reader = new BufferedReader(file);
+			if(reader.readLine() == null)
+			{
+			jsarray.add(jsobj);
+			
+			FileWriter writer = new FileWriter("Customer.json",true);
+			
+      	    System.out.println(jsObj.put("Customers", jsarray));
+			writer.write(jsobj.toJSONString());
+			writer.flush();
+			}
+			else
+			{
+
+				FileReader file1 = new FileReader("Customer.json");
+				BufferedReader reader1 = new BufferedReader(file1);
+				JSONParser parser = new JSONParser();
+				JSONObject jsobj1 = (JSONObject) parser.parse(reader1);
+				JSONArray jsarray1 = (JSONArray) jsobj1.get("Customer");
+				System.out.println(jsobj);
+
+				jsarray1.add(jsobj);
+		        //JSONObject mainjsobj = new JSONObject();
+				 jsObj.put("Customer", jsarray1);
+				 FileWriter writer = new FileWriter("Customer.json");
+				 writer.write(jsObj.toJSONString());
+				 System.out.println("Succesfully created the Customers Account.........!!!!!!!!");
+				 writer.flush();
+			}
+		}
+		
+//		public static void updateCustomerAccount(String customername) throws IOException, ParseException
+//		{
+//
+//			JSONObject  tempObj =null;
+//			FileReader file = new FileReader("Customer.json");
+//			BufferedReader reader = new BufferedReader(file);
+//			JSONParser parser = new JSONParser();
+//			JSONObject jsobj = (JSONObject) parser.parse(reader);
+//			JSONArray jsarray1 = (JSONArray) jsobj.get("Customer");
+//			 for(int i=0; i<jsarray1.size();i++)
+//				{  
+//				// System.out.println(accountHolderName);
+//		            tempObj = (JSONObject) jsarray1.get(i);
+//		           // System.out.println(tempObj);
+//		            String name1 = (String)tempObj.get("CustomerName");
+//		            long newshareNumber = (long) tempObj.get("ShareNumber");
+//		              newshareNumber = newshareNumber + numberOfShares;
+//
+////		          boolean isTrue = acco// TODO Auto-generated method stubuntHolderName.equals(name1);
+////		          System.out.println(isTrue);
+//		          
+//		            if(customername.equals(name1))
+//					{ 
+//		            	
+//		            	
+////						System.out.println(accountHolderName);
+////						System.out.println(name1);
+////				         System.out.println(tempObj);
+//						tempObj.put("ShareNumber",newshareNumber );
+//						jsarray1.set(i, tempObj);
+//						break;
+//		            	
+//					}
+//					
+//				}
+//				
+//		        JSONObject mainjsobj = new JSONObject();
+//				mainjsobj.put("Customer", jsarray1);
+//			//System.out.println(mainjsobj.toJSONString());
+//			FileWriter writer = new FileWriter("Customer.json");
+//			BufferedWriter bw=new BufferedWriter(writer);
+//			bw.write(mainjsobj.toJSONString());
+//			System.out.println("Customer's Share are update Succesfully..........");
+//			bw.flush();
+//			bw.close();
+//		}
+//		
+		
+		public static void updateAccount1(String shareholdername) throws IOException, ParseException
+		{
+			JSONObject  tempObj =null;
+			FileReader file = new FileReader("Account.json");
+			BufferedReader reader = new BufferedReader(file);
+			JSONParser parser = new JSONParser();
+			JSONObject jsobj = (JSONObject) parser.parse(reader);
+			JSONArray jsarray1 = (JSONArray) jsobj.get("Account");
+			 for(int i=0; i<jsarray1.size();i++)
+				{  
+				// System.out.println(accountHolderName);
+		            tempObj = (JSONObject) jsarray1.get(i);
+		           // System.out.println(tempObj);
+		            String name1 = (String)tempObj.get("name");
+		            long newshareNumber = (long) tempObj.get("number");
+		            long newsharePrice = (long) tempObj.get("amount");
+		            newshareNumber = newshareNumber -numberOfShares;
+		            //newsharePrice = newsharePrice - (newshareNumber*)
+//		          boolean isTrue = accountHolderName.equals(name1);
+//		          System.out.println(isTrue);
+		          
+		            if(shareholdername.equals(name1))
+					{ 
+//						System.out.println(accountHolderName);
+//						System.out.println(name1);
+//				         System.out.println(tempObj);
+						tempObj.put("number",newshareNumber );
+						jsarray1.set(i, tempObj);
+						break;
+						
+					}
+					
+				}
+				
+		        JSONObject mainjsobj = new JSONObject();
+				mainjsobj.put("Account", jsarray1);
+			//System.out.println(mainjsobj.toJSONString());
+			FileWriter writer = new FileWriter("Account.json");
+			BufferedWriter bw=new BufferedWriter(writer);
+			bw.write(mainjsobj.toJSONString());
+			long millis=System.currentTimeMillis();  
+			java.util.Date date=new java.util.Date(millis);  
+			MyQueue queue = new MyQueue();
+			queue.enque(date);
+			String date1 = (String) queue.deque();
+			System.out.println(date1);
+			MyStack stack = new MyStack();
+			stack.push(symbol);
+			String symbol1 = stack.pop();
+			System.out.println(symbol1);
+			
+			System.out.println("Share Holders Share are update Succesfully.....At" + " " + date);
+			bw.flush();
+			bw.close();
+		}
+		
+		
+		
          
 }		 
 		 

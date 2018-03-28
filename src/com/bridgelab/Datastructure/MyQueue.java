@@ -2,7 +2,7 @@ package com.bridgelab.Datastructure;
 
 import java.util.EmptyStackException;
 
-public class MyQueue {
+public class MyQueue<T> {
        
 	 Node front;
      Node rear;
@@ -80,7 +80,16 @@ public class MyQueue {
 		
 		
 		
-		
+		 public String toString() {
+				String string = "";
+				//Node<T> temp = head;
+				for(Node<T> temp = front; temp != null; temp = temp.next) {
+					string = string + temp.data + " ";
+				}
+				
+				return string;
+			}
+
 		
 		
 		

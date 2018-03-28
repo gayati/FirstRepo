@@ -1,0 +1,49 @@
+{
+	"Customer": [
+		{
+			"ShareHolderName": "Gayatri",
+			"CustomerName": "IUhysdijfrsd",
+			"ShareNumber": 3
+		},
+		{
+			"ShareHolderName": "Gayatri",
+			"CustomerName": "tgf",
+			"ShareNumber": 3
+		},
+		{
+			"ShareHolderName": "Gayatri",
+			"CustomerName": "fdgf",
+			"ShareNumber": 2
+		},
+		{
+			"ShareHolderName": "Geeta",
+			"CustomerName": "fghyt",
+			"ShareNumber": 6
+		},
+		{
+			"ShareHolderName": "Geeta",
+			"CustomerName": "gfh",
+			"ShareNumber": 6
+		},
+		{
+			"ShareHolderName": "Geeta",
+			"CustomerName": "fhg",
+			"ShareNumber": 6
+		},
+		{
+			"ShareHolderName": "Geeta",
+			"CustomerName": "fghd",
+			"ShareNumber": 6
+		},
+		{
+			"ShareHolderName": "Pushpa",
+			"CustomerName": "fgh",
+			"ShareNumber": 2
+		},
+		{
+			"ShareHolderName": "Gayatri",
+			"CustomerName": "dstd",
+			"ShareNumber": 2
+		}
+	]
+}

@@ -19,8 +19,8 @@ public class PrimeAnagram2DArray {
 	public static void main(String[] args) 
 	{
 	System.out.println();
-     ArrayList<Integer> list = Utility.findPrimes();	
-     Utility.printAnagram2Darray(list);
+    System.out.println("------------------Prime Anagram --------------------------");
+     Utility.printAnagram2Darray();
 	}
 
 }

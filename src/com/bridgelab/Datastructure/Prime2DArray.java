@@ -20,11 +20,11 @@ public class Prime2DArray {
 	{
 		
 	  
-	    ArrayList<Integer> list = Utility.findPrimes();
-	    System.out.println("--------------------------------Prime Numbers------------------------------");
-	    Utility.print2Darray(list);
-	    
-		
+//	    ArrayList<Integer> list = Utility.findPrimes();
+//	    System.out.println("--------------------------------Prime Numbers------------------------------");
+//	    Utility.print2Darray(list);
+//	    
+//		
 		
  
 	}

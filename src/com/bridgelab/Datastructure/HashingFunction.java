@@ -34,13 +34,15 @@ public class HashingFunction
     	 
     }
     
+	MyLinkedList<Integer> list = null;
+    
         HashMap<Integer,MyLinkedList<Integer>> map = new  HashMap<>();
       
         for(Integer in : inarray)
           {
           	key= in%11;
           	
-          	MyLinkedList<Integer> list = map.get(key);
+          list = map.get(key);
         	if (list == null) 
 			{
 				list = new MyLinkedList<Integer>();
@@ -57,27 +59,53 @@ public class HashingFunction
 	
 	
 	
-	System.out.println("Enter a number to be search");
-	int n1 =Utility.readInteger();
-	int N = n1 % 11;
-	map.get(N);
-	MyLinkedList<Integer> ll1 = map.get(N);
-	if (ll1 == null) 
-	{
-		ll1 = new MyLinkedList<Integer>();
-		map.put(N, ll1);
-	}
-	System.out.println(ll1);
-//	if (ll1.contains(n1))
+//	System.out.println("Enter a number to be search");
+//	int n1 =Utility.readInteger();
+//	int N = n1 % 11;
+//	map.get(N);
+//	MyLinkedList<Integer> ll1 = map.get(N);
+//	if (ll1 == null) 
 //	{
-//		System.out.println("The number is present in the list the remove it");
-//		ll1.indexOf(ll1);
-//		ll1.remove();
-//	    
+//		ll1 = new MyLinkedList<Integer>();
+//		map.put(N, ll1);
 //	}
-//	else
-//		ll1.insert(n1);
-//	System.out.println(map);
-
+//	System.out.println(ll1);
+//	
+//	
+	
+	 Utility.bubbleSort(inarray);
+     
+     for( i=0; i<inarray.length; i++)
+     {
+     	list.insert(inarray[i]);
+     }
+    
+     System.out.println();
+     System.out.println("Enter the number to search:");
+     int number = Utility.readInteger();
+    
+		int N = number % 11;
+		System.out.println(map.get(N));
+		MyLinkedList<Integer> ll1 = map.get(N);
+	
+     
+     int index= ll1.indexOf(number);
+    
+                
+		boolean flag = ll1.search(list.head, number);
+     
+     if(flag==true)
+     {
+     	System.out.println("Found");
+     	ll1.deleteAt(index);
+     }
+     else
+     {
+      System.out.println("Not found");
+      ll1.insertAt(index, number);
+     }
+   
+    Utility.writeFile(filepath, list);
+   
 }
 }

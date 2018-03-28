@@ -18,7 +18,7 @@ public class StockAccount {
 		System.out.println("1.Open Account: ");
 		System.out.println("2.Buy: ");
 		System.out.println("3.Sell: ");
-		System.out.println("4.Display Report: ");
+	
 		System.out.println("Enter your choice");
 		int choice = Utility.readInteger();
 		switch (choice) {
@@ -31,11 +31,9 @@ public class StockAccount {
         case 3:Utility.sell();
     	       break;
 		
-       case 4:
+       
 			
-			break;
-			
-		default:
+		default:System.out.println("Invalid Choice");
 			break;
 		}
 		System.out.println("Do you want to continue?[Y/N]");
