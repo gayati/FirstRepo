@@ -1,0 +1,23 @@
+
+{
+	"Patients": [
+		{
+			"MobileNumber": 9967430723,
+			"PatientId": 201,
+			"PatientName": "Deepak",
+			"Age": 25
+		},
+		{
+			"MobileNumber": 9967430723,
+			"PatientId": 202,
+			"PatientName": "Madhuri",
+			"Age": 25
+		},
+		{
+			"MobileNumber": 9594349966,
+			"PatientId": 203,
+			"PatientName": "dfgsrty",
+			"Age": 25
+		}
+	]
+}

@@ -9,11 +9,11 @@ public class StockLinkedList {
 	public static void main(String[] args)
 	{
 		
-		System.out.println("Enter the number of share you want to add: ");
-		int number = Utility.readInteger();
-		
-		for(int i=0; i<number; i++)
-		{
+//		System.out.println("Enter the number of share you want to add: ");
+//		int number = Utility.readInteger();
+//		
+//		for(int i=0; i<number; i++)
+//		{
 		System.out.println("Enter the share you want to add: ");
 		String symbol = Utility.readString();
 		System.out.println("Enter the share price:");
@@ -24,6 +24,7 @@ public class StockLinkedList {
 	    
 	    MyLinkedList <String> symbollist = new MyLinkedList<>();
 	    symbollist.insert(symbol);
+	  
 	    symbollist.show();
 	    
 	    MyLinkedList<Long> pricelist = new MyLinkedList<>();
@@ -33,7 +34,7 @@ public class StockLinkedList {
 	    MyLinkedList<Long> numberlist = new MyLinkedList<>();
 	    numberlist.insert(sharenumber);
 	    numberlist.show();
-		}
+//		}
 	}
 
 }
