@@ -8,7 +8,7 @@ import com.bridgelab.Utility.Utility;
 
 public class CliniqueManagement {
 
-	public static void main(String[] args) throws IOException, ParseException
+	public static void main(String[] args) throws IOException, ParseException, java.text.ParseException
 	{   
 		 char input;
 		 do {

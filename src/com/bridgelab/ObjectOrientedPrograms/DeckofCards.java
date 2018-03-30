@@ -12,16 +12,9 @@ public class DeckofCards {
 		String[] RANKS = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
 		
 		String[] deck = Utility.deckOfCards(SUITS, RANKS);
-//		for(String n: deck)
-//		{
-//			System.out.println(n);
-//		}
+
 		String[] shuffleCards = Utility.shuffleCards(deck);
-//		for(String n: shuffleCards)
-//		{
-//			System.out.println(n);
-//		}
- 		
+
 		System.out.println("Enter the number of Cards:");
 		int number = Utility.readInteger();
 		System.out.println("Enter the number of players: ");

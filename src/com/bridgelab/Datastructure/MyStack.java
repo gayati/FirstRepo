@@ -2,9 +2,9 @@ package com.bridgelab.Datastructure;
 
 import java.util.EmptyStackException;
 
-public class MyStack {
+public class MyStack<T> {
 
-	Node top;
+	Node<T> top;
 	int length;
 	
 	public MyStack()
@@ -57,7 +57,7 @@ public class MyStack {
 	}
 	
 	
-	public <T> void show()
+	public  void show()
 	{
 		Node<T> node = top;
 		while(node.next!=null)

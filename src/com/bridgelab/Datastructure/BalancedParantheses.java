@@ -16,7 +16,7 @@ public class BalancedParantheses {
 
 	public static void main(String[] args) 
 	{
-     MyStack stack = new MyStack();
+   
     System.out.println("Enter the expression");
      String expression = Utility.readString();
     if (Utility.isParanthesesBalance(expression))

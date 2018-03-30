@@ -1,14 +1,25 @@
 {
 	"Account": [
 		{
-			"number": 0,
-			"amount": 20000,
+			"number": 3,
+			"amount": 420000,
 			"name": "Gayatri"
 		},
 		{
 			"number": 0,
 			"amount": 500000,
 			"name": "Geeta"
+		},
+		{
+			"number": 0,
+			"amount": 500000,
+			"name": "Ganesh"
+		},
+		{
+			"number": 0,
+			"amount": 500000,
+			"name": "Madhuri"
 		}
 	]
 }
+

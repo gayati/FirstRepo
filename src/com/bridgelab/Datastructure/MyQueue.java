@@ -4,8 +4,8 @@ import java.util.EmptyStackException;
 
 public class MyQueue<T> {
        
-	 Node front;
-     Node rear;
+	 Node<T> front;
+     Node<T> rear;
      int length;
      
 	    public MyQueue() 
@@ -26,7 +26,7 @@ public class MyQueue<T> {
 			return length==0;
 		}
 		
-		public <T> void enque(T data)
+		public void enque(T data)
 		{
 			Node<T> node = new Node<T>(data);
 			if(isEmpty())
@@ -51,7 +51,7 @@ public class MyQueue<T> {
 			Node node = front;
 			while(node.next != null)
 			{
-				System.out.print(node.data+" ");
+				System.out.println(node.data);
 				node = node.next;
 				length++;
 			}

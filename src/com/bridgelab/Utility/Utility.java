@@ -8,10 +8,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -1579,7 +1582,7 @@ public class Utility {
 		*/ 
     	 public static boolean isParanthesesBalance(String expression)
     	 {
-    		 MyStack stack = new MyStack();
+    		 MyStack<Character> stack = new MyStack();
     		 char ch;
     		 for(int i=0;i<expression.length();i++)
     		 {
@@ -1789,7 +1792,7 @@ public class Utility {
 		  
 		  public static void printstack(int month, int year)
 		    {
-			 MyStack stack1,stack2;
+			
 		     int totalNoOfDays = 0;
 		     String[] months =  {
 		                      "",                              
@@ -1799,7 +1802,7 @@ public class Utility {
 		                      "October", "November", "December"
 		                   };
 		         
-		     stack1 = new MyStack();
+		     MyStack <Integer> stack1 = new MyStack();
 		     stack1.push(31);
 		     stack1.push(28);
 		     stack1.push(31);
@@ -2371,22 +2374,24 @@ public class Utility {
 			
 			long millis=System.currentTimeMillis();  
 			java.util.Date date=new java.util.Date(millis);
-			MyQueue queue = new MyQueue();
-			queue.enque(date);
-			queue.print();
-			//Long date1 = queue.deque();
+			MyQueue <String>queue = new MyQueue();
+		    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+             String strDate = dateFormat.format(date);  
+			queue.enque(strDate);
+			
+			String date1 = queue.deque();
 			//System.out.println(date1);  
 			
-			MyStack stack = new MyStack();
+			MyStack <String>stack = new MyStack();
 			stack.push(SYMBOL);
-			System.out.println();
-			stack.show();
-		   // String symbol1 = stack.peek();
-		    //System.out.println(symbol1);
+//			System.out.println();
+//			stack.show();
+		   String symbol1 = stack.peek();
+		   // System.out.println(symbol1);
 			
 			
 			
-			System.out.println("Share "+" " +SYMBOL+" "+" update Succesfully... at"+ date+".......");
+			System.out.println("Share "+" " +symbol1+" "+" update Succesfully ... at"+ date1+".......");
 			bw.flush();
 			bw.close();
 		}
@@ -2401,8 +2406,7 @@ public class Utility {
 	      
 	      Utility.updateAccount1(shareholdername);
 	      
-	      //Utility.updateCustomerAccount(customername);
-	      
+	   
 			
 		}
 		
@@ -2550,14 +2554,8 @@ public class Utility {
 			bw.write(mainjsobj.toJSONString());
 			long millis=System.currentTimeMillis();  
 			java.util.Date date=new java.util.Date(millis);  
-			MyQueue queue = new MyQueue();
-			queue.enque(date);
-			String date1 = (String) queue.deque();
-			System.out.println(date1);
-			MyStack stack = new MyStack();
-			stack.push(SYMBOL);
-			String symbol1 = stack.pop();
-			System.out.println(symbol1);
+			
+			
 			
 			System.out.println("Share Holders Share are update Succesfully.....At" + " " + date);
 			bw.flush();
@@ -2741,7 +2739,7 @@ public class Utility {
 			 MAINJSOBJ= (JSONObject) parser.parse(file1);
 			 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
 			 
-			 System.out.println("The Doctor Details are as follows: ");
+			 System.out.println("\tThe Doctor Details are as follows: ");
 			  String line;  
 			  int k=1;
 			 for(int i = 0; i<JSARRAY.size();i++)
@@ -2752,23 +2750,23 @@ public class Utility {
 				 AVAILABILITY =  (long) JSOBJ.get("Availability");
 				 SPECIALIZATION = (String) JSOBJ.get("Specialistion");
 				
-				 System.out.println("************* Doctor-"+k+" ***************");
-				 System.out.println("Doctor Name:  " + DOCTORNAME);
-				 System.out.println("Doctor Id:  "  + DOCTORID);
-				 System.out.println("Doctor Specialisation:" + SPECIALIZATION);
+				 System.out.println("\t************* Doctor-"+k+" ***************");
+				 System.out.println("\tDoctor Name:  " + DOCTORNAME);
+				 System.out.println("\tDoctor Id:  "  + DOCTORID);
+				 System.out.println("\tDoctor Specialisation:" + SPECIALIZATION);
 				 if(AVAILABILITY == 1)
 				 {
-				 System.out.println("Availability: " +AVAILABILITY+ " (AM)");
+				 System.out.println("\tAvailability: " +AVAILABILITY+ " (AM)");
 				 }
 				 else if (AVAILABILITY==2)
 				 {
-					 System.out.println("Availability: " +AVAILABILITY+ " (PM)");
+					 System.out.println("\tAvailability: " +AVAILABILITY+ " (PM)");
 				 }
 				 else
 				 {
-					 System.out.println("Availability: " +AVAILABILITY+ " (BOTH)");
+					 System.out.println("\tAvailability: " +AVAILABILITY+ " (BOTH)");
 				 }
-				 System.out.println("*****************************************");
+				 System.out.println("\t*****************************************");
 				 System.out.println();
 //				 line = JSOBJ.toJSONString();
 //			
@@ -3120,25 +3118,35 @@ public class Utility {
 			 }		
 		}
   
+		static Long NUMBEROFPATIENT;
+		static String DATE;
+		static long COUNT;
 		
-		public static void takeAppointment() throws IOException, ParseException
-		{
+		public static void takeAppointment() throws IOException, ParseException, java.text.ParseException
+		{  
+			
 			System.out.println("Enter the patient's name: ");
 			PATIENTNAME = Utility.readString();
-			JSOBJ.put("PatientName",PATIENTNAME);
+			//JSOBJ.put("PatientName",PATIENTNAME);
 			System.out.println("Enter the Doctor's name: ");
 			DOCTORNAME = Utility.readString();
 			JSOBJ.put("DoctorName", DOCTORNAME );
-			System.out.println("Enter the date(DD/MM/YYYY): ");
-		    String date  = Utility.readString(); 
-		    JSOBJ.put("Date", date);
-		    
+		    System.out.println("Enter the date(DD/MM/YYYY): ");
+		    String sDate1 = Utility.readString();
+		    Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);  
+		    JSOBJ.put("Date", date1.toString());
+		    COUNT=0;
+		   
+		    boolean isTrue = false;
+		    boolean isAvailable=false;
 				 FileReader file3 = new FileReader("Appointments.json");
-					BufferedReader reader3 = new BufferedReader(file3);
+				 BufferedReader reader3 = new BufferedReader(file3);
 
 					
 					if(reader3.readLine() == null)
 					{
+					COUNT++;
+					JSOBJ.put("Count", COUNT);
 					JSARRAY.add(JSOBJ);
 					
 					FileWriter writer = new FileWriter("Appointments.json",true);
@@ -3150,27 +3158,104 @@ public class Utility {
 					}
 					else
 					{
+						
 						FileReader file1 = new FileReader("Appointments.json");
 						BufferedReader reader1 = new BufferedReader(file1);
 						JSONParser parser1 = new JSONParser();
 						//JSONObject jsobj = new JSONObject();
 						 MAINJSOBJ= (JSONObject) parser1.parse(reader1);
 						 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
-						 JSARRAY.add(JSOBJ);
-					       
-							 MAINJSOBJ.put("Appointement", JSARRAY);
-							 FileWriter writer = new FileWriter("Appointments.json");
-							 writer.write( MAINJSOBJ.toJSONString());
-							 System.out.println("Succesfully take appointment.........!!!!!!!!");
-							 writer.flush();
-
+						 for(int i = 0; i<JSARRAY.size();i++)
+						 {   
+							// boolean isAvailable=false;
+							 JSONObject jsobj = new JSONObject();
+							 jsobj = (JSONObject) JSARRAY.get(i);
+							 String doctorname =  (String) jsobj.get("DoctorName");
+							 DATE = (String) jsobj.get("Date");
+							 long count1= (long) jsobj.get("Count");
+					         isTrue = ((date1.toString()).equals(DATE) && DOCTORNAME.equals(doctorname));
+							 if(isTrue)
+							 {
+								 if(count1 < 5)
+								 {
+//								long newcount = (long) jsobj.get("Count");
+//									long newcount1 = newcount +1;
+//									System.out.println(newcount1);
+								 count1 = count1+1;
+									 JSOBJ.put("Count",count1);
+									 JSARRAY.set(i, JSOBJ);
+									 MAINJSOBJ.put("Appointement", JSARRAY);
+									 FileWriter writer = new FileWriter("Appointments.json");
+									 writer.write( MAINJSOBJ.toJSONString());
+									 System.out.println("Succesfully take appointment.........!!!!!!!!");
+									 writer.flush();
+									 isAvailable = true;
+									 isTrue = true;
+									 break;
+								       
+									
+								 }//if ends
+								   
+			                        break;
+								 }//if ends
+							 
+							 }
+                         if(isTrue==false)
+                         {
+                        		FileReader file2 = new FileReader("Appointments.json");
+        						BufferedReader reader2 = new BufferedReader(file2);
+        						JSONParser parser2 = new JSONParser();
+        						//JSONObject jsobj = new JSONObject();
+        						COUNT++;
+        						 MAINJSOBJ= (JSONObject) parser2.parse(reader2);
+        						 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
+        						 JSOBJ.put("Count",COUNT);
+								 System.out.println(JSOBJ);
+								 JSARRAY.add(JSOBJ);
+								 MAINJSOBJ.put("Appointement", JSARRAY);
+								 FileWriter writer = new FileWriter("Appointments.json");
+								 writer.write( MAINJSOBJ.toJSONString());
+								 System.out.println("Succesfully take appointment.........!!!!!!!!");
+								 writer.flush();
+								 isAvailable = true;
+								 
+                         }
+						 if(isAvailable==false)
+						 {
+							 System.out.println("Doctor is not Available");
+						 }
+						
 					}
+						 //for ends
+						 
+					
+						 
+//						 FileReader file = new FileReader("Appointments.json");
+//							BufferedReader reader = new BufferedReader(file);
+//							JSONParser parser = new JSONParser();
+//							//JSONObject jsobj = new JSONObject();
+//							 MAINJSOBJ= (JSONObject) parser1.parse(reader);
+//							 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
+//							 count = count +1;
+//							 JSOBJ.put("Count", count);
+//							 JSARRAY.add(JSOBJ);
+//						       
+//							 MAINJSOBJ.put("Appointement", JSARRAY);
+//							 FileWriter writer = new FileWriter("Appointments.json");
+//							 writer.write( MAINJSOBJ.toJSONString());
+//							 System.out.println("Succesfully take appointment.........!!!!!!!!");
+//							 writer.flush();
+//						
+					
 					
 		}
-		
-		
+		    
+	
 
-		
+		public static void printAppointment()
+		{
+			
+		}
 		
 		
 		
@@ -3179,11 +3264,12 @@ public class Utility {
 			
 			String[] deck = new String[52];
 			int index = 0;
-			for (int i = 0; i < RANKS.length; i++)
-			{
+			
 				for (int j = 0; j < SUITS.length; j++)
 				{
-					deck[index++] = RANKS[i] + " of " + SUITS[j];
+					for (int i = 0; i < RANKS.length; i++)
+					{
+					deck[index++] = SUITS[j] + " " + RANKS[i];
 				}
 			}
 			return deck;
@@ -3205,20 +3291,104 @@ public class Utility {
 		}
 		
 		public static void printCards(String[] deckCards,int player,int cards)
-		{
+		{   int index = 0;
 			for (int i = 0; i < player; i++) 
 			{
 				System.out.println("Player "+(i+1));//player count
+			
 				for (int j = 0; j < cards; j++) 
 				{
-					System.out.println(deckCards[j]);
+					System.out.println(deckCards[index++]);
 				}
 				System.out.println();
 			}
 			
 		}
 		
-}		 
+		
+		
+		
+		Queue cardQueue = new LinkedList();
+		public String[] assignDeckOfCards() 
+		{
+			String[] suit = { "Club", "Diamond", "Heart", "Spade" };
+				String[] rank = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+				String[] deckOfCards = new String[52];
+				int index = 0;
+				for (int i = 0; i < suit.length; i++) {
+					for (int j = 0; j < rank.length; j++) {
+						deckOfCards[index++] = suit[i] + " " + rank[j];
+					}
+				}
+				return deckOfCards;
+		
+		}
+		public  String[] shuffle(String[] deckCards) {
+			for (int i = 0; i < deckCards.length; i++) {
+				int random = (int) (Math.random() * (52));
+				String temp = deckCards[i];
+				deckCards[i] = deckCards[random];
+				deckCards[random] = temp;
+			}
+			return deckCards;
+		}
+		
+		public static  String[][] distribute(String[] deckOfShuffleCards, int noOfPlayers, int noOfCards) {
+			int index = 0;
+			String[][] distributedCards = new String[noOfPlayers][noOfCards];
+			for (int i = 0; i < noOfPlayers; i++) {
+				for (int j = 0; j < noOfCards; j++) {
+					distributedCards[i][j] = deckOfShuffleCards[index++];
+				}
+			}
+			return distributedCards;
+		}
+		
+		
+		public static  void printDistibutedCards(String[][] cardsOfPlayers, int noOfPlayers, int noOfCards) {
+			for (int i = 0; i < noOfPlayers; i++) {
+				System.out.println("Cards of player " + (i + 1) + " are as follows :");
+				for (int j = 0; j < noOfCards; j++) {
+					System.out.println(cardsOfPlayers[i][j]);
+				}
+				System.out.println();
+			}
+		
+		 
+		 
+		}
+		public  void printSortedCards(String[][] playerCards, int noOfPlayers, int noOfCards) {
+			String[] cards = new String[noOfCards];
+			for (int i = 0; i < noOfPlayers; i++) {
+				for (int j = 0; j < noOfCards; j++) {
+					cards[j] = playerCards[i][j];
+				}
+				cardQueue.add("Cards Of Player " + (i + 1) + " are as follows..");
+				sort(cards);
+			}
+			printSortedCardQueue();
+		}
+		
+		private  void printSortedCardQueue() {
+			for (int i = 0; i < 40; i++) {
+				if (i % 10 == 0)
+					System.out.println();
+				System.out.println(cardQueue.remove());
+
+			}
+		}
+		private  void sort(String[] cards) {
+			char[] rank = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K' };
+			for (int i = 0; i < rank.length; i++) {
+				for (int j = 0; j < cards.length; j++) {
+					String card = cards[j];
+					char cardRank = card.charAt(card.length() - 1);
+					if (cardRank == rank[i])
+						cardQueue.add(card);
+				}
+			}
+		}
+		}	 
 
 
 

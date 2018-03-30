@@ -24,7 +24,6 @@ public class StockLinkedList {
 	    
 	    MyLinkedList <String> symbollist = new MyLinkedList<>();
 	    symbollist.insert(symbol);
-	  
 	    symbollist.show();
 	    
 	    MyLinkedList<Long> pricelist = new MyLinkedList<>();
