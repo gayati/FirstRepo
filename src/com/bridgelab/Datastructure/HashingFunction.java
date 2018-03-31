@@ -1,9 +1,21 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.Datastructure;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 import com.bridgelab.Utility.Utility;
@@ -59,21 +71,8 @@ public class HashingFunction
 	
 	
 	
-//	System.out.println("Enter a number to be search");
-//	int n1 =Utility.readInteger();
-//	int N = n1 % 11;
-//	map.get(N);
-//	MyLinkedList<Integer> ll1 = map.get(N);
-//	if (ll1 == null) 
-//	{
-//		ll1 = new MyLinkedList<Integer>();
-//		map.put(N, ll1);
-//	}
-//	System.out.println(ll1);
-//	
-//	
-	
-	 Utility.bubbleSort(inarray);
+
+	Arrays.sort(inarray);
      
      for( i=0; i<inarray.length; i++)
      {
@@ -104,8 +103,10 @@ public class HashingFunction
       System.out.println("Not found");
       ll1.insertAt(index, number);
      }
-   
-    Utility.writeFile(filepath, list);
+      ll1.show();
+      Utility.writeFile(filepath, ll1);
+     
+
    
 }
 }

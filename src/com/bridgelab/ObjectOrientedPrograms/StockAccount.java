@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.ObjectOrientedPrograms;
 
 
@@ -15,9 +25,9 @@ public class StockAccount {
 	
 	
 		 do {
-		System.out.println("1.Open Account: ");
-		System.out.println("2.Buy: ");
-		System.out.println("3.Sell: ");
+		System.out.println("1.Open Account ");
+		System.out.println("2.Buy ");
+		System.out.println("3.Sell ");
 	
 		System.out.println("Enter your choice");
 		int choice = Utility.readInteger();

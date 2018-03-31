@@ -1,7 +1,16 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: This program is to print the stock report.
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   
+ *
+ /******************************************************************************/
 package com.bridgelab.ObjectOrientedPrograms;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -41,7 +50,6 @@ public class StockReport {
      }
      
       
-        //System.out.println(array);
         
         JSONObject stockobj = new JSONObject();
         stockobj.put("Stock", array);
@@ -51,7 +59,6 @@ public class StockReport {
         
         
         FileWriter writer = new FileWriter("Stock.json");
-		//BufferedWriter bw = new BufferedWriter(writer);
 		writer.write(stockobj.toJSONString());
 		writer.flush();
 		
@@ -71,7 +78,6 @@ public class StockReport {
 		{
 		 for(int i=0; i<jsarray.size();i++)
 			{  
-				//System.out.println();
 				JSONObject obj = (JSONObject) iter.next();
 				sharename = (String) obj.get("sharename");
 		        sharenumber = (long) obj.get("sharenumber");

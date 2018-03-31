@@ -18,8 +18,11 @@ public class BinarySearchTree {
 	{
 		System.out.println("Enter the number of nodes:");
 		int numberofnode = Utility.readInteger();
-		int possibleways = (2*numberofnode)/((numberofnode+1)*numberofnode);
-		System.out.println("Number of possible binary tree are:" + possibleways);
+	 
+	    
+		int numberOfTree = Utility.catalan(numberofnode);
+		System.out.println("The number of possible trees are " + numberOfTree);
+		
 
 	}
 

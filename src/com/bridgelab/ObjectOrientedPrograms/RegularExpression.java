@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: This program implement validation of regular expression.
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   
+ *
+ /******************************************************************************/
 package com.bridgelab.ObjectOrientedPrograms;
 
 import java.util.regex.Matcher;
@@ -34,7 +44,7 @@ public class RegularExpression {
 	     Matcher matcher1 = pattern1.matcher(fullname);
 	     Pattern pattern2 = Pattern.compile(datepattern);
 	     Matcher matcher2 = pattern2.matcher(date);
-	     //System.out.println(matcher2);
+	     
 	     String name1 = null;
 	     String fullname1 = null;
 	     String mobilenumber1 = null;
@@ -43,8 +53,7 @@ public class RegularExpression {
 	     {
 	      
 		  mobilenumber1=matcher.replaceAll(mobilenumber);
-		  System.out.println(mobilenumber1);
-		
+		 
 	     }
 	     else
 	     {
@@ -54,7 +63,7 @@ public class RegularExpression {
 	     if(matcher1.matches())
 	     {
 	    	  name1 = matcher1.replaceAll(fullname);
-	    	  System.out.println(name1);
+	    	 
 	     }
 	     else
 	     {
@@ -64,7 +73,7 @@ public class RegularExpression {
 	     if(matcher2.matches())
 	     {
 	    	  date1 = matcher2.replaceAll(date);
-	    	  System.out.println(date1);
+	    	
 	     }
 	     else
 	     {

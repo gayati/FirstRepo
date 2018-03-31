@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose:This program is to create the JSON file having inventory details. 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   
+ *
+ /******************************************************************************/
 package com.bridgelab.ObjectOrientedPrograms;
 
 import java.io.BufferedWriter;
@@ -39,12 +49,6 @@ public class InventoryManagement1 {
 			wheatarr.add(obj);
 			
 		}
-//		JSONObject wheatobj = new JSONObject();
-//		for(int i=0;i<wheatarr.size();i++)
-//		{
-//		   wheatobj.put("wheat", wheatarr);
-//			
-//		}
 		
 		JSONArray pulsearr = new JSONArray();
 
@@ -67,12 +71,6 @@ public class InventoryManagement1 {
 			pulsearr.add(obj);
 			
 		}
-//		JSONObject pulsetobj = new JSONObject();
-//		for(int i=0;i<pulsearr.size();i++)
-//		{
-//			pulsetobj.put("pulse", pulsearr);
-//			
-//		}
 		
 		
 		JSONObject varities = new JSONObject();
@@ -82,12 +80,10 @@ public class InventoryManagement1 {
 		FileWriter writer = new FileWriter("inventory.json");
 		BufferedWriter bw = new BufferedWriter(writer);
 		System.out.println(varities);
-		//writer.write(wheatobj.toJSONString());
-	//	writer.write(pulsetobj.toJSONString());
+		
 		writer.write(varities.toJSONString());
 		writer.flush();
-		//System.out.println(wheatobj);
-		//System.out.println(pulsetobj);
+	
 		
 		 JSONParser parser = new JSONParser();
 	     FileReader reader = new FileReader("inventory.json");

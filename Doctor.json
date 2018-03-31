@@ -1,37 +1,25 @@
 {
 	"Doctors": [
 		{
-			"DoctorName": "Geeta",
+			"DoctorName": "Dr.Geeta",
 			"DoctorId": 101,
 			"Availability": 1,
 			"Specialistion": "Cardiologist"
 		},
 		{
-			"DoctorName": "Gayatri",
+			"DoctorName": "Dr.Gayatri",
 			"DoctorId": 102,
 			"Availability": 2,
 			"Specialistion": "Neurologist"
 		},
-		{
-			"DoctorName": "Gayatri",
-			"DoctorId": 104,
-			"Availability": 3,
-			"Specialistion": "sdfsdfsd"
-		},
-		{
-			"DoctorName": "Gayatri",
-			"DoctorId": 106,
-			"Availability": 2,
-			"Specialistion": "fdgf"
-		},
-		{
+	    {
 			"DoctorName": "grsdtr",
 			"DoctorId": 107,
 			"Availability": 1,
 			"Specialistion": "dfgf"
 		},
 		{
-			"DoctorName": "Ganesh",
+			"DoctorName": "Dr.Ganesh",
 			"DoctorId": 109,
 			"Availability": 3,
 			"Specialistion": "Cardiologist"

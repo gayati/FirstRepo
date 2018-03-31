@@ -14,6 +14,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -22,9 +23,11 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -1381,6 +1384,13 @@ public class Utility {
 		
 	
         
+        
+        
+        
+        
+        
+        
+        
 //        public static void merge(String stringarray[],int first,int mid,int last)
 //        {   
 //        	
@@ -1545,7 +1555,6 @@ public class Utility {
 			 FileWriter file = new FileWriter(filepath);
 			 BufferedWriter writer = new BufferedWriter(file);
 			 String data = list.toString();
-			 System.out.println(data);
 			
 		       writer.write(data);
 		       writer.flush();
@@ -2151,7 +2160,44 @@ public class Utility {
 	        }
 		 
 		 
+
+	        /** 
+			*
+			* @param This method returns the total number of binary search tree.
+			*/ 
+	        //this returns total number of possible binary search tree also called as catlan number(Cn)
+	        
+	        public static int catalan( int n)
+	        {
+	            // Calculate value of 2nCn
+	             int c = Utility.binomialCoeff(2*n, n);
+	          
+	            // return 2nCn/(n+1)
+	            return c/(n+1);
+	        }
+	        
+	        
+	     //this method is to calculate catlan number based on the Binomial Coefficient
+	     public static int binomialCoeff( int n,  int k)
+	     {
+	          int res = 1;
+	       
+	        
+	         if (k > n - k)
+	             k = n - k;
+	       
+	        
+	         for (int i = 0; i < k; ++i)
+	         {
+	             res *= (n - i);
+	             res /= (i + 1);
+	         }
+	       
+	         return res;
+	     }
 		 
+		 
+	     
 
 		 static int BALANCEAMOUNT = 50000;
 		 static int DEPOSITAMOUNT=0;
@@ -2191,8 +2237,15 @@ public class Utility {
 			System.out.println("Your balance amount is:" + BALANCEAMOUNT );
 		}
 		
+		
 		//datastructure
 		
+		
+		
+		/** 
+		*
+		* @param 
+		*/  
 		static JSONArray JSARRAY = new JSONArray();
 		static JSONObject JSOBJ = new JSONObject();
 		@SuppressWarnings("unchecked")
@@ -2464,54 +2517,7 @@ public class Utility {
 			}
 		}
 		
-//		public static void updateCustomerAccount(String customername) throws IOException, ParseException
-//		{
-//
-//			JSONObject  tempObj =null;
-//			FileReader file = new FileReader("Customer.json");
-//			BufferedReader reader = new BufferedReader(file);
-//			JSONParser parser = new JSONParser();
-//			JSONObject jsobj = (JSONObject) parser.parse(reader);
-//			JSONArray jsarray1 = (JSONArray) jsobj.get("Customer");
-//			 for(int i=0; i<jsarray1.size();i++)
-//				{  
-//				// System.out.println(accountHolderName);
-//		            tempObj = (JSONObject) jsarray1.get(i);
-//		           // System.out.println(tempObj);
-//		            String name1 = (String)tempObj.get("CustomerName");
-//		            long newshareNumber = (long) tempObj.get("ShareNumber");
-//		              newshareNumber = newshareNumber + numberOfShares;
-//
-////		          boolean isTrue = acco// TODO Auto-generated method stubuntHolderName.equals(name1);
-////		          System.out.println(isTrue);
-//		          
-//		            if(customername.equals(name1))
-//					{ 
-//		            	
-//		            	
-////						System.out.println(accountHolderName);
-////						System.out.println(name1);
-////				         System.out.println(tempObj);
-//						tempObj.put("ShareNumber",newshareNumber );
-//						jsarray1.set(i, tempObj);
-//						break;
-//		            	
-//					}
-//					
-//				}
-//				
-//		        JSONObject mainjsobj = new JSONObject();
-//				mainjsobj.put("Customer", jsarray1);
-//			//System.out.println(mainjsobj.toJSONString());
-//			FileWriter writer = new FileWriter("Customer.json");
-//			BufferedWriter bw=new BufferedWriter(writer);
-//			bw.write(mainjsobj.toJSONString());
-//			System.out.println("Customer's Share are update Succesfully..........");
-//			bw.flush();
-//			bw.close();
-//		}
-//		
-		
+
 		public static void updateAccount1(String shareholdername) throws IOException, ParseException
 		{
 			JSONObject  tempObj =null;
@@ -2634,7 +2640,6 @@ public class Utility {
 				FileReader file1 = new FileReader("Doctor.json");
 				BufferedReader reader1 = new BufferedReader(file1);
 				 JSONParser parser1 = new JSONParser();
-				//JSONObject jsobj = new JSONObject();
 				 MAINJSOBJ= (JSONObject) parser1.parse(reader1);
 				 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
 				 JSARRAY.add(JSOBJ);
@@ -2768,9 +2773,6 @@ public class Utility {
 				 }
 				 System.out.println("\t*****************************************");
 				 System.out.println();
-//				 line = JSOBJ.toJSONString();
-//			
-//				 System.out.println(line);
 				 System.out.println();
 				 k = k+1;
 			 }
@@ -2830,7 +2832,7 @@ public class Utility {
 			
 		}
 		
-		static boolean found;
+		static boolean FOUND;
 		public static void searchDoctorByName() throws IOException, ParseException
 		{
 			System.out.println("Enter the doctor name: ");
@@ -2877,13 +2879,13 @@ public class Utility {
 				 System.out.println();			
 				 System.out.println();
 				// System.out.println(JSOBJ.toJSONString());
-				 found = true;
+				 FOUND = true;
 				
 				 
 			     }
 			     
 			 }
-			 if(found==false)
+			 if(FOUND==false)
 			 {
 				 System.out.println("Doctor is not available.");
 			 }	
@@ -2933,14 +2935,13 @@ public class Utility {
 					 System.out.println("*****************************************");
 					 System.out.println();			
 					 System.out.println();
-					// System.out.println(JSOBJ.toJSONString());
-					 found = true;
+					 FOUND = true;
 					
 					 
 				     }
 				     
 				 }
-				 if(found==false)
+				 if(FOUND==false)
 				 {
 					 System.out.println("Doctor is not available.");
 				 }	
@@ -2992,14 +2993,13 @@ public class Utility {
 				 System.out.println("*****************************************");
 				 System.out.println();			
 				 System.out.println();
-				// System.out.println(JSOBJ.toJSONString());
-				 found = true;
+				 FOUND = true;
 				
 				 
 			     }
 			     
 			 }
-			 if(found==false)
+			 if(FOUND==false)
 			 {
 				 System.out.println("Doctor is not available.");
 			 }	
@@ -3066,10 +3066,10 @@ public class Utility {
 					 System.out.println("*****************************************");
 					 System.out.println();			
 					 System.out.println();
-					 found = true;
+					 FOUND = true;
 					}  
 				 }
-				 if(found==false)
+				 if(FOUND==false)
 				 {
 					 System.out.println("Patient Not Found");
 				 }			
@@ -3109,10 +3109,10 @@ public class Utility {
 				 System.out.println("*****************************************");
 				 System.out.println();			
 				 System.out.println();
-				 found = true;
+				 FOUND = true;
 				}  
 			 }
-			 if(found==false)
+			 if(FOUND==false)
 			 {
 				 System.out.println("Patient Not Found");
 			 }		
@@ -3178,10 +3178,7 @@ public class Utility {
 							 {
 								 if(count1 < 5)
 								 {
-//								long newcount = (long) jsobj.get("Count");
-//									long newcount1 = newcount +1;
-//									System.out.println(newcount1);
-								 count1 = count1+1;
+								     count1 = count1+1;
 									 JSOBJ.put("Count",count1);
 									 JSARRAY.set(i, JSOBJ);
 									 MAINJSOBJ.put("Appointement", JSARRAY);
@@ -3199,7 +3196,7 @@ public class Utility {
 			                        break;
 								 }//if ends
 							 
-							 }
+							 }//for ends
                          if(isTrue==false)
                          {
                         		FileReader file2 = new FileReader("Appointments.json");
@@ -3223,39 +3220,444 @@ public class Utility {
 						 if(isAvailable==false)
 						 {
 							 System.out.println("Doctor is not Available");
+							 System.out.println("Please take appointement on another date");
+							 String date = Utility.readString();
+							 Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(date);  
+								FileReader file4 = new FileReader("Appointments.json");
+								BufferedReader reader4 = new BufferedReader(file4);
+								JSONParser parser4 = new JSONParser();
+								//JSONObject jsobj = new JSONObject();
+								 MAINJSOBJ= (JSONObject) parser4.parse(reader4);
+								 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
+								 COUNT++;
+								JSOBJ.put("Count", COUNT);
+                                JSOBJ.put("Date", date2.toString());
+                                JSARRAY.add(JSOBJ);
+                                MAINJSOBJ.put("Appointement", JSARRAY);
+								 FileWriter writer = new FileWriter("Appointments.json");
+								 writer.write( MAINJSOBJ.toJSONString());
+								 System.out.println("Succesfully take appointment.........!!!!!!!!");
+								 writer.flush();
+									 
+								 }
 						 }
 						
 					}
-						 //for ends
+		
+						
 						 
 					
-						 
-//						 FileReader file = new FileReader("Appointments.json");
-//							BufferedReader reader = new BufferedReader(file);
-//							JSONParser parser = new JSONParser();
-//							//JSONObject jsobj = new JSONObject();
-//							 MAINJSOBJ= (JSONObject) parser1.parse(reader);
-//							 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
-//							 count = count +1;
-//							 JSOBJ.put("Count", count);
-//							 JSARRAY.add(JSOBJ);
-//						       
-//							 MAINJSOBJ.put("Appointement", JSARRAY);
-//							 FileWriter writer = new FileWriter("Appointments.json");
-//							 writer.write( MAINJSOBJ.toJSONString());
-//							 System.out.println("Succesfully take appointment.........!!!!!!!!");
-//							 writer.flush();
-//						
-					
-					
-		}
-		    
-	
+						
 
-		public static void printAppointment()
+		public static void printAppointment() throws IOException, ParseException
 		{
+        FileReader file1 = new FileReader("Appointments.json");
+			
+			JSONParser parser = new JSONParser();
+			
+			 MAINJSOBJ= (JSONObject) parser.parse(file1);
+			 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
+			 
+			 System.out.println("\tThe Appointement Details are as follows: ");
+			 System.out.println();
+			  String line;  
+		
+			 for(int i = 0; i<JSARRAY.size();i++)
+			 {
+				 JSOBJ = (JSONObject) JSARRAY.get(i);
+				 DOCTORNAME = (String) JSOBJ.get("DoctorName");
+				 long NumberOfPatient =  (long) JSOBJ.get("Count");
+				 DATE =  (String) JSOBJ.get("Date");
+			
+				
+				 System.out.println("\t************* Appointement ***************");
+				 System.out.println("\tDoctor Name:  " + DOCTORNAME);
+				 System.out.println("\tNumber Of Patient:  "  + NumberOfPatient);
+				 System.out.println("\tDoctor's Available Date:" + DATE);
+				 
+				 System.out.println("\t*****************************************");
+				 System.out.println();
+				
+				 System.out.println();
+				 
 			
 		}
+		
+		}//Clinic Management
+		
+		
+		static String FIRSTNAME;
+		static String LASTNAME;
+		static String ADDRESS;
+		static String CITY;
+		static String STATE;
+		static long  ZIP;
+		static long PHONENUMBER;
+		public static void addPersonDetails() throws IOException, ParseException
+		{
+			
+			FileReader fileReader = new FileReader("AddressBook.json");
+			JSONParser parser = new JSONParser();
+			MAINJSOBJ= (JSONObject) parser.parse(fileReader);
+			JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+			System.out.println("Enter the first name:");
+		    FIRSTNAME = Utility.readString();
+		    System.out.println("Enter the last name: ");
+		    LASTNAME = Utility.readString();
+		    System.out.println("Enter the city: ");
+		    CITY = Utility.readString();
+		    System.out.println("Enter the state: ");
+		    STATE = Utility.readString();
+		    System.out.println("Enter the zipcode");
+		    ZIP = Utility.readLong();
+		    System.out.println("Enter the phone number: ");
+		    PHONENUMBER = Utility.readLong();
+		    String mobilepattern = "(0/91)?[7-9][0-9]{9}";
+		    boolean isValidMobile = Pattern.matches(mobilepattern,String.valueOf(PHONENUMBER));  
+		    if(isValidMobile==false)
+		    {
+		    	System.out.println("Please enter proper mobile number: ");
+		    	PHONENUMBER = Utility.readLong();
+		    }
+		    
+			JSOBJ.put("FirstName", FIRSTNAME);
+			JSOBJ.put("LastName", LASTNAME);
+			JSOBJ.put("City",CITY);
+			JSOBJ.put("State", STATE);
+			JSOBJ.put("ZipCode", ZIP);
+			JSOBJ.put("MobileNumber", PHONENUMBER);
+			
+			
+			JSARRAY.add(JSOBJ);
+			MAINJSOBJ.put("AddressBook", JSARRAY);
+			
+			FileWriter writer = new FileWriter("AddressBook.json");
+			writer.write(MAINJSOBJ.toJSONString());
+			writer.flush();
+			writer.close();
+			
+		}
+		
+		
+		public static void editPersonDeatils()
+		{
+			FileReader fileReader = null;
+			
+			FileWriter fileWriter = null;
+
+			
+			try {
+				System.out.println("Enter the name of person whose details you want to update:");
+				 FIRSTNAME = Utility.readString();
+				fileReader = new FileReader("AddressBook.json");
+				JSONParser parser = new JSONParser();
+				MAINJSOBJ= (JSONObject) parser.parse(fileReader);
+				 JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+				
+				boolean isExit = false;
+				
+				for(int i =0; i<JSARRAY.size();i++)
+				{
+				JSOBJ = (JSONObject) JSARRAY.get(i);
+					if (JSOBJ.get("FirstName").equals(FIRSTNAME)) {
+						
+						System.out.println(
+								"select option what you want to edit:\n 1.City \n 3.State \n 3.Zip \n 4.MobileNumber \n 6.editAll");
+						int choice = Utility.readInteger();
+						switch (choice) {
+						
+						case 1:
+							System.out.println("Enter the city you want to update");
+							CITY = Utility.readString();
+							JSOBJ.put("City",CITY);
+							break;
+						case 2:
+							System.out.println("Enter the state you want to update");
+						    STATE = Utility.readString();
+						    JSOBJ.put("State", STATE);
+							break;
+						case 3:
+							System.out.println("Enter the zipcode you want to update");
+							ZIP = Utility.readLong();
+							JSOBJ.put("ZipCode", ZIP);
+							break;
+						case 4:
+							System.out.println("Enter the city you want to update");
+							PHONENUMBER = Utility.readLong();
+					        JSOBJ.put("MobileNumber", PHONENUMBER);
+							break;
+						case 6:
+							System.out.println("Enter All Details");
+							
+							System.out.println("Enter city");
+							CITY = Utility.readString();
+							JSOBJ.put("City",CITY);
+							
+							System.out.println("Enter city");
+							 STATE = Utility.readString();
+							 JSOBJ.put("State", STATE);
+							 
+							 System.out.println("Enter ZipCode");
+							 ZIP = Utility.readLong();
+							 JSOBJ.put("ZipCode", ZIP);
+							 
+							System.out.println("enter mobile number1");
+							PHONENUMBER = Utility.readLong();
+					        JSOBJ.put("MobileNumber", PHONENUMBER);
+							break;
+						default:
+							System.out.println("Invalid Choice");
+
+						}// switch
+				        JSARRAY.set(i, JSOBJ);
+						MAINJSOBJ.put("AddressBook", JSARRAY);
+						
+						
+						FileWriter writer = new FileWriter("AddressBook.json");
+						writer.write(MAINJSOBJ.toJSONString());
+						writer.flush();
+						writer.close();
+
+						System.out.println("Person details has been updated");
+						isExit = true;
+						break;
+					} //if
+
+				}//for
+				
+				if (isExit == false)
+				{
+					System.out.println("Person not found in address book");
+				}
+			}
+			catch (Exception e)
+			{
+				
+             e.printStackTrace();
+			}
+
+		}
+		
+		
+		
+		 public static void deletePersonDetails() throws IOException, ParseException
+		 {
+				FileReader fileReader = new FileReader("AddressBook.json");
+				JSONParser parser = new JSONParser();
+				MAINJSOBJ= (JSONObject) parser.parse(fileReader);
+				JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+				System.out.println("Enter the first name of the person whose details you want to delete: ");
+			    FIRSTNAME = Utility.readString();
+				
+				boolean isExit = false;
+				
+				for(int i =0; i<JSARRAY.size();i++)
+				{
+				JSOBJ = (JSONObject) JSARRAY.get(i);
+					if (JSOBJ.get("FirstName").equals(FIRSTNAME))
+					{
+                          JSARRAY.remove(JSOBJ);
+                          System.out.println("Successfully Deleted...");
+                          
+						   isExit=true;
+						   break;
+					}
+					}//for
+				
+				//JSARRAY.add(JSOBJ);
+				MAINJSOBJ.put("AddressBook", JSARRAY);
+				FileWriter writer = new FileWriter("AddressBook.json");
+				writer.write(MAINJSOBJ.toJSONString());
+				writer.flush();
+				writer.close();
+				
+				if(isExit==false)
+				{
+					System.out.println("Person not found ");
+				}
+			    
+		 }
+			
+		
+		public static void displayPersonDetails() throws IOException, ParseException
+		{
+          FileReader file1 = new FileReader("AddressBook.json");
+			
+			JSONParser parser = new JSONParser();
+			
+			 MAINJSOBJ= (JSONObject) parser.parse(file1);
+			 JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+			 
+			 System.out.println("\tThe Doctor Details are as follows: ");
+			  String line;  
+			  int k=1;
+			 for(int i = 0; i<JSARRAY.size();i++)
+			 {
+				 JSOBJ = (JSONObject) JSARRAY.get(i);
+				 FIRSTNAME = (String) JSOBJ.get("FirstName");
+				 LASTNAME =  (String) JSOBJ.get("LastName");
+				 CITY =  (String) JSOBJ.get("City");
+				 STATE =  (String) JSOBJ.get("State");
+				 ZIP =  (long) JSOBJ.get("ZipCode");
+				 PHONENUMBER =  (long) JSOBJ.get("MobileNumber");
+				
+				 System.out.println("\t************* ADDRESSBOOK-"+k+" ***************");
+				 System.out.println("\tFirst Name:\t" + FIRSTNAME);
+				 System.out.println("\tLast Name:\t"  + LASTNAME);
+				 System.out.println("\tCity:\t\t" + CITY);
+				 System.out.println("\tState:\t\t" + STATE);
+				 System.out.println("\tZipcode:\t" + ZIP);
+				 System.out.println("\tMobile number:\t" + PHONENUMBER);
+				
+				 System.out.println("\t***********************************************");
+				 System.out.println();
+				 System.out.println();
+				 k = k+1;
+			 }
+		}
+		
+		
+		
+		
+		//For multiple sorting we will use comparator interface
+		
+		
+	
+		public static void sortPersonDetails() throws IOException, ParseException
+		{
+			
+			
+			class sortDetailsbyname implements Comparator<Object>
+			{	
+				@Override
+				public int compare(Object o1, Object o2) 
+				{
+					JSONObject jsobj1 = (JSONObject) o1;
+					JSONObject jsobj2 = (JSONObject)o2;
+					return ((String)jsobj1.get("FirstName")).compareTo((String)jsobj2.get("FirstName"));
+					
+				}	
+			}
+			
+			class sortDeatilsbyZipcode implements Comparator<Object>
+			{
+
+				@Override
+				public int compare(Object o1, Object o2) {
+					JSONObject jsobj1 = (JSONObject) o1;
+					JSONObject jsobj2 = (JSONObject)o2;
+					return  (int) (((long)jsobj1.get("ZipCode")) -((long)jsobj2.get("ZipCode")));
+				}	
+			}
+			
+			  FileReader file1 = new FileReader("AddressBook.json");
+				
+				JSONParser parser = new JSONParser();
+				
+				 MAINJSOBJ= (JSONObject) parser.parse(file1);
+				 JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+
+			boolean check = true;
+			do {
+				System.out.println(
+						"Sort according to \n 1.First Name \n 2.ZipCode  ");
+				int choice = Utility.readInteger();
+				switch (choice) {
+				case 1:
+					System.out.println("Sorting according to First Names: ");
+
+					Collections.sort(JSARRAY, new sortDetailsbyname());	
+
+				
+					Iterator nameIterator = JSARRAY.iterator();
+
+					while (nameIterator.hasNext()) {
+						JSONObject json = (JSONObject) nameIterator.next();
+						
+						System.out.println("\t************* ADDRESSBOOK ***************");
+						 System.out.println("\tFirst Name:\t" + json.get("FirstName"));
+						 System.out.println("\tLast Name:\t"  + json.get("LastName"));
+						 System.out.println("\tCity:\t\t" +json.get("City"));
+						 System.out.println("\tState:\t\t" + json.get("State"));
+						 System.out.println("\tZipcode:\t" + json.get("ZipCode"));
+						 System.out.println("\tMobile number:\t" + json.get("MobileNumber"));
+						
+						 System.out.println("\t***********************************************");
+						 System.out.println();
+						 System.out.println();
+
+					}
+					break;
+					
+				case 2:
+					System.out.println("Sorting according to Zip Code: ");
+
+					Collections.sort(JSARRAY, new sortDeatilsbyZipcode());	
+
+				
+					Iterator zipIterator = JSARRAY.iterator();
+
+					while (zipIterator.hasNext()) {
+						JSONObject json = (JSONObject) zipIterator.next();
+						System.out.println("\t************* ADDRESSBOOK ***************");
+						 System.out.println("\tFirst Name:\t" + json.get("FirstName"));
+						 System.out.println("\tLast Name:\t"  + json.get("LastName"));
+						 System.out.println("\tCity:\t\t" +json.get("City"));
+						 System.out.println("\tState:\t\t" + json.get("State"));
+						 System.out.println("\tZipcode:\t" + json.get("ZipCode"));
+						 System.out.println("\tMobile number:\t\t" + json.get("MobileNumber"));
+						
+						 System.out.println("\t***********************************************");
+						 System.out.println();
+						 System.out.println();
+						
+
+					}
+					break;
+				}
+				System.out.println("Press Y to continue and N to stop ");
+				String ch = Utility.readString().toLowerCase();
+				if (ch.equals("y")) {
+					check = true;
+				} else {
+					check = false;
+				}
+			} while (check);
+			
+			
+			
+			
+        
+//			 for(int i = 0; i<JSARRAY.size();i++)
+//			 {
+//				 JSOBJ = (JSONObject) JSARRAY.get(i);
+//                  Collections.sort(JSARRAY, new sortDetails());	
+//                  
+//                  MAINJSOBJ.put("AddressBook", JSARRAY);
+//                  System.out.println(MAINJSOBJ.toJSONString());
+			 //}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3303,7 +3705,7 @@ public class Utility {
 				System.out.println();
 			}
 			
-		}
+		}//Deck Of Cards
 		
 		
 		
@@ -3328,7 +3730,7 @@ public class Utility {
 				int random = (int) (Math.random() * (52));
 				String temp = deckCards[i];
 				deckCards[i] = deckCards[random];
-				deckCards[random] = temp;
+				deckCards[random] 	= temp;
 			}
 			return deckCards;
 		}
@@ -3353,7 +3755,7 @@ public class Utility {
 				}
 				System.out.println();
 			}
-		
+			
 		 
 		 
 		}
@@ -3387,8 +3789,10 @@ public class Utility {
 						cardQueue.add(card);
 				}
 			}
-		}
-		}	 
+		}//Deck Of Cards Queue
+		
+
+}	 
 
 
 

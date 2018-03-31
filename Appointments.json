@@ -27,7 +27,12 @@
 		},
 		{
 			"DoctorName": "Dr.Abhishek",
-			"Count": 5,
+			"Count": 4,
+			"Date": "Mon Apr 02 00:00:00 IST 2018"
+		},
+	    {
+			"DoctorName": "Dr.Pranay",
+			"Count": 1,
 			"Date": "Mon Apr 02 00:00:00 IST 2018"
 		}
 	]

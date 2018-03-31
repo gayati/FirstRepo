@@ -39,7 +39,7 @@ public class OrderdList {
 		
 		}
 		catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		System.out.println();
         Utility.bubbleSort(intArray);
@@ -59,7 +59,6 @@ public class OrderdList {
       
         
         int index= list.indexOf(number);
-       // System.out.println("index is" +index);
                    
 		boolean flag = list.search(list.head, number);
         
@@ -73,7 +72,7 @@ public class OrderdList {
          System.out.println("Not found");
          list.insert(number);
         }
-        list.show();
+        
         Utility.writeFile(filePath, list);
         
 		

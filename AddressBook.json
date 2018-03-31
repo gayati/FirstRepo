@@ -1,0 +1,29 @@
+{
+	"AddressBook": [
+		{
+			"MobileNumber": 9594349966,
+			"FirstName": "Gayatri",
+			"State": "Maharashtra",
+			"ZipCode": 400043,
+			"LastName": "Kawade",
+			"City": "Mumbai"
+		},
+		{
+			"MobileNumber": 88753574,
+			"FirstName": "Pushpa",
+			"State": "Maharashtra",
+			"ZipCode": 256356,
+			"LastName": "Gupta",
+			"City": "Pune"
+		},
+		
+		{
+			"MobileNumber": 9594349966,
+			"FirstName": "Smita",
+			"State": "MH",
+			"ZipCode": 456789,
+			"LastName": "More",
+			"City": "Nashik"
+		}
+	]
+}

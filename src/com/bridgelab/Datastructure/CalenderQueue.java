@@ -1,11 +1,11 @@
 /******************************************************************************
  
   
- *  Purpose: 
+ *  Purpose: This Program Prints the calender.
  *           
  *  @author  Gayatri Kawade
  *  @version 1.0
- *  @since   06-08-2017
+ *  @since   
  *
  /******************************************************************************/
 package com.bridgelab.Datastructure;

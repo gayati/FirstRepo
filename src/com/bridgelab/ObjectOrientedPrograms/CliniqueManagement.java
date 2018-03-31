@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.ObjectOrientedPrograms;
 
 import java.io.IOException;
@@ -21,6 +31,7 @@ public class CliniqueManagement {
 		System.out.println("6.Search Patient");
 		System.out.println("7.Take Appoinments");
 		System.out.println("8.Print Appoinments");
+	
 		System.out.println("Enter your choice: ");
 		int choice = Utility.readInteger();
 		
@@ -49,7 +60,7 @@ public class CliniqueManagement {
 	 	case 7:Utility.takeAppointment();
 	 	   break;
 	 	   
-	 	case 8:
+	 	case 8:Utility.printAppointment();
 	 	   break;
 	 	   
 		 	       

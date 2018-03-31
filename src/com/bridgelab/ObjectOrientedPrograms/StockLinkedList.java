@@ -1,3 +1,13 @@
+/******************************************************************************
+ 
+  
+ *  Purpose: 
+ *           
+ *  @author  Gayatri Kawade
+ *  @version 1.0
+ *  @since   06-08-2017
+ *
+ /******************************************************************************/
 package com.bridgelab.ObjectOrientedPrograms;
 
 import com.bridgelab.Datastructure.MyLinkedList;
@@ -16,13 +26,13 @@ public class StockLinkedList {
 //		{
 		System.out.println("Enter the share you want to add: ");
 		String symbol = Utility.readString();
-		System.out.println("Enter the share price:");
+		System.out.println("Enter the each share price:");
 	    Long shareprice = Utility.readLong();
 	    System.out.println("Enter the share number:");
 	    Long sharenumber = Utility.readLong();
 	    
 	    
-	    MyLinkedList <String> symbollist = new MyLinkedList<>();
+	    MyLinkedList <String> symbollist = new MyLinkedList<>(); 
 	    symbollist.insert(symbol);
 	    symbollist.show();
 	    
