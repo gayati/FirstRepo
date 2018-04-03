@@ -12,7 +12,7 @@
 			"Availability": 2,
 			"Specialistion": "Neurologist"
 		},
-	    {
+		{
 			"DoctorName": "grsdtr",
 			"DoctorId": 107,
 			"Availability": 1,
@@ -21,6 +21,12 @@
 		{
 			"DoctorName": "Dr.Ganesh",
 			"DoctorId": 109,
+			"Availability": 3,
+			"Specialistion": "Cardiologist"
+		},
+		{
+			"DoctorName": "Dr.Pushpa",
+			"DoctorId": 209,
 			"Availability": 3,
 			"Specialistion": "Cardiologist"
 		}

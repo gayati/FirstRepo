@@ -21,7 +21,7 @@ public class OrderdList {
 		MyLinkedList<Integer> list = new MyLinkedList<>();
 
 		Integer[] intArray = null;
-		String filePath = "/home/bridgeit/Documents/myfile1.txt";
+		String filePath = "/home/bridgeit/Documents/Gayatri/JavaProgrammes/file/myfile1.txt";
 		try
 		{
 		FileReader file = new FileReader(filePath);

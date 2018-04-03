@@ -1543,15 +1543,7 @@ public class Utility {
 		 {
 			 try
 			 {  
-//			 System.out.println(list);
-//			    File file = new File(filepath);
-//				 PrintWriter pw = new PrintWriter(file);
-//				 for(T i: list)
-//				 {
-//				 pw.print(i);
-//				 }
-//				 pw.flush();
-//				 
+				 
 			 FileWriter file = new FileWriter(filepath);
 			 BufferedWriter writer = new BufferedWriter(file);
 			 String data = list.toString();
@@ -1892,80 +1884,7 @@ public class Utility {
 		  
 
 
-			/** 
-			*
-			* @param 
-			*/ 
-		
-		  
-//		 public static void print2Darray(ArrayList<Integer> list)
-//         {   
-//			 int[][] prime = new int[10][50]; 
-//			 Iterator< Integer> it = list.iterator();
-//			 int block = 99;
-//			 int i=0;
-//			 int j =0;
-//			      for(int k = 0; k<list.size();k++)
-//			       {	 
-//						 if(prime[i][ j++]<block)
-//						 {
-//							 prime[i][j]= it.next();
-//
-//							 System.out.print(prime[i][j] + " ");
-//							 
-//						 }	
-//						 else
-//						 {
-//							 i++;
-//							 j=0;
-//							 block=block+100;
-//							 System.out.println();
-//						 }
-//						
-//					 }
-//			     
-//					 
-//				 }
-//					 
-			 
-			
-
-		 
-			/** 
-			*
-			* @param 
-			*/ 
-		
-//		  
-//		 public static void printAnagram2Darray(ArrayList<Integer> list)
-//      {   
-//			 int n =list.size() ;
-//	         Integer[] liststring = new Integer[n];
-//	         liststring = list.toArray(liststring);
-//			 int[][] prime = new int[10][50]; 
-//			 Iterator< Integer> it = list.iterator();
-//			 int block = 100;
-//			 int i=0;
-//			 int j =1;
-//			      while(it.hasNext())
-//			       {	 
-//			    	  for( i=0;i<n ; i++)
-//			          {
-//			       	   for(j=i+1;j<n; j++)
-//			       	   {
-//			       		   if(isAnagram(String.valueOf(liststring[i]),String.valueOf(liststring[j])))
-//			       		   {
-//
-//			       		   }
-//			       	   }
-//			       	   
-//			          
-//			        }
-//						
-//					 }
-//			
-//				 }
-					 
+	
 		    /** 
 			*
 			* @param 
@@ -2006,7 +1925,6 @@ public class Utility {
 						}
 		 			}
 				}
-				//arrayList.sort(null);
 				 Collections.sort(arrayList);  //sort arraylist in ascending order
 			
 				j=0; i=0;	
@@ -2199,19 +2117,19 @@ public class Utility {
 		 
 	     
 
-		 static int BALANCEAMOUNT = 50000;
-		 static int DEPOSITAMOUNT=0;
-		 static int WITHDRAWAMOUNT=0;
+		 static int balanceamount = 50000;
+		 static int depositamount=0;
+		 static int withdrawamount=0;
 		 
 		 
 		 
 		 public static void withdrawAmount()
 		 {
 			 System.out.println("Enter the amount you want to withdraw");
-             WITHDRAWAMOUNT = Utility.readInteger();
-             if(BALANCEAMOUNT>=WITHDRAWAMOUNT)
+             withdrawamount = Utility.readInteger();
+             if(balanceamount>=withdrawamount)
              {
-             BALANCEAMOUNT=BALANCEAMOUNT-WITHDRAWAMOUNT;
+             balanceamount=balanceamount-withdrawamount;
              System.out.println("Amount is successfully withdraw.....!!!");
              }
              else
@@ -2227,14 +2145,14 @@ public class Utility {
 		 public static void depositAmount()
 		 {
 			  System.out.println("Enter the amount you want to deposit");
-	          DEPOSITAMOUNT = Utility.readInteger();
-	          BALANCEAMOUNT=BALANCEAMOUNT+DEPOSITAMOUNT;
+	          depositamount = Utility.readInteger();
+	          balanceamount=balanceamount+depositamount;
 	          System.out.println("Amount is successfully deposited.....!!!");
 		 }
 		
 		public static void checkBalance()
 		{
-			System.out.println("Your balance amount is:" + BALANCEAMOUNT );
+			System.out.println("Your balance amount is:" + balanceamount );
 		}
 		
 		
@@ -2246,10 +2164,10 @@ public class Utility {
 		*
 		* @param 
 		*/  
-		static JSONArray JSARRAY = new JSONArray();
-		static JSONObject JSOBJ = new JSONObject();
+		static JSONArray jsarrays = new JSONArray();
+		static JSONObject jsobject = new JSONObject();
 		@SuppressWarnings("unchecked")
-		public static void Stockaccount() throws IOException, ParseException
+		public static void createAccount() throws IOException, ParseException
 		{     
 			JSONObject jsobj=new JSONObject();
 			
@@ -2269,10 +2187,10 @@ public class Utility {
 			BufferedReader reader = new BufferedReader(file);
 			if(reader.readLine() == null)
 			{
-			JSARRAY.add(jsobj);
+			jsarrays.add(jsobj);
 			FileWriter writer = new FileWriter("Account.json",true);
 			JSONObject mainjsobj = new JSONObject();
-      	    mainjsobj.put("Account", JSARRAY);
+      	    mainjsobj.put("Account", jsarrays);
 			writer.write(mainjsobj.toJSONString());
 			writer.flush();
 			}
@@ -2299,21 +2217,21 @@ public class Utility {
 	        
 		}
 		
-		static String ACCOUNTHOLDERNAME; 
-		static long SHARENUMBERS;
-		static long SHARENUMBER=0;
-		static long TOTALPRICE;
-		static String SYMBOL;
+		static String accountholdername; 
+		static long sharenumbers;
+		static long sharenumber=0;
+		static long totalprice;
+		static String symbol;
 		@SuppressWarnings("unchecked")
 		
 		public  static void buy() throws IOException, ParseException
 		{
 			System.out.println("Enter the name of Share holder who want to buy the share:");
-			ACCOUNTHOLDERNAME= Utility.readString();
+			accountholdername= Utility.readString();
 			System.out.println("Enter the symbol of share you want to buy: ");
-			 SYMBOL = Utility.readString();
+			 symbol = Utility.readString();
 			System.out.println("Enter the number of shares you want to buy: ");
-			 SHARENUMBERS= Utility.readLong();
+			 sharenumbers= Utility.readLong();
 			
 			FileReader file = new FileReader("ShareLibrary.json");
 			BufferedReader reader = new BufferedReader(file);
@@ -2330,12 +2248,12 @@ public class Utility {
 		            obj = (JSONObject) jsarray.get(i);
 					sharename = (String) obj.get("sharename");
 					
-					if(SYMBOL.equals(sharename))
+					if(symbol.equals(sharename))
 					{
 					System.out.println(sharename);
 					shareprice = (long) obj.get("price");
-					SHARENUMBER = (long)obj.get("sharenumber");
-					if (SHARENUMBER==0)
+					sharenumber = (long)obj.get("sharenumber");
+					if (sharenumber==0)
 					{
 						System.out.println("Sorry,..........Shares are not avaialable");
 						break;
@@ -2343,16 +2261,16 @@ public class Utility {
 					else
 					{
 					System.out.println("The price for share is: "+ shareprice);
-					TOTALPRICE = (SHARENUMBERS*shareprice);
-					System.out.println("The total price for share is: " + TOTALPRICE);
+					totalprice = (sharenumbers*shareprice);
+					System.out.println("The total price for share is: " + totalprice);
 					
-					SHARENUMBER = SHARENUMBER-SHARENUMBERS;
-					obj.put("sharenumber", SHARENUMBER);
+					sharenumber = sharenumber-sharenumbers;
+					obj.put("sharenumber", sharenumber);
 					
 					jsarray.set(i, obj);
 					 jsobj1.put("Shares", jsarray);
 					   Utility.updateShare(jsobj1);
-					   Utility.updateAccount(ACCOUNTHOLDERNAME);
+					   Utility.updateAccount(accountholdername);
 					break;
 					}
 					
@@ -2393,22 +2311,15 @@ public class Utility {
 			JSONArray jsarray1 = (JSONArray) jsobj.get("Account");
 			 for(int i=0; i<jsarray1.size();i++)
 				{  
-				// System.out.println(accountHolderName);
 		            tempObj = (JSONObject) jsarray1.get(i);
-		           // System.out.println(tempObj);
 		            String name1 = (String)tempObj.get("name");
 		            long newshareNumber = (long) tempObj.get("number");
 		            long newSharePrice = (long) tempObj.get("amount");
-		            newshareNumber = newshareNumber + SHARENUMBERS;
-		            newSharePrice = newSharePrice  - TOTALPRICE;
-//		          boolean isTrue = accountHolderName.equals(name1);
-//		          System.out.println(isTrue);
-		          
+		            newshareNumber = newshareNumber + sharenumbers;
+		            newSharePrice = newSharePrice  - totalprice;
+
 		            if(accountHolderName.equals(name1))
 					{ 
-//						System.out.println(accountHolderName);
-//						System.out.println(name1);
-//				         System.out.println(tempObj);
 						tempObj.put("number",newshareNumber );
 						tempObj.put("amount", newSharePrice);
 						jsarray1.set(i, tempObj);
@@ -2420,7 +2331,6 @@ public class Utility {
 				
 		        JSONObject mainjsobj = new JSONObject();
 				mainjsobj.put("Account", jsarray1);
-			//System.out.println(mainjsobj.toJSONString());
 			FileWriter writer = new FileWriter("Account.json");
 			BufferedWriter bw=new BufferedWriter(writer);
 			bw.write(mainjsobj.toJSONString());
@@ -2433,10 +2343,9 @@ public class Utility {
 			queue.enque(strDate);
 			
 			String date1 = queue.deque();
-			//System.out.println(date1);  
 			
 			MyStack <String>stack = new MyStack();
-			stack.push(SYMBOL);
+			stack.push(symbol);
 //			System.out.println();
 //			stack.show();
 		   String symbol1 = stack.peek();
@@ -2444,7 +2353,7 @@ public class Utility {
 			
 			
 			
-			System.out.println("Share "+" " +symbol1+" "+" update Succesfully ... at"+ date1+".......");
+			System.out.println("Share "+" " +symbol1+" "+" update Succesfully ... at "+ date1+".......");
 			bw.flush();
 			bw.close();
 		}
@@ -2489,11 +2398,11 @@ public class Utility {
 			BufferedReader reader = new BufferedReader(file);
 			if(reader.readLine() == null)
 			{
-			JSARRAY.add(jsobj);
+			jsarrays.add(jsobj);
 			
 			FileWriter writer = new FileWriter("Customer.json",true);
 			
-      	    System.out.println(JSOBJ.put("Customers", JSARRAY));
+      	    System.out.println(jsobject.put("Customers", jsarrays));
 			writer.write(jsobj.toJSONString());
 			writer.flush();
 			}
@@ -2508,10 +2417,10 @@ public class Utility {
 				System.out.println(jsobj);
 
 				jsarray1.add(jsobj);
-		        //JSONObject mainjsobj = new JSONObject();
-				 JSOBJ.put("Customer", jsarray1);
+		        
+				 jsobject.put("Customer", jsarray1);
 				 FileWriter writer = new FileWriter("Customer.json");
-				 writer.write(JSOBJ.toJSONString());
+				 writer.write(jsobject.toJSONString());
 				 System.out.println("Succesfully created the Customers Account.........!!!!!!!!");
 				 writer.flush();
 			}
@@ -2528,22 +2437,16 @@ public class Utility {
 			JSONArray jsarray1 = (JSONArray) jsobj.get("Account");
 			 for(int i=0; i<jsarray1.size();i++)
 				{  
-				// System.out.println(accountHolderName);
 		            tempObj = (JSONObject) jsarray1.get(i);
-		           // System.out.println(tempObj);
 		            String name1 = (String)tempObj.get("name");
 		            long newshareNumber = (long) tempObj.get("number");
 		            long newsharePrice = (long) tempObj.get("amount");
 		            newshareNumber = newshareNumber -numberOfShares;
-		            //newsharePrice = newsharePrice - (newshareNumber*)
-//		          boolean isTrue = accountHolderName.equals(name1);
-//		          System.out.println(isTrue);
+
+	         
 		          
 		            if(shareholdername.equals(name1))
-					{ 
-//						System.out.println(accountHolderName);
-//						System.out.println(name1);
-//				         System.out.println(tempObj);
+					{ 						
 						tempObj.put("number",newshareNumber );
 						jsarray1.set(i, tempObj);
 						break;
@@ -2554,7 +2457,6 @@ public class Utility {
 				
 		        JSONObject mainjsobj = new JSONObject();
 				mainjsobj.put("Account", jsarray1);
-			//System.out.println(mainjsobj.toJSONString());
 			FileWriter writer = new FileWriter("Account.json");
 			BufferedWriter bw=new BufferedWriter(writer);
 			bw.write(mainjsobj.toJSONString());
@@ -2569,54 +2471,50 @@ public class Utility {
 		}
 		
 		
-		//Stock Report
 		
 		
-		static String DOCTORNAME;
-		static long DOCTORID;
-		static String SPECIALIZATION;
-		static long AVAILABILITY;
-		static JSONObject MAINJSOBJ = new JSONObject();
+		static String doctorname;
+		static long doctorid;
+		static String specialisation;
+		static long availability;
+		static JSONObject mainjsobj = new JSONObject();
 		public static void addDoctorsDetails() throws IOException, ParseException
 		{
 			System.out.println("Enter the doctor name:");
-			DOCTORNAME = Utility.readString();
-			JSOBJ.put("DoctorName", DOCTORNAME);
+			doctorname = Utility.readString();
+			jsobject.put("DoctorName", doctorname);
 			System.out.println("Enter the doctor Id:");
-			DOCTORID = Utility.readLong();
+			doctorid = Utility.readLong();
 					
 			FileReader file = new FileReader("Doctor.json");
 			BufferedReader reader = new BufferedReader(file);
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(reader);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 mainjsobj= (JSONObject) parser.parse(reader);
+			 jsarrays = (JSONArray) mainjsobj.get("Doctors");
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
 				 JSONObject tempObj = new JSONObject();
-				 tempObj = (JSONObject) JSARRAY.get(i);
+				 tempObj = (JSONObject) jsarrays.get(i);
 				
 				 long id = (long) tempObj.get("DoctorId");
-				 if(DOCTORID==id)
+				 if(doctorid==id)
 				 {
 					 System.out.println("The id is already equipped with another doctor,Enter another Id");
 					
-					 DOCTORID = Utility.readLong();
+					 doctorid = Utility.readLong();
 				  
 				 }
 				 
 				 
 			 }
-			JSOBJ.put("DoctorId", DOCTORID);
+			jsobject.put("DoctorId", doctorid);
 			System.out.println("Enter the Doctors Specialization:");
-			SPECIALIZATION = Utility.readString();
-			JSOBJ.put("Specialistion", SPECIALIZATION);
-//			System.out.println("Doctor is available or not?.:");
-//			AVALABILITY = Utility.readString();
-//			JSOBJ.put("Avialability",AVALABILITY);
+			specialisation = Utility.readString();
+			jsobject.put("Specialistion", specialisation);
 			System.out.println("Enter the Availability:(1.AM 2.PM 3.Both)");
-			AVAILABILITY = Utility.readLong();
-			JSOBJ.put("Availability", AVAILABILITY);
+			availability = Utility.readLong();
+			jsobject.put("Availability", availability);
 			
 			FileReader file2 = new FileReader("Doctor.json");
 			BufferedReader reader2 = new BufferedReader(file2);
@@ -2625,12 +2523,12 @@ public class Utility {
 			if(reader2.readLine() == null)
 			{
 				
-			JSARRAY.add(JSOBJ);
+			jsarrays.add(jsobject);
 			
 			FileWriter writer = new FileWriter("Doctor.json",true);
 			
-			MAINJSOBJ.put("Doctors", JSARRAY);
-			writer.write(MAINJSOBJ.toJSONString());
+			mainjsobj.put("Doctors", jsarrays);
+			writer.write(mainjsobj.toJSONString());
 			writer.flush();
 			writer.close();
 			}
@@ -2640,13 +2538,13 @@ public class Utility {
 				FileReader file1 = new FileReader("Doctor.json");
 				BufferedReader reader1 = new BufferedReader(file1);
 				 JSONParser parser1 = new JSONParser();
-				 MAINJSOBJ= (JSONObject) parser1.parse(reader1);
-				 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
-				 JSARRAY.add(JSOBJ);
+				 mainjsobj= (JSONObject) parser1.parse(reader1);
+				 jsarrays = (JSONArray) mainjsobj.get("Doctors");
+				 jsarrays.add(jsobject);
 				
-				 MAINJSOBJ.put("Doctors", JSARRAY);
+				 mainjsobj.put("Doctors", jsarrays);
 					 FileWriter writer = new FileWriter("Doctor.json");
-					 writer.write( MAINJSOBJ.toJSONString());
+					 writer.write( mainjsobj.toJSONString());
 					 System.out.println("Succesfully added doctor.........!!!!!!!!");
 					 writer.flush();
 
@@ -2654,48 +2552,48 @@ public class Utility {
 		}
 		
 		
-		static String PATIENTNAME;
-		static long PATIENTID;
+		static String patientname;
+		static long patientid;
 		static long  MOBILENO;
-		static long AGE;
+		static long age;
 		public static void addPatientDetails() throws IOException, ParseException
 		{
 			
 			System.out.println("Enter the name of patient");
-			PATIENTNAME = Utility.readString();
-			JSOBJ.put("PatientName", PATIENTNAME);
+			patientname = Utility.readString();
+			jsobject.put("PatientName", patientname);
 			System.out.println("Enter the patient Id");
-			PATIENTID = Utility.readLong();
+			patientid = Utility.readLong();
 			
 			FileReader file = new FileReader("Patient.json");
 			BufferedReader reader = new BufferedReader(file);
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(reader);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Patients");
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 mainjsobj= (JSONObject) parser.parse(reader);
+			 jsarrays = (JSONArray) mainjsobj.get("Patients");
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
 				 JSONObject tempObj = new JSONObject();
-				 tempObj = (JSONObject) JSARRAY.get(i);
+				 tempObj = (JSONObject) jsarrays.get(i);
 				
 				 long id = (long) tempObj.get("PatientId");
-				 if(PATIENTID==id)
+				 if(patientid==id)
 				 {
 					 System.out.println("The id is already equipped with another patient,Enter another Id");
 					
-					 PATIENTID = Utility.readLong();
+					 patientid = Utility.readLong();
 				  
 				 }
 			 }
 			
 			
-			JSOBJ.put("PatientId", PATIENTID);
+			jsobject.put("PatientId", patientid);
 			System.out.println("Enter the mobile number:");
 			MOBILENO = Utility.readLong();
-			JSOBJ.put("MobileNumber", MOBILENO);
+			jsobject.put("MobileNumber", MOBILENO);
 			System.out.println("Enter the age of patient");
-			AGE = Utility.readLong();
-			JSOBJ.put("Age", AGE);
+			age = Utility.readLong();
+			jsobject.put("Age", age);
 			
 
 			
@@ -2705,12 +2603,12 @@ public class Utility {
 			
 			if(reader.readLine() == null)
 			{
-			JSARRAY.add(JSOBJ);
+			jsarrays.add(jsobject);
 			
 			FileWriter writer = new FileWriter("Patient.json",true);
 		    
-			MAINJSOBJ.put("Patients", JSARRAY);
-			writer.write(MAINJSOBJ.toJSONString());
+			mainjsobj.put("Patients", jsarrays);
+			writer.write(mainjsobj.toJSONString());
 			writer.flush();
 			writer.close();
 			}
@@ -2720,13 +2618,13 @@ public class Utility {
 				BufferedReader reader1 = new BufferedReader(file1);
 				JSONParser parser1 = new JSONParser();
 				//JSONObject jsobj = new JSONObject();
-				 MAINJSOBJ= (JSONObject) parser.parse(reader1);
-				 JSARRAY = (JSONArray) MAINJSOBJ.get("Patients");
-				 JSARRAY.add(JSOBJ);
+				 mainjsobj= (JSONObject) parser.parse(reader1);
+				 jsarrays = (JSONArray) mainjsobj.get("Patients");
+				 jsarrays.add(jsobject);
 			       
-					 MAINJSOBJ.put("Patients", JSARRAY);
+					 mainjsobj.put("Patients", jsarrays);
 					 FileWriter writer = new FileWriter("Patient.json");
-					 writer.write( MAINJSOBJ.toJSONString());
+					 writer.write( mainjsobj.toJSONString());
 					 System.out.println("Succesfully added patient.........!!!!!!!!");
 					 writer.flush();
 
@@ -2741,35 +2639,35 @@ public class Utility {
 			
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(file1);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
+			 mainjsobj= (JSONObject) parser.parse(file1);
+			 jsarrays = (JSONArray) mainjsobj.get("Doctors");
 			 
 			 System.out.println("\tThe Doctor Details are as follows: ");
 			  String line;  
 			  int k=1;
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
-				 JSOBJ = (JSONObject) JSARRAY.get(i);
-				 DOCTORNAME = (String) JSOBJ.get("DoctorName");
-				 DOCTORID =  (long) JSOBJ.get("DoctorId");
-				 AVAILABILITY =  (long) JSOBJ.get("Availability");
-				 SPECIALIZATION = (String) JSOBJ.get("Specialistion");
+				 jsobject = (JSONObject) jsarrays.get(i);
+				 doctorname = (String) jsobject.get("DoctorName");
+				 doctorid =  (long) jsobject.get("DoctorId");
+				 availability =  (long) jsobject.get("Availability");
+				 specialisation = (String) jsobject.get("Specialistion");
 				
 				 System.out.println("\t************* Doctor-"+k+" ***************");
-				 System.out.println("\tDoctor Name:  " + DOCTORNAME);
-				 System.out.println("\tDoctor Id:  "  + DOCTORID);
-				 System.out.println("\tDoctor Specialisation:" + SPECIALIZATION);
-				 if(AVAILABILITY == 1)
+				 System.out.println("\tDoctor Name:  " + doctorname);
+				 System.out.println("\tDoctor Id:  "  + doctorid);
+				 System.out.println("\tDoctor Specialisation:" + specialisation);
+				 if(availability == 1)
 				 {
-				 System.out.println("\tAvailability: " +AVAILABILITY+ " (AM)");
+				 System.out.println("\tAvailability: " +availability+ " (AM)");
 				 }
-				 else if (AVAILABILITY==2)
+				 else if (availability==2)
 				 {
-					 System.out.println("\tAvailability: " +AVAILABILITY+ " (PM)");
+					 System.out.println("\tAvailability: " +availability+ " (PM)");
 				 }
 				 else
 				 {
-					 System.out.println("\tAvailability: " +AVAILABILITY+ " (BOTH)");
+					 System.out.println("\tAvailability: " +availability+ " (BOTH)");
 				 }
 				 System.out.println("\t*****************************************");
 				 System.out.println();
@@ -2786,16 +2684,16 @@ public class Utility {
 			
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(file1);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Patients");
+			 mainjsobj= (JSONObject) parser.parse(file1);
+			 jsarrays = (JSONArray) mainjsobj.get("Patients");
 			 
 			 System.out.println("The Patient Details are as follows: ");
 			  String line;  
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
-				 JSOBJ = (JSONObject) JSARRAY.get(i);
+				 jsobject = (JSONObject) jsarrays.get(i);
 				 
-				 line = JSOBJ.toJSONString();
+				 line = jsobject.toJSONString();
 			     
 				 System.out.println(line);
 				 System.out.println();
@@ -2832,7 +2730,7 @@ public class Utility {
 			
 		}
 		
-		static boolean FOUND;
+		static boolean found;
 		public static void searchDoctorByName() throws IOException, ParseException
 		{
 			System.out.println("Enter the doctor name: ");
@@ -2842,50 +2740,50 @@ public class Utility {
 			
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(file1);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
+			 mainjsobj= (JSONObject) parser.parse(file1);
+			 jsarrays = (JSONArray) mainjsobj.get("Doctors");
 			 
 			
 			 
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
-				 JSOBJ = (JSONObject) JSARRAY.get(i);
-				 DOCTORNAME= (String) JSOBJ.get("DoctorName");
-			     if(DOCTORNAME.equals(name))
+				 jsobject = (JSONObject) jsarrays.get(i);
+				 doctorname= (String) jsobject.get("DoctorName");
+			     if(doctorname.equals(name))
 			     {
 			     System.out.println("The Doctor Details are as follows: ");
-			     DOCTORID =  (long) JSOBJ.get("DoctorId");
-				 AVAILABILITY =  (long) JSOBJ.get("Availability");
-				 SPECIALIZATION = (String) JSOBJ.get("Specialistion");
+			     doctorid =  (long) jsobject.get("DoctorId");
+				 availability =  (long) jsobject.get("Availability");
+				 specialisation = (String) jsobject.get("Specialistion");
 				 System.out.println("************* Doctor ***************");
-				 System.out.println("Doctor Name:  " + DOCTORNAME);
-				 System.out.println("Doctor Id:  "  + DOCTORID);
-				 System.out.println("Doctor Specialisation:" + SPECIALIZATION);
+				 System.out.println("Doctor Name:  " + doctorname);
+				 System.out.println("Doctor Id:  "  + doctorid);
+				 System.out.println("Doctor Specialisation:" + specialisation);
 
 				
-				 if(AVAILABILITY == 1)
+				 if(availability == 1)
 				 {
-				 System.out.println("Availability: " +AVAILABILITY+ " (AM)");
+				 System.out.println("Availability: " +availability+ " (AM)");
 				 }
-				 else if (AVAILABILITY==2)
+				 else if (availability==2)
 				 {
-					 System.out.println("Availability: " +AVAILABILITY+ " (PM)");
+					 System.out.println("Availability: " +availability+ " (PM)");
 				 }
 				 else
 				 {
-					 System.out.println("Availability: " +AVAILABILITY+ " (BOTH)");
+					 System.out.println("Availability: " +availability+ " (BOTH)");
 				 }
 				 System.out.println("*****************************************");
 				 System.out.println();			
 				 System.out.println();
 				// System.out.println(JSOBJ.toJSONString());
-				 FOUND = true;
+				 found = true;
 				
 				 
 			     }
 			     
 			 }
-			 if(FOUND==false)
+			 if(found==false)
 			 {
 				 System.out.println("Doctor is not available.");
 			 }	
@@ -2900,48 +2798,48 @@ public class Utility {
 				
 				JSONParser parser = new JSONParser();
 				
-				 MAINJSOBJ= (JSONObject) parser.parse(file1);
-				 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
+				 mainjsobj= (JSONObject) parser.parse(file1);
+				 jsarrays = (JSONArray) mainjsobj.get("Doctors");
 				 
 				
 				 
-				 for(int i = 0; i<JSARRAY.size();i++)
+				 for(int i = 0; i<jsarrays.size();i++)
 				 {
-					 JSOBJ = (JSONObject) JSARRAY.get(i);
-					  DOCTORID =  (long) JSOBJ.get("DoctorId");
-				     if( DOCTORID==(id))
+					 jsobject = (JSONObject) jsarrays.get(i);
+					  doctorid =  (long) jsobject.get("DoctorId");
+				     if( doctorid==(id))
 				     {
 				     System.out.println("The Doctor Details are as follows: ");
-				     DOCTORNAME= (String) JSOBJ.get("DoctorName");
-					 AVAILABILITY =  (long) JSOBJ.get("Availability");
-					 SPECIALIZATION = (String) JSOBJ.get("Specialistion");
+				     doctorname= (String) jsobject.get("DoctorName");
+					 availability =  (long) jsobject.get("Availability");
+					 specialisation = (String) jsobject.get("Specialistion");
 					 System.out.println("************* Doctor ***************");
-					 System.out.println("Doctor Name:  " + DOCTORNAME);
-					 System.out.println("Doctor Id:  "  + DOCTORID);
-					 System.out.println("Doctor Specialisation:" + SPECIALIZATION);
+					 System.out.println("Doctor Name:  " + doctorname);
+					 System.out.println("Doctor Id:  "  + doctorid);
+					 System.out.println("Doctor Specialisation:" + specialisation);
 
-					 if(AVAILABILITY == 1)
+					 if(availability == 1)
 					 {
-					 System.out.println("Availability: " +AVAILABILITY+ " (AM)");
+					 System.out.println("Availability: " +availability+ " (AM)");
 					 }
-					 else if (AVAILABILITY==2)
+					 else if (availability==2)
 					 {
-						 System.out.println("Availability: " +AVAILABILITY+ " (PM)");
+						 System.out.println("Availability: " +availability+ " (PM)");
 					 }
 					 else
 					 {
-						 System.out.println("Availability: " +AVAILABILITY+ " (BOTH)");
+						 System.out.println("Availability: " +availability+ " (BOTH)");
 					 }
 					 System.out.println("*****************************************");
 					 System.out.println();			
 					 System.out.println();
-					 FOUND = true;
+					 found = true;
 					
 					 
 				     }
 				     
 				 }
-				 if(FOUND==false)
+				 if(found==false)
 				 {
 					 System.out.println("Doctor is not available.");
 				 }	
@@ -2957,49 +2855,49 @@ public class Utility {
 			
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(file1);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Doctors");
+			 mainjsobj= (JSONObject) parser.parse(file1);
+			 jsarrays = (JSONArray) mainjsobj.get("Doctors");
 			 
 			
 			 
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
-				 JSOBJ = (JSONObject) JSARRAY.get(i);
-				 SPECIALIZATION = (String) JSOBJ.get("Specialistion");
+				 jsobject = (JSONObject) jsarrays.get(i);
+				 specialisation = (String) jsobject.get("Specialistion");
 			
-			     if( SPECIALIZATION.equals(specialization))
+			     if( specialisation.equals(specialization))
 			     {
 			     System.out.println("The Doctor Details are as follows: ");
-			     DOCTORNAME= (String) JSOBJ.get("DoctorName");
-				 AVAILABILITY =  (long) JSOBJ.get("Availability");
-				  DOCTORID =  (long) JSOBJ.get("DoctorId");
+			     doctorname= (String) jsobject.get("DoctorName");
+				 availability =  (long) jsobject.get("Availability");
+				  doctorid =  (long) jsobject.get("DoctorId");
 				 System.out.println("************* Doctor ***************");
-				 System.out.println("Doctor Name:  " + DOCTORNAME);
-				 System.out.println("Doctor Id:  "  + DOCTORID);
-				 System.out.println("Doctor Specialisation:" + SPECIALIZATION);
+				 System.out.println("Doctor Name:  " + doctorname);
+				 System.out.println("Doctor Id:  "  + doctorid);
+				 System.out.println("Doctor Specialisation:" + specialisation);
 
-				 if(AVAILABILITY == 1)
+				 if(availability == 1)
 				 {
-				 System.out.println("Availability: " +AVAILABILITY+ " (AM)");
+				 System.out.println("Availability: " +availability+ " (AM)");
 				 }
-				 else if (AVAILABILITY==2)
+				 else if (availability==2)
 				 {
-					 System.out.println("Availability: " +AVAILABILITY+ " (PM)");
+					 System.out.println("Availability: " +availability+ " (PM)");
 				 }
 				 else
 				 {
-					 System.out.println("Availability: " +AVAILABILITY+ " (AM and PM Both)");
+					 System.out.println("Availability: " +availability+ " (AM and PM Both)");
 				 }
 				 System.out.println("*****************************************");
 				 System.out.println();			
 				 System.out.println();
-				 FOUND = true;
+				 found = true;
 				
 				 
 			     }
 			     
 			 }
-			 if(FOUND==false)
+			 if(found==false)
 			 {
 				 System.out.println("Doctor is not available.");
 			 }	
@@ -3042,34 +2940,34 @@ public class Utility {
 				
 				JSONParser parser = new JSONParser();
 				
-				 MAINJSOBJ= (JSONObject) parser.parse(file1);
-				 JSARRAY = (JSONArray) MAINJSOBJ.get("Patients");
+				 mainjsobj= (JSONObject) parser.parse(file1);
+				 jsarrays = (JSONArray) mainjsobj.get("Patients");
 				 
 				
 				 
-				 for(int i = 0; i<JSARRAY.size();i++)
+				 for(int i = 0; i<jsarrays.size();i++)
 				 {
-					 JSOBJ = (JSONObject) JSARRAY.get(i);
-					 PATIENTNAME = (String) JSOBJ.get("PatientName");
+					 jsobject = (JSONObject) jsarrays.get(i);
+					 patientname = (String) jsobject.get("PatientName");
 					
-				     if( PATIENTNAME.equals(name))
+				     if( patientname.equals(name))
 				     {
 				     System.out.println("The Patient Details are as follows: ");
-				       PATIENTID =  (long) JSOBJ.get("PatientId");
-					   MOBILENO =  (long) JSOBJ.get("MobileNumber");
-					  AGE= (long) JSOBJ.get("Age");
+				       patientid =  (long) jsobject.get("PatientId");
+					   MOBILENO =  (long) jsobject.get("MobileNumber");
+					  age= (long) jsobject.get("Age");
 					 System.out.println("************* Patient ***************");
-					 System.out.println("Patient Name:  " + PATIENTNAME);
-					 System.out.println("Patient Id:  "  + PATIENTID );
+					 System.out.println("Patient Name:  " + patientname);
+					 System.out.println("Patient Id:  "  + patientid );
 					 System.out.println("Mobile Number:" + MOBILENO);
-					 System.out.println("Patient's Age: " + AGE);
+					 System.out.println("Patient's Age: " + age);
 					 System.out.println("*****************************************");
 					 System.out.println();			
 					 System.out.println();
-					 FOUND = true;
+					 found = true;
 					}  
 				 }
-				 if(FOUND==false)
+				 if(found==false)
 				 {
 					 System.out.println("Patient Not Found");
 				 }			
@@ -3084,58 +2982,58 @@ public class Utility {
 			
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(file1);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Patients");
+			 mainjsobj= (JSONObject) parser.parse(file1);
+			 jsarrays = (JSONArray) mainjsobj.get("Patients");
 			 
 			
 			 
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
-				 JSOBJ = (JSONObject) JSARRAY.get(i);
-				 PATIENTID =  (long) JSOBJ.get("PatientId");
+				 jsobject = (JSONObject) jsarrays.get(i);
+				 patientid =  (long) jsobject.get("PatientId");
 				
 				
-			     if(PATIENTID==id)
+			     if(patientid==id)
 			     {
 			     System.out.println("The Patient Details are as follows: ");
-			      PATIENTNAME = (String) JSOBJ.get("PatientName");
-				   MOBILENO =  (long) JSOBJ.get("MobileNumber");
-				  AGE= (long) JSOBJ.get("Age");
+			      patientname = (String) jsobject.get("PatientName");
+				   MOBILENO =  (long) jsobject.get("MobileNumber");
+				  age= (long) jsobject.get("Age");
 				 System.out.println("************* Patient ***************");
-				 System.out.println("Patient Name:  " + PATIENTNAME);
-				 System.out.println("Patient Id:  "  + PATIENTID );
+				 System.out.println("Patient Name:  " + patientname);
+				 System.out.println("Patient Id:  "  + patientid );
 				 System.out.println("Mobile Number:" + MOBILENO);
-				 System.out.println("Patient's Age: " + AGE);
+				 System.out.println("Patient's Age: " + age);
 				 System.out.println("*****************************************");
 				 System.out.println();			
 				 System.out.println();
-				 FOUND = true;
+				 found = true;
 				}  
 			 }
-			 if(FOUND==false)
+			 if(found==false)
 			 {
 				 System.out.println("Patient Not Found");
 			 }		
 		}
   
-		static Long NUMBEROFPATIENT;
-		static String DATE;
-		static long COUNT;
+		static Long numberofpatient;
+		static String date;
+		static long count;
 		
 		public static void takeAppointment() throws IOException, ParseException, java.text.ParseException
 		{  
 			
 			System.out.println("Enter the patient's name: ");
-			PATIENTNAME = Utility.readString();
+			patientname = Utility.readString();
 			//JSOBJ.put("PatientName",PATIENTNAME);
 			System.out.println("Enter the Doctor's name: ");
-			DOCTORNAME = Utility.readString();
-			JSOBJ.put("DoctorName", DOCTORNAME );
+			doctorname = Utility.readString();
+			jsobject.put("DoctorName", doctorname );
 		    System.out.println("Enter the date(DD/MM/YYYY): ");
 		    String sDate1 = Utility.readString();
 		    Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);  
-		    JSOBJ.put("Date", date1.toString());
-		    COUNT=0;
+		    jsobject.put("Date", date1.toString());
+		    count=0;
 		   
 		    boolean isTrue = false;
 		    boolean isAvailable=false;
@@ -3145,14 +3043,14 @@ public class Utility {
 					
 					if(reader3.readLine() == null)
 					{
-					COUNT++;
-					JSOBJ.put("Count", COUNT);
-					JSARRAY.add(JSOBJ);
+					count++;
+					jsobject.put("Count", count);
+					jsarrays.add(jsobject);
 					
 					FileWriter writer = new FileWriter("Appointments.json",true);
 				    
-					MAINJSOBJ.put("Appointement", JSARRAY);
-					writer.write(MAINJSOBJ.toJSONString());
+					mainjsobj.put("Appointement", jsarrays);
+					writer.write(mainjsobj.toJSONString());
 					writer.flush();
 					writer.close();
 					}
@@ -3163,27 +3061,27 @@ public class Utility {
 						BufferedReader reader1 = new BufferedReader(file1);
 						JSONParser parser1 = new JSONParser();
 						//JSONObject jsobj = new JSONObject();
-						 MAINJSOBJ= (JSONObject) parser1.parse(reader1);
-						 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
-						 for(int i = 0; i<JSARRAY.size();i++)
+						 mainjsobj= (JSONObject) parser1.parse(reader1);
+						 jsarrays = (JSONArray) mainjsobj.get("Appointement");
+						 for(int i = 0; i<jsarrays.size();i++)
 						 {   
 							// boolean isAvailable=false;
 							 JSONObject jsobj = new JSONObject();
-							 jsobj = (JSONObject) JSARRAY.get(i);
+							 jsobj = (JSONObject) jsarrays.get(i);
 							 String doctorname =  (String) jsobj.get("DoctorName");
-							 DATE = (String) jsobj.get("Date");
+							 date = (String) jsobj.get("Date");
 							 long count1= (long) jsobj.get("Count");
-					         isTrue = ((date1.toString()).equals(DATE) && DOCTORNAME.equals(doctorname));
+					         isTrue = ((date1.toString()).equals(date) && doctorname.equals(doctorname));
 							 if(isTrue)
 							 {
 								 if(count1 < 5)
 								 {
 								     count1 = count1+1;
-									 JSOBJ.put("Count",count1);
-									 JSARRAY.set(i, JSOBJ);
-									 MAINJSOBJ.put("Appointement", JSARRAY);
+									 jsobject.put("Count",count1);
+									 jsarrays.set(i, jsobject);
+									 mainjsobj.put("Appointement", jsarrays);
 									 FileWriter writer = new FileWriter("Appointments.json");
-									 writer.write( MAINJSOBJ.toJSONString());
+									 writer.write( mainjsobj.toJSONString());
 									 System.out.println("Succesfully take appointment.........!!!!!!!!");
 									 writer.flush();
 									 isAvailable = true;
@@ -3203,15 +3101,15 @@ public class Utility {
         						BufferedReader reader2 = new BufferedReader(file2);
         						JSONParser parser2 = new JSONParser();
         						//JSONObject jsobj = new JSONObject();
-        						COUNT++;
-        						 MAINJSOBJ= (JSONObject) parser2.parse(reader2);
-        						 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
-        						 JSOBJ.put("Count",COUNT);
-								 System.out.println(JSOBJ);
-								 JSARRAY.add(JSOBJ);
-								 MAINJSOBJ.put("Appointement", JSARRAY);
+        						count++;
+        						 mainjsobj= (JSONObject) parser2.parse(reader2);
+        						 jsarrays = (JSONArray) mainjsobj.get("Appointement");
+        						 jsobject.put("Count",count);
+								 System.out.println(jsobject);
+								 jsarrays.add(jsobject);
+								 mainjsobj.put("Appointement", jsarrays);
 								 FileWriter writer = new FileWriter("Appointments.json");
-								 writer.write( MAINJSOBJ.toJSONString());
+								 writer.write( mainjsobj.toJSONString());
 								 System.out.println("Succesfully take appointment.........!!!!!!!!");
 								 writer.flush();
 								 isAvailable = true;
@@ -3227,15 +3125,15 @@ public class Utility {
 								BufferedReader reader4 = new BufferedReader(file4);
 								JSONParser parser4 = new JSONParser();
 								//JSONObject jsobj = new JSONObject();
-								 MAINJSOBJ= (JSONObject) parser4.parse(reader4);
-								 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
-								 COUNT++;
-								JSOBJ.put("Count", COUNT);
-                                JSOBJ.put("Date", date2.toString());
-                                JSARRAY.add(JSOBJ);
-                                MAINJSOBJ.put("Appointement", JSARRAY);
+								 mainjsobj= (JSONObject) parser4.parse(reader4);
+								 jsarrays = (JSONArray) mainjsobj.get("Appointement");
+								 count++;
+								jsobject.put("Count", count);
+                                jsobject.put("Date", date2.toString());
+                                jsarrays.add(jsobject);
+                                mainjsobj.put("Appointement", jsarrays);
 								 FileWriter writer = new FileWriter("Appointments.json");
-								 writer.write( MAINJSOBJ.toJSONString());
+								 writer.write( mainjsobj.toJSONString());
 								 System.out.println("Succesfully take appointment.........!!!!!!!!");
 								 writer.flush();
 									 
@@ -3255,25 +3153,25 @@ public class Utility {
 			
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(file1);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("Appointement");
+			 mainjsobj= (JSONObject) parser.parse(file1);
+			 jsarrays = (JSONArray) mainjsobj.get("Appointement");
 			 
 			 System.out.println("\tThe Appointement Details are as follows: ");
 			 System.out.println();
 			  String line;  
 		
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
-				 JSOBJ = (JSONObject) JSARRAY.get(i);
-				 DOCTORNAME = (String) JSOBJ.get("DoctorName");
-				 long NumberOfPatient =  (long) JSOBJ.get("Count");
-				 DATE =  (String) JSOBJ.get("Date");
+				 jsobject = (JSONObject) jsarrays.get(i);
+				 doctorname = (String) jsobject.get("DoctorName");
+				 long NumberOfPatient =  (long) jsobject.get("Count");
+				 date =  (String) jsobject.get("Date");
 			
 				
 				 System.out.println("\t************* Appointement ***************");
-				 System.out.println("\tDoctor Name:  " + DOCTORNAME);
+				 System.out.println("\tDoctor Name:  " + doctorname);
 				 System.out.println("\tNumber Of Patient:  "  + NumberOfPatient);
-				 System.out.println("\tDoctor's Available Date:" + DATE);
+				 System.out.println("\tDoctor's Available Date:" + date);
 				 
 				 System.out.println("\t*****************************************");
 				 System.out.println();
@@ -3286,53 +3184,53 @@ public class Utility {
 		}//Clinic Management
 		
 		
-		static String FIRSTNAME;
-		static String LASTNAME;
-		static String ADDRESS;
-		static String CITY;
-		static String STATE;
-		static long  ZIP;
-		static long PHONENUMBER;
+		static String firstname;
+		static String lastname;
+		static String address;
+		static String city;
+		static String state;
+		static long  zip;
+		static long phonenumber;
 		public static void addPersonDetails() throws IOException, ParseException
 		{
 			
 			FileReader fileReader = new FileReader("AddressBook.json");
 			JSONParser parser = new JSONParser();
-			MAINJSOBJ= (JSONObject) parser.parse(fileReader);
-			JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+			mainjsobj= (JSONObject) parser.parse(fileReader);
+			jsarrays = (JSONArray) mainjsobj.get("AddressBook");
 			System.out.println("Enter the first name:");
-		    FIRSTNAME = Utility.readString();
+		    firstname = Utility.readString();
 		    System.out.println("Enter the last name: ");
-		    LASTNAME = Utility.readString();
+		    lastname = Utility.readString();
 		    System.out.println("Enter the city: ");
-		    CITY = Utility.readString();
+		    city = Utility.readString();
 		    System.out.println("Enter the state: ");
-		    STATE = Utility.readString();
+		    state = Utility.readString();
 		    System.out.println("Enter the zipcode");
-		    ZIP = Utility.readLong();
+		    zip = Utility.readLong();
 		    System.out.println("Enter the phone number: ");
-		    PHONENUMBER = Utility.readLong();
+		    phonenumber = Utility.readLong();
 		    String mobilepattern = "(0/91)?[7-9][0-9]{9}";
-		    boolean isValidMobile = Pattern.matches(mobilepattern,String.valueOf(PHONENUMBER));  
+		    boolean isValidMobile = Pattern.matches(mobilepattern,String.valueOf(phonenumber));  
 		    if(isValidMobile==false)
 		    {
 		    	System.out.println("Please enter proper mobile number: ");
-		    	PHONENUMBER = Utility.readLong();
+		    	phonenumber = Utility.readLong();
 		    }
 		    
-			JSOBJ.put("FirstName", FIRSTNAME);
-			JSOBJ.put("LastName", LASTNAME);
-			JSOBJ.put("City",CITY);
-			JSOBJ.put("State", STATE);
-			JSOBJ.put("ZipCode", ZIP);
-			JSOBJ.put("MobileNumber", PHONENUMBER);
+			jsobject.put("FirstName", firstname);
+			jsobject.put("LastName", lastname);
+			jsobject.put("City",city);
+			jsobject.put("State", state);
+			jsobject.put("ZipCode", zip);
+			jsobject.put("MobileNumber", phonenumber);
 			
 			
-			JSARRAY.add(JSOBJ);
-			MAINJSOBJ.put("AddressBook", JSARRAY);
+			jsarrays.add(jsobject);
+			mainjsobj.put("AddressBook", jsarrays);
 			
 			FileWriter writer = new FileWriter("AddressBook.json");
-			writer.write(MAINJSOBJ.toJSONString());
+			writer.write(mainjsobj.toJSONString());
 			writer.flush();
 			writer.close();
 			
@@ -3348,18 +3246,18 @@ public class Utility {
 			
 			try {
 				System.out.println("Enter the name of person whose details you want to update:");
-				 FIRSTNAME = Utility.readString();
+				 firstname = Utility.readString();
 				fileReader = new FileReader("AddressBook.json");
 				JSONParser parser = new JSONParser();
-				MAINJSOBJ= (JSONObject) parser.parse(fileReader);
-				 JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+				mainjsobj= (JSONObject) parser.parse(fileReader);
+				 jsarrays = (JSONArray) mainjsobj.get("AddressBook");
 				
 				boolean isExit = false;
 				
-				for(int i =0; i<JSARRAY.size();i++)
+				for(int i =0; i<jsarrays.size();i++)
 				{
-				JSOBJ = (JSONObject) JSARRAY.get(i);
-					if (JSOBJ.get("FirstName").equals(FIRSTNAME)) {
+				jsobject = (JSONObject) jsarrays.get(i);
+					if (jsobject.get("FirstName").equals(firstname)) {
 						
 						System.out.println(
 								"select option what you want to edit:\n 1.City \n 3.State \n 3.Zip \n 4.MobileNumber \n 6.editAll");
@@ -3368,53 +3266,53 @@ public class Utility {
 						
 						case 1:
 							System.out.println("Enter the city you want to update");
-							CITY = Utility.readString();
-							JSOBJ.put("City",CITY);
+							city = Utility.readString();
+							jsobject.put("City",city);
 							break;
 						case 2:
 							System.out.println("Enter the state you want to update");
-						    STATE = Utility.readString();
-						    JSOBJ.put("State", STATE);
+						    state = Utility.readString();
+						    jsobject.put("State", state);
 							break;
 						case 3:
 							System.out.println("Enter the zipcode you want to update");
-							ZIP = Utility.readLong();
-							JSOBJ.put("ZipCode", ZIP);
+							zip = Utility.readLong();
+							jsobject.put("ZipCode", zip);
 							break;
 						case 4:
-							System.out.println("Enter the city you want to update");
-							PHONENUMBER = Utility.readLong();
-					        JSOBJ.put("MobileNumber", PHONENUMBER);
+							System.out.println("Enter the mobilenumber you want to update");
+							phonenumber = Utility.readLong();
+					        jsobject.put("MobileNumber", phonenumber);
 							break;
 						case 6:
 							System.out.println("Enter All Details");
 							
 							System.out.println("Enter city");
-							CITY = Utility.readString();
-							JSOBJ.put("City",CITY);
+							city = Utility.readString();
+							jsobject.put("City",city);
 							
 							System.out.println("Enter city");
-							 STATE = Utility.readString();
-							 JSOBJ.put("State", STATE);
+							 state = Utility.readString();
+							 jsobject.put("State", state);
 							 
 							 System.out.println("Enter ZipCode");
-							 ZIP = Utility.readLong();
-							 JSOBJ.put("ZipCode", ZIP);
+							 zip = Utility.readLong();
+							 jsobject.put("ZipCode", zip);
 							 
 							System.out.println("enter mobile number1");
-							PHONENUMBER = Utility.readLong();
-					        JSOBJ.put("MobileNumber", PHONENUMBER);
+							phonenumber = Utility.readLong();
+					        jsobject.put("MobileNumber", phonenumber);
 							break;
 						default:
 							System.out.println("Invalid Choice");
 
 						}// switch
-				        JSARRAY.set(i, JSOBJ);
-						MAINJSOBJ.put("AddressBook", JSARRAY);
+				        jsarrays.set(i, jsobject);
+						mainjsobj.put("AddressBook", jsarrays);
 						
 						
 						FileWriter writer = new FileWriter("AddressBook.json");
-						writer.write(MAINJSOBJ.toJSONString());
+						writer.write(mainjsobj.toJSONString());
 						writer.flush();
 						writer.close();
 
@@ -3444,19 +3342,19 @@ public class Utility {
 		 {
 				FileReader fileReader = new FileReader("AddressBook.json");
 				JSONParser parser = new JSONParser();
-				MAINJSOBJ= (JSONObject) parser.parse(fileReader);
-				JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+				mainjsobj= (JSONObject) parser.parse(fileReader);
+				jsarrays = (JSONArray) mainjsobj.get("AddressBook");
 				System.out.println("Enter the first name of the person whose details you want to delete: ");
-			    FIRSTNAME = Utility.readString();
+			    firstname = Utility.readString();
 				
 				boolean isExit = false;
 				
-				for(int i =0; i<JSARRAY.size();i++)
+				for(int i =0; i<jsarrays.size();i++)
 				{
-				JSOBJ = (JSONObject) JSARRAY.get(i);
-					if (JSOBJ.get("FirstName").equals(FIRSTNAME))
+				jsobject = (JSONObject) jsarrays.get(i);
+					if (jsobject.get("FirstName").equals(firstname))
 					{
-                          JSARRAY.remove(JSOBJ);
+                          jsarrays.remove(jsobject);
                           System.out.println("Successfully Deleted...");
                           
 						   isExit=true;
@@ -3465,9 +3363,9 @@ public class Utility {
 					}//for
 				
 				//JSARRAY.add(JSOBJ);
-				MAINJSOBJ.put("AddressBook", JSARRAY);
+				mainjsobj.put("AddressBook", jsarrays);
 				FileWriter writer = new FileWriter("AddressBook.json");
-				writer.write(MAINJSOBJ.toJSONString());
+				writer.write(mainjsobj.toJSONString());
 				writer.flush();
 				writer.close();
 				
@@ -3485,29 +3383,29 @@ public class Utility {
 			
 			JSONParser parser = new JSONParser();
 			
-			 MAINJSOBJ= (JSONObject) parser.parse(file1);
-			 JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+			 mainjsobj= (JSONObject) parser.parse(file1);
+			 jsarrays = (JSONArray) mainjsobj.get("AddressBook");
 			 
 			 System.out.println("\tThe Doctor Details are as follows: ");
 			  String line;  
 			  int k=1;
-			 for(int i = 0; i<JSARRAY.size();i++)
+			 for(int i = 0; i<jsarrays.size();i++)
 			 {
-				 JSOBJ = (JSONObject) JSARRAY.get(i);
-				 FIRSTNAME = (String) JSOBJ.get("FirstName");
-				 LASTNAME =  (String) JSOBJ.get("LastName");
-				 CITY =  (String) JSOBJ.get("City");
-				 STATE =  (String) JSOBJ.get("State");
-				 ZIP =  (long) JSOBJ.get("ZipCode");
-				 PHONENUMBER =  (long) JSOBJ.get("MobileNumber");
+				 jsobject = (JSONObject) jsarrays.get(i);
+				 firstname = (String) jsobject.get("FirstName");
+				 lastname =  (String) jsobject.get("LastName");
+				 city =  (String) jsobject.get("City");
+				 state =  (String) jsobject.get("State");
+				 zip =  (long) jsobject.get("ZipCode");
+				 phonenumber =  (long) jsobject.get("MobileNumber");
 				
 				 System.out.println("\t************* ADDRESSBOOK-"+k+" ***************");
-				 System.out.println("\tFirst Name:\t" + FIRSTNAME);
-				 System.out.println("\tLast Name:\t"  + LASTNAME);
-				 System.out.println("\tCity:\t\t" + CITY);
-				 System.out.println("\tState:\t\t" + STATE);
-				 System.out.println("\tZipcode:\t" + ZIP);
-				 System.out.println("\tMobile number:\t" + PHONENUMBER);
+				 System.out.println("\tFirst Name:\t" + firstname);
+				 System.out.println("\tLast Name:\t"  + lastname);
+				 System.out.println("\tCity:\t\t" + city);
+				 System.out.println("\tState:\t\t" + state);
+				 System.out.println("\tZipcode:\t" + zip);
+				 System.out.println("\tMobile number:\t" + phonenumber);
 				
 				 System.out.println("\t***********************************************");
 				 System.out.println();
@@ -3554,8 +3452,8 @@ public class Utility {
 				
 				JSONParser parser = new JSONParser();
 				
-				 MAINJSOBJ= (JSONObject) parser.parse(file1);
-				 JSARRAY = (JSONArray) MAINJSOBJ.get("AddressBook");
+				 mainjsobj= (JSONObject) parser.parse(file1);
+				 jsarrays = (JSONArray) mainjsobj.get("AddressBook");
 
 			boolean check = true;
 			do {
@@ -3566,10 +3464,10 @@ public class Utility {
 				case 1:
 					System.out.println("Sorting according to First Names: ");
 
-					Collections.sort(JSARRAY, new sortDetailsbyname());	
+					Collections.sort(jsarrays, new sortDetailsbyname());	
 
 				
-					Iterator nameIterator = JSARRAY.iterator();
+					Iterator nameIterator = jsarrays.iterator();
 
 					while (nameIterator.hasNext()) {
 						JSONObject json = (JSONObject) nameIterator.next();
@@ -3592,10 +3490,10 @@ public class Utility {
 				case 2:
 					System.out.println("Sorting according to Zip Code: ");
 
-					Collections.sort(JSARRAY, new sortDeatilsbyZipcode());	
+					Collections.sort(jsarrays, new sortDeatilsbyZipcode());	
 
 				
-					Iterator zipIterator = JSARRAY.iterator();
+					Iterator zipIterator = jsarrays.iterator();
 
 					while (zipIterator.hasNext()) {
 						JSONObject json = (JSONObject) zipIterator.next();
@@ -3624,42 +3522,10 @@ public class Utility {
 				}
 			} while (check);
 			
-			
-			
-			
-        
-//			 for(int i = 0; i<JSARRAY.size();i++)
-//			 {
-//				 JSOBJ = (JSONObject) JSARRAY.get(i);
-//                  Collections.sort(JSARRAY, new sortDetails());	
-//                  
-//                  MAINJSOBJ.put("AddressBook", JSARRAY);
-//                  System.out.println(MAINJSOBJ.toJSONString());
-			 //}
-		}
+		}//Adress book
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		public static String[] deckOfCards(String[] SUITS, String[] RANKS)
 		{ 

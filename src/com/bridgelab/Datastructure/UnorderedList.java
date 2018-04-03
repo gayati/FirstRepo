@@ -23,7 +23,7 @@ public class UnorderedList
 	{
         MyLinkedList<String> list = new MyLinkedList<String>();
         
-        String filepath = "/home/bridgeit/Documents/myfile.txt";
+        String filepath = "/home/bridgeit/Documents/Gayatri/JavaProgrammes/file/myfile.txt";
         String stringarray[] = Utility.readFile(filepath);
         for(int i=0; i<stringarray.length; i++)
         {

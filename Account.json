@@ -6,8 +6,8 @@
 			"name": "Gayatri"
 		},
 		{
-			"number": 0,
-			"amount": 500000,
+			"number": 4,
+			"amount": 448000,
 			"name": "Geeta"
 		},
 		{
@@ -19,7 +19,11 @@
 			"number": 0,
 			"amount": 500000,
 			"name": "Madhuri"
+		},
+		{
+			"number": 0,
+			"amount": 25000,
+			"name": "fdtg"
 		}
 	]
 }
-

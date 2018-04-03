@@ -32,7 +32,7 @@ public class StockAccount {
 		System.out.println("Enter your choice");
 		int choice = Utility.readInteger();
 		switch (choice) {
-		case 1: Utility.Stockaccount();
+		case 1: Utility.createAccount();
 		        break;
 			
         case 2:Utility.buy();

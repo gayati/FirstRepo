@@ -29,7 +29,7 @@ public class HashingFunction
 	
 	System.out.println();
 	
-	String filepath = "/home/bridgeit/Documents/newfile.txt";
+	String filepath = "/home/bridgeit/Documents/Gayatri/JavaProgrammes/file/newfile.txt";
 	FileReader file = new FileReader(filepath);
 	BufferedReader reader = new BufferedReader(file);
 	String line = reader.readLine();
