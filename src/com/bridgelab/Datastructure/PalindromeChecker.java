@@ -37,38 +37,6 @@ public class PalindromeChecker {
     	  System.out.println("Not");
       }
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-//      MyDeque dequeue = new MyDeque();
-//      for(int i=0; i<=string.length()-1;i++)
-//      {
-//    	  char ch = string.charAt(i);
-//    	  dequeue.addFront(ch);
-//		  
-//      }
-//      char ch = dequeue.deleteFront();
-//      
 	
 	}
 

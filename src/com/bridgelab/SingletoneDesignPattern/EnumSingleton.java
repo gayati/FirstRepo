@@ -2,7 +2,7 @@ package com.bridgelab.SingletoneDesignPattern;
 
 public class EnumSingleton {
 	
-     //INSTANCE;
+     INSTANCE;
     
     public static void doSomething(){
         //do something

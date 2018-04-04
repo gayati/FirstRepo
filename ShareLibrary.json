@@ -1,1 +1,29 @@
-{"Shares":[{"sharename":"@","price":50000,"sharenumber":0},{"sharename":"$","price":10000,"sharenumber":25},{"sharename":"&","price":20000,"sharenumber":5},{"sharename":"#","price":2000,"sharenumber":2}]}
+{
+	"Shares": [
+		{
+			"sharename": "@",
+			"price": 50000,
+			"sharenumber": 0
+		},
+		{
+			"sharename": "$",
+			"price": 10000,
+			"sharenumber": 25
+		},
+		{
+			"sharename": "&",
+			"price": 20000,
+			"sharenumber": 5
+		},
+		{
+			"sharename": "#",
+			"price": 2000,
+			"sharenumber": 2
+		},
+		{
+			"sharename": "*",
+			"price": 2000,
+			"sharenumber": 50
+		}
+	]
+}

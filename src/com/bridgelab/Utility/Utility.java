@@ -2196,7 +2196,6 @@ public class Utility {
 			}
 			else
 			{
-
 				FileReader file1 = new FileReader("Account.json");
 				BufferedReader reader1 = new BufferedReader(file1);
 				JSONParser parser = new JSONParser();
@@ -3464,7 +3463,9 @@ public class Utility {
 				case 1:
 					System.out.println("Sorting according to First Names: ");
 
-					Collections.sort(jsarrays, new sortDetailsbyname());	
+					Collections.sort(jsarrays, new sortDetailsbyname());	 System.out.println("Enter the share symbol to remove");
+					 String symbol1 = Utility.readString();
+					 
 
 				
 					Iterator nameIterator = jsarrays.iterator();
@@ -3657,7 +3658,106 @@ public class Utility {
 			}
 		}//Deck Of Cards Queue
 		
+		
+		
+		
+		public static void addShares() throws IOException, ParseException
+		{
+			System.out.println("Enter the share symbol you want to add: ");
+			String symbol = Utility.readString();
+			System.out.println("Enter the each share price:");
+		    long shareprice = Utility.readLong();
+		    System.out.println("Enter the share numbers:");
+		    long sharenumber = Utility.readLong();
+		    
+		    LinkedList <String> symbollist = new LinkedList<>(); 
+		    symbollist.add(symbol);
+		    String symbol1 = symbollist.pop();
+		   
+		    LinkedList<Long> pricelist = new LinkedList<>();
+		    pricelist.add(shareprice);
+		    long shareprice1 = pricelist.pop();
+		  
+		    
+		    LinkedList<Long> numberlist = new LinkedList<>();
+		    numberlist.add(sharenumber);
+		    long sharenumber1 = numberlist.pop();
+		    
+		    jsobject.put("sharename", symbol1);
+		    jsobject.put("price", shareprice1);
+		    jsobject.put("sharenumber", sharenumber1);
 
+			FileReader file = new FileReader("ShareLibrary.json");
+			BufferedReader reader = new BufferedReader(file);
+			if(reader.readLine() == null)
+			{
+			jsarrays.add(jsobject);
+			FileWriter writer = new FileWriter("ShareLibrary.json",true);
+			JSONObject mainjsobj = new JSONObject();
+      	    mainjsobj.put("Shares", jsarrays);
+			writer.write(mainjsobj.toJSONString());
+			writer.flush();
+			}
+			else
+			{
+
+				FileReader file1 = new FileReader("ShareLibrary.json");
+				BufferedReader reader1 = new BufferedReader(file1);
+				JSONParser parser = new JSONParser();
+				JSONObject jsobj1 = (JSONObject) parser.parse(reader1);
+				JSONArray jsarray1 = (JSONArray) jsobj1.get("Shares");
+				jsarray1.add(jsobject);
+		        JSONObject mainjsobj = new JSONObject();
+				 mainjsobj.put("Shares", jsarray1);
+				 FileWriter writer = new FileWriter("ShareLibrary.json");
+				 writer.write(mainjsobj.toJSONString());
+				 System.out.println("Succesfully added the shares........!!!!!!!!");
+				 writer.flush();	
+			}
+		}
+     
+		
+		public static void removeShares() throws IOException, ParseException
+		{
+			 FileReader file1 = new FileReader("ShareLibrary.json");
+				
+				JSONParser parser = new JSONParser();
+				
+				 mainjsobj= (JSONObject) parser.parse(file1);
+				 jsarrays = (JSONArray) mainjsobj.get("Shares");
+				 
+				
+				  String line;  
+				 
+				 for(int i = 0; i<jsarrays.size();i++)
+				 {
+					 jsobject = (JSONObject) jsarrays.get(i);
+					 
+					 symbol = (String) jsobject.get("sharename"); 
+					 System.out.println("Enter the share symbol to remove");
+					 String symbol1 = Utility.readString();
+					 if(symbol.equals(symbol1))
+					 {
+					 LinkedList <String> symbollist = new LinkedList<>(); 
+					 symbollist.add(symbol);
+					  
+					 long shareprice =  (long) jsobject.get("price");
+					 LinkedList<Long> pricelist = new LinkedList<>();
+					 pricelist.add(shareprice);
+					    
+					 sharenumber =  (long) jsobject.get("sharenumber");
+					 LinkedList<Long> numberlist = new LinkedList<>();
+					 numberlist.add(sharenumber);
+					 
+					 
+					 
+					 
+					 }
+					 
+					 
+				 }	
+					
+		}
 }	 
 
 
