@@ -7,7 +7,8 @@ public class Client {
         try
         {
             internet.connectTo("geeksforgeeks.org");
-            internet.connectTo("abc.com");
+           // internet.connectTo("abc.com");
+            internet.connectTo("abcds.com");
         }
         catch (Exception e)
         {

@@ -28,10 +28,9 @@ public class StockLinkedList {
 		case 1:Utility.addShares();
 			   break;
 		case 2:Utility.removeShares();
-		   break;
-
+		       break;
 		default:System.out.println("Invalid Choice");
-			break;
+			    break;
 		}
 	
 		

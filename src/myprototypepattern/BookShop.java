@@ -22,11 +22,12 @@ public class BookShop implements Cloneable
 		this.list = list;
 	}
 	
-	public void loaddata()
-	{
+	public void loadData()
+	{   
+		Book b = null;
 		for(int i=1; i<=10; i++)
 		{
-			Book b = new Book();
+			b = new Book();
 			b.setBid(i);
 			b.setbName("Book " + i);
 			getList().add(b);

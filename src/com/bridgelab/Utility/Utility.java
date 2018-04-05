@@ -3659,8 +3659,9 @@ public class Utility {
 		}//Deck Of Cards Queue
 		
 		
-		
-		
+		 static LinkedList <String> symbollist = new LinkedList<>(); ;
+		 static  LinkedList<Long> pricelist = new LinkedList<>();
+		 static LinkedList<Long> numberlist = new LinkedList<>();
 		public static void addShares() throws IOException, ParseException
 		{
 			System.out.println("Enter the share symbol you want to add: ");
@@ -3670,16 +3671,16 @@ public class Utility {
 		    System.out.println("Enter the share numbers:");
 		    long sharenumber = Utility.readLong();
 		    
-		    LinkedList <String> symbollist = new LinkedList<>(); 
+		    symbollist = new LinkedList<>(); 
 		    symbollist.add(symbol);
 		    String symbol1 = symbollist.pop();
 		   
-		    LinkedList<Long> pricelist = new LinkedList<>();
+		    pricelist = new LinkedList<>();
 		    pricelist.add(shareprice);
 		    long shareprice1 = pricelist.pop();
 		  
 		    
-		    LinkedList<Long> numberlist = new LinkedList<>();
+		    numberlist = new LinkedList<>();
 		    numberlist.add(sharenumber);
 		    long sharenumber1 = numberlist.pop();
 		    
@@ -3727,38 +3728,103 @@ public class Utility {
 				 jsarrays = (JSONArray) mainjsobj.get("Shares");
 				 
 				
-				  String line;  
-				 
-				 for(int i = 0; i<jsarrays.size();i++)
+				String line;  
+			    for(int i = 0; i<jsarrays.size();i++)
 				 {
 					 jsobject = (JSONObject) jsarrays.get(i);
 					 
 					 symbol = (String) jsobject.get("sharename"); 
-					 System.out.println("Enter the share symbol to remove");
-					 String symbol1 = Utility.readString();
-					 if(symbol.equals(symbol1))
-					 {
-					 LinkedList <String> symbollist = new LinkedList<>(); 
+					
+				
 					 symbollist.add(symbol);
+				
 					  
 					 long shareprice =  (long) jsobject.get("price");
-					 LinkedList<Long> pricelist = new LinkedList<>();
+					
 					 pricelist.add(shareprice);
-					    
+					
 					 sharenumber =  (long) jsobject.get("sharenumber");
-					 LinkedList<Long> numberlist = new LinkedList<>();
-					 numberlist.add(sharenumber);
-					 
-					 
-					 
-					 
-					 }
-					 
-					 
+				  
+					 numberlist.add(sharenumber);	 
+					
+						 
 				 }	
 					
+				 
+				 System.out.println("Enter the sahre symbol to remove");
+				 String symbol1 = Utility.readString();
+				 boolean isExist = false;
+				 //removing from linkedlist
+				 for(int i = 0; i<symbollist.size();i++)
+				 {
+					
+					 String symbol2 = symbollist.get(i);
+					
+					 if(symbol1.equals(symbol2) && symbollist.contains(symbol1))
+					 {
+						 symbol = symbollist.remove(i);
+						 System.out.println(symbol);
+						 long shareprice1 = pricelist.remove(i);
+						 System.out.println(shareprice1);
+						 sharenumber = numberlist.remove(i);
+						 System.out.println(sharenumber);
+						 jsarrays.remove(i);//remove object at that position
+						 isExist = true;
+						 break;
+					 }
+					 else
+					 {
+						 System.out.println("SHare is not exist");
+						 break;
+					 }
+				 }
+			     
+				 //System.out.println(jsarrays.toJSONString());
+				 
+				 mainjsobj.put("Shares", jsarrays);
+				 FileWriter writer = new FileWriter("ShareLibrary.json");
+				 writer.write(mainjsobj.toJSONString());
+				 writer.flush();
+		
+		        if(isExist==true)
+				 System.out.println("Succesfully updated the shares........!!!!!!!!");
+
+				 }
+				 
 		}
-}	 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
